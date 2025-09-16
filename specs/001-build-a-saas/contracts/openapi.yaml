@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: AI Product Image Generator API
+  version: 0.1.0
+servers:
+  - url: https://{host}
+    variables:
+      host:
+        default: example.com
+paths:
+  /api/health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+  /api/generate:
+    post:
+      summary: Generate combined product image
+      description: Accepts category and two base64 images; returns base64 result
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateRequest'
+      responses:
+        '200':
+          description: Generation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateResponse'
+        '400':
+          description: Validation error
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limited
+        '504':
+          description: Timeout
+components:
+  schemas:
+    GenerateRequest:
+      type: object
+      required: [category, modelImage, productImage]
+      properties:
+        category:
+          type: string
+          enum: [ecommerce, fashion, jewelry, technology, beauty]
+        modelImage:
+          type: string
+          description: base64-encoded image
+        productImage:
+          type: string
+          description: base64-encoded image
+    GenerateResponse:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          nullable: true
+          properties:
+            generationId:
+              type: string
+            generatedImage:
+              type: string
+              description: base64-encoded image
+            downloadUrl:
+              type: string
+        error:
+          type: object
+          nullable: true
+          properties:
+            code:
+              type: string
+              enum: [UNAUTHORIZED, RATE_LIMITED, VALIDATION_ERROR, WEBHOOK_ERROR, TIMEOUT, INTERNAL_ERROR]
+            message:
+              type: string
