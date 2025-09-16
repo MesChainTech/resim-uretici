@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id             String      @id @default(cuid())
+  clerkId        String      @unique
+  email          String      @unique
+  firstName      String?
+  lastName       String?
+  imageUrl       String?
+  tier           UserTier    @default(FREE)
+  monthlyCredits Int         @default(5)
+  creditsUsed    Int         @default(0)
+  creditResetAt  DateTime    @default(now())
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  
+  generations    Generation[]
+  
+  @@index([clerkId])
+  @@index([email])
+}
+
+model Generation {
+  id              String           @id @default(cuid())
+  userId          String
+  category        Category
+  modelImageUrl   String?          @db.Text
+  productImageUrl String?          @db.Text
+  resultImageUrl  String?          @db.Text
+  status          GenerationStatus @default(PENDING)
+  error           String?
+  processingTime  Int?             // in milliseconds
+  webhookPayload  Json?
+  webhookResponse Json?
+  createdAt       DateTime         @default(now())
+  completedAt     DateTime?
+  
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum UserTier {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum Category {
+  ECOMMERCE
+  FASHION
+  JEWELRY
+  TECHNOLOGY
+  BEAUTY
+}
+
+enum GenerationStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  TIMEOUT
+}

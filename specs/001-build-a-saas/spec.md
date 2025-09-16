@@ -79,7 +79,7 @@ As an authenticated user, I want to generate a professional product/advertising 
 - Upload exceeds 10MB or unsupported format → block upload with message indicating limits and allowed types.
 - Duplicate clicks on Generate → request is debounced or prevented until current processing completes.
 - User navigates away mid-processing → system cancels or warns that in-progress generation will be lost. [NEEDS CLARIFICATION: should processing continue server-side?]
- - User navigates away mid-processing → show a leave-warning. If the user confirms, the client cancels the request and stops waiting; any server-side processing already triggered is not retained or surfaced. The user must resubmit upon return.
+- User navigates away mid-processing → show a leave-warning. If the user confirms, the client cancels the request and stops waiting; any server-side processing already triggered is not retained or surfaced. The user must resubmit upon return.
 - External service returns malformed/empty base64 → show error and allow retry.
 - Network interruption during request/response → show connectivity error and retry guidance.
 - Users attempt to upload images containing prohibited content → block generation and inform the user. Prohibited content includes nudity/sexual content, hate symbols, graphic violence, illegal activities/drugs, or sensitive documents (IDs, credit cards). Display a brief policy notice.

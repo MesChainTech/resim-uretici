@@ -12,7 +12,7 @@ paths:
     get:
       summary: Health check
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -31,21 +31,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GenerateRequest'
+              $ref: "#/components/schemas/GenerateRequest"
       responses:
-        '200':
+        "200":
           description: Generation result
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenerateResponse'
-        '400':
+                $ref: "#/components/schemas/GenerateResponse"
+        "400":
           description: Validation error
-        '401':
+        "401":
           description: Unauthorized
-        '429':
+        "429":
           description: Rate limited
-        '504':
+        "504":
           description: Timeout
 components:
   schemas:
@@ -85,6 +85,14 @@ components:
           properties:
             code:
               type: string
-              enum: [UNAUTHORIZED, RATE_LIMITED, VALIDATION_ERROR, WEBHOOK_ERROR, TIMEOUT, INTERNAL_ERROR]
+              enum:
+                [
+                  UNAUTHORIZED,
+                  RATE_LIMITED,
+                  VALIDATION_ERROR,
+                  WEBHOOK_ERROR,
+                  TIMEOUT,
+                  INTERNAL_ERROR,
+                ]
             message:
               type: string

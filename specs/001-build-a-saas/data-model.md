@@ -5,6 +5,7 @@
 ## Entities
 
 ### User (external auth via Clerk)
+
 - id (string, cuid)
 - clerkId (string)
 - email (string)
@@ -13,6 +14,7 @@
 - credits (future)
 
 ### Generation (optional metadata record)
+
 - id (string, cuid)
 - userId (string)
 - category (enum: ECOMMERCE | FASHION | JEWELRY | TECHNOLOGY | BEAUTY)
@@ -25,11 +27,13 @@
 - webhookResponse? (json) — sanitized subset
 
 ## Validation Rules
+
 - Image files: MIME in {image/jpeg, image/png, image/webp}, size ≤ 10MB, dims ≤ 4096×4096.
 - Category required before upload/generation.
 - Exactly two uploads: model + product.
 - Timeout: 300s; on exceed → TIMEOUT.
 
 ## State Transitions
+
 - PENDING → PROCESSING → COMPLETED | FAILED | TIMEOUT
 - Cancel action: PROCESSING → FAILED (client cancel) [no persistence in v1]

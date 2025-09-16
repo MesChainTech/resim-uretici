@@ -4,6 +4,7 @@
 **Input**: Feature specification from `/specs/001-build-a-saas/spec.md`
 
 ## Execution Flow (/plan command scope)
+
 ```
 1. Load feature spec from Input path
    → If not found: ERROR "No feature spec at {path}"
@@ -26,13 +27,16 @@
 ```
 
 **IMPORTANT**: The /plan command STOPS at step 7. Phases 2-4 are executed by other commands:
+
 - Phase 2: /tasks command creates tasks.md
 - Phase 3-4: Implementation execution (manual or via tools)
 
 ## Summary
+
 From the feature spec: Authenticated users upload a model photo and a product photo, select a category, and receive a combined advertising image generated via an external n8n webhook, presented as base64 with download capability. The plan leverages Next.js 15 + TypeScript, Clerk auth, Zod validation, and a secure server-mediated webhook call with a strict 5-minute timeout, accessibility and responsiveness as first-class requirements, and no server-side persistence of images in v1.
 
 ## Technical Context
+
 **Language/Version**: TypeScript (Node 18+), React 18, Next.js 15 (App Router)  
 **Primary Dependencies**: Next.js, React, Tailwind CSS 3.4, shadcn/ui, Lucide, Framer Motion, React Hook Form, Zod, TanStack Query, Prisma (optional v1), @clerk/nextjs, upstash/ratelimit, react-dropzone, sharp  
 **Storage**: PostgreSQL via Prisma (metadata only in v1; no image storage per spec)  
@@ -44,7 +48,8 @@ From the feature spec: Authenticated users upload a model photo and a product ph
 **Scale/Scope**: Initial release, single region; concurrency governed by rate limiting; future credits/history out-of-scope
 
 ## Constitution Check
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
 - Test-First: Plan includes contract tests and integration scenarios before implementation (PASS)
 - Simplicity: Single Next.js app; no extra services beyond required webhook (PASS)
@@ -55,6 +60,7 @@ From the feature spec: Authenticated users upload a model photo and a product ph
 ## Project Structure
 
 ### Documentation (this feature)
+
 ```
 specs/001-build-a-saas/
 ├── plan.md              # This file (/plan command output)
@@ -66,6 +72,7 @@ specs/001-build-a-saas/
 ```
 
 ### Source Code (repository root)
+
 ```
 # Web application (frontend + backend in Next.js)
 app/ (App Router)
@@ -81,12 +88,14 @@ __tests__/
 **Structure Decision**: Web application structure (Next.js single app) per project type
 
 ## Phase 0: Outline & Research
+
 - Unknowns resolved in research.md: accessibility acceptance specifics, MIME types, download format + naming, rate limiting policy, cancellation behavior, retention policy, content policy, webhook authentication handling, timeout approach.
 - Best practices gathered for: Next.js App Router file uploads, Clerk with App Router, Upstash rate limits, handling base64 images, sharp optimizations, Zod + React Hook Form integration, n8n webhook timeouts.
 
 **Output**: research.md with all decisions and rationales
 
 ## Phase 1: Design & Contracts
+
 - Data model focuses on ephemeral, session-based processing (no image persistence). Optional metadata-only records considered for future.
 - API contracts defined for /api/generate, /api/health, and optional /api/webhook/callback (not used in v1).
 - Quickstart includes environment configuration and run guidance.
@@ -95,15 +104,19 @@ __tests__/
 **Output**: data-model.md, contracts/openapi.yaml, quickstart.md, updated agent file
 
 ## Phase 2: Task Planning Approach
+
 - Load tasks template; derive tasks from contracts and entities.
 - TDD ordering: contract tests → models/services → UI.
 - Mark parallelizable tasks [P] and sequence dependencies.
 
 ## Complexity Tracking
+
 (none required; constitution check passed)
 
 ## Progress Tracking
+
 **Phase Status**:
+
 - [x] Phase 0: Research complete (/plan command)
 - [x] Phase 1: Design complete (/plan command)
 - [ ] Phase 2: Task planning complete (/plan command - describe approach only)
@@ -112,10 +125,12 @@ __tests__/
 - [ ] Phase 5: Validation passed
 
 **Gate Status**:
+
 - [x] Initial Constitution Check: PASS
 - [x] Post-Design Constitution Check: PASS
 - [x] All NEEDS CLARIFICATION resolved
 - [ ] Complexity deviations documented
 
 ---
-*Based on Constitution v2.1.1 - See `/memory/constitution.md`*
+
+_Based on Constitution v2.1.1 - See `/memory/constitution.md`_
