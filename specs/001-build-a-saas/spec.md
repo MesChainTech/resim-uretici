@@ -3,48 +3,7 @@
 **Feature Branch**: `001-build-a-saas`  
 **Created**: 2025-09-16  
 **Status**: Draft  
-**Input**: User description: "Build a SaaS web application called \"AI Product Image Generator\" that enables users to create professional product/advertising images by combining their product photos with model photos using AI.
-
-## Core Purpose
-Create a platform where users can upload a product image and a model image, select a category, and receive an AI-generated combined advertising/product image. The system uses n8n webhooks to process images and returns base64-encoded results.
-
-## User Journey
-1. User lands on the homepage and sees a professional SaaS landing page
-2. User must register/login via Clerk authentication to access the service
-3. Once authenticated, user navigates to the Hero section with the generator interface
-4. User selects a category from: E-commerce, Fashion, Jewelry, Technology, or Beauty
-5. User uploads two images: one model photo and one product photo
-6. User clicks "Generate" button and sees a loading indicator
-7. System sends data to n8n webhook and waits for response (max 5 minutes)
-8. Generated image is displayed in base64 format
-9. User can download the generated image
-
-## Key Features
-- Landing page with sections: Header, Hero (generator), How to Use, Pricing, Footer
-- Clerk authentication integration for user access control
-- Category-based image generation (5 categories)
-- Dual image upload system (model + product)
-- Real-time image generation via n8n webhook
-- Base64 image display and download functionality
-- Loading states and error handling
-- Responsive design for all devices
-
-## User Stories
-- As a business owner, I want to create professional product images without hiring photographers
-- As a marketer, I want to quickly generate advertising visuals for different product categories
-- As an e-commerce seller, I want to combine my products with model photos to create appealing listings
-- As a user, I want to see clear instructions on how to use the platform
-- As a user, I want to download my generated images for use in my marketing materials
-
-## Acceptance Criteria
-- Users must authenticate before accessing the generator
-- Category selection must be mandatory before image upload
-- Both images (model and product) must be uploaded before generation
-- Loading indicator must be shown during generation process
-- Generated images must be downloadable as image files
-- Error messages must be clear and actionable
-- Application must handle timeout scenarios (5 minutes)
-- All UI elements must be responsive and accessible"
+**Input**: User description: "SaaS app 'AI Product Image Generator' where authenticated users upload a model photo and a product photo, select a category (E-commerce, Fashion, Jewelry, Technology, Beauty), a service processes via webhook and returns a base64 image to display and download, with clear errors, responsive UI, and a 5-minute timeout."
 
 ## Execution Flow (main)
 ```
