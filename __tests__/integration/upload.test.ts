@@ -2,26 +2,26 @@ import { describe, expect, it } from '@jest/globals'
 
 describe('File Upload Validation Integration', () => {
   const mockAuthHeaders = {
-    'Authorization': 'Bearer mock-clerk-token',
-    'Content-Type': 'application/json'
+    Authorization: 'Bearer mock-clerk-token',
+    'Content-Type': 'application/json',
   }
 
   it('should reject files larger than 10MB', async () => {
     // Create a large base64 string (simulating >10MB)
     const largeBase64 = 'data:image/jpeg;base64,' + 'A'.repeat(15 * 1024 * 1024) // ~15MB
-    
+
     const response = await fetch('http://localhost:3000/api/generate', {
       method: 'POST',
       headers: mockAuthHeaders,
       body: JSON.stringify({
         category: 'ecommerce',
         modelImage: largeBase64,
-        productImage: 'data:image/jpeg;base64,validsmallimage'
-      })
+        productImage: 'data:image/jpeg;base64,validsmallimage',
+      }),
     })
 
     expect(response.status).toBe(400)
-    
+
     const data = await response.json()
     expect(data.success).toBe(false)
     expect(data.error.code).toBe('VALIDATION_ERROR')
@@ -32,7 +32,7 @@ describe('File Upload Validation Integration', () => {
     const validMimeTypes = [
       'data:image/jpeg;base64,validimage',
       'data:image/png;base64,validimage',
-      'data:image/webp;base64,validimage'
+      'data:image/webp;base64,validimage',
     ]
 
     for (const imageData of validMimeTypes) {
@@ -42,8 +42,8 @@ describe('File Upload Validation Integration', () => {
         body: JSON.stringify({
           category: 'technology',
           modelImage: imageData,
-          productImage: imageData
-        })
+          productImage: imageData,
+        }),
       })
 
       expect([200, 202]).toContain(response.status)
@@ -56,7 +56,7 @@ describe('File Upload Validation Integration', () => {
       'data:image/bmp;base64,invalidimage',
       'data:image/svg+xml;base64,invalidimage',
       'data:text/plain;base64,notanimage',
-      'data:application/pdf;base64,notanimage'
+      'data:application/pdf;base64,notanimage',
     ]
 
     for (const imageData of invalidMimeTypes) {
@@ -66,12 +66,12 @@ describe('File Upload Validation Integration', () => {
         body: JSON.stringify({
           category: 'fashion',
           modelImage: imageData,
-          productImage: 'data:image/jpeg;base64,validimage'
-        })
+          productImage: 'data:image/jpeg;base64,validimage',
+        }),
       })
 
       expect(response.status).toBe(400)
-      
+
       const data = await response.json()
       expect(data.success).toBe(false)
       expect(data.error.code).toBe('VALIDATION_ERROR')
@@ -84,7 +84,7 @@ describe('File Upload Validation Integration', () => {
       'data:image/png;base64,',
       'not-a-data-url',
       'data:image/jpeg;base64,short',
-      ''
+      '',
     ]
 
     for (const imageData of malformedImages) {
@@ -94,12 +94,12 @@ describe('File Upload Validation Integration', () => {
         body: JSON.stringify({
           category: 'jewelry',
           modelImage: imageData,
-          productImage: 'data:image/jpeg;base64,validimage'
-        })
+          productImage: 'data:image/jpeg;base64,validimage',
+        }),
       })
 
       expect(response.status).toBe(400)
-      
+
       const data = await response.json()
       expect(data.success).toBe(false)
       expect(data.error.code).toBe('VALIDATION_ERROR')
@@ -109,7 +109,7 @@ describe('File Upload Validation Integration', () => {
   it('should validate image dimensions (max 4096x4096)', async () => {
     // Simulate oversized image metadata
     const oversizedImage = 'data:image/jpeg;base64,oversizedimage'
-    
+
     const response = await fetch('http://localhost:3000/api/generate', {
       method: 'POST',
       headers: mockAuthHeaders,
@@ -117,12 +117,12 @@ describe('File Upload Validation Integration', () => {
         category: 'beauty',
         modelImage: oversizedImage,
         productImage: 'data:image/jpeg;base64,validimage',
-        _mockOversized: true // Test flag for dimensions
-      })
+        _mockOversized: true, // Test flag for dimensions
+      }),
     })
 
     expect(response.status).toBe(400)
-    
+
     const data = await response.json()
     expect(data.success).toBe(false)
     expect(data.error.code).toBe('VALIDATION_ERROR')
@@ -136,31 +136,34 @@ describe('File Upload Validation Integration', () => {
       headers: mockAuthHeaders,
       body: JSON.stringify({
         category: 'ecommerce',
-        productImage: 'data:image/jpeg;base64,validimage'
-      })
+        productImage: 'data:image/jpeg;base64,validimage',
+      }),
     })
 
     expect(responseNoModel.status).toBe(400)
-    
+
     // Test missing product image
-    const responseNoProduct = await fetch('http://localhost:3000/api/generate', {
-      method: 'POST',
-      headers: mockAuthHeaders,
-      body: JSON.stringify({
-        category: 'ecommerce',
-        modelImage: 'data:image/jpeg;base64,validimage'
-      })
-    })
+    const responseNoProduct = await fetch(
+      'http://localhost:3000/api/generate',
+      {
+        method: 'POST',
+        headers: mockAuthHeaders,
+        body: JSON.stringify({
+          category: 'ecommerce',
+          modelImage: 'data:image/jpeg;base64,validimage',
+        }),
+      }
+    )
 
     expect(responseNoProduct.status).toBe(400)
-    
+
     // Test missing both images
     const responseNoBoth = await fetch('http://localhost:3000/api/generate', {
       method: 'POST',
       headers: mockAuthHeaders,
       body: JSON.stringify({
-        category: 'ecommerce'
-      })
+        category: 'ecommerce',
+      }),
     })
 
     expect(responseNoBoth.status).toBe(400)
@@ -172,7 +175,7 @@ describe('File Upload Validation Integration', () => {
       'data:image/png;base64,hate_symbol_flag',
       'data:image/jpeg;base64,violence_flag',
       'data:image/png;base64,illegal_drug_flag',
-      'data:image/jpeg;base64,sensitive_document_flag'
+      'data:image/jpeg;base64,sensitive_document_flag',
     ]
 
     for (const imageData of prohibitedContentImages) {
@@ -183,12 +186,12 @@ describe('File Upload Validation Integration', () => {
           category: 'technology',
           modelImage: imageData,
           productImage: 'data:image/jpeg;base64,validimage',
-          _mockProhibited: true // Test flag
-        })
+          _mockProhibited: true, // Test flag
+        }),
       })
 
       expect(response.status).toBe(400)
-      
+
       const data = await response.json()
       expect(data.success).toBe(false)
       expect(data.error.code).toBe('VALIDATION_ERROR')
@@ -198,12 +201,12 @@ describe('File Upload Validation Integration', () => {
 
   it('should validate category selection before upload', async () => {
     const invalidCategories = [
-      '', 
-      'invalid-category', 
-      'INVALID', 
-      123, 
-      null, 
-      undefined
+      '',
+      'invalid-category',
+      'INVALID',
+      123,
+      null,
+      undefined,
     ]
 
     for (const category of invalidCategories) {
@@ -213,12 +216,12 @@ describe('File Upload Validation Integration', () => {
         body: JSON.stringify({
           category,
           modelImage: 'data:image/jpeg;base64,validimage',
-          productImage: 'data:image/jpeg;base64,validimage'
-        })
+          productImage: 'data:image/jpeg;base64,validimage',
+        }),
       })
 
       expect(response.status).toBe(400)
-      
+
       const data = await response.json()
       expect(data.success).toBe(false)
       expect(data.error.code).toBe('VALIDATION_ERROR')
@@ -232,12 +235,12 @@ describe('File Upload Validation Integration', () => {
       body: JSON.stringify({
         category: 'invalid',
         modelImage: 'invalid-image',
-        productImage: ''
-      })
+        productImage: '',
+      }),
     })
 
     expect(response.status).toBe(400)
-    
+
     const data = await response.json()
     expect(data.success).toBe(false)
     expect(data.error.code).toBe('VALIDATION_ERROR')

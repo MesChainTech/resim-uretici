@@ -20,7 +20,6 @@
     "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "^6.16.2",
     "@tanstack/react-query": "^5.89.0",
-    "@upstash/ratelimit": "github:upstash/ratelimit",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.13",
