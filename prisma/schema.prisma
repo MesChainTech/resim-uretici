@@ -60,11 +60,11 @@ enum UserTier {
 }
 
 enum Category {
-    ECOMMERCE
-    FASHION
-    JEWELRY
-    TECHNOLOGY
-    BEAUTY
+    ETICARET
+    GIYIM
+    TAKI
+    TEKNOLOJI
+    GUZELLIK
 }
 
 enum GenerationStatus {

@@ -62,6 +62,14 @@ export function base64ToBuffer(base64: string): Buffer {
 }
 
 /**
+ * Extract raw base64 data without data URL prefix
+ */
+export function extractBase64Data(base64: string): string {
+  // Remove data URL prefix if present
+  return base64.replace(/^data:image\/[a-z]+;base64,/, '')
+}
+
+/**
  * Convert buffer to base64 string with data URL prefix
  */
 export function bufferToBase64(

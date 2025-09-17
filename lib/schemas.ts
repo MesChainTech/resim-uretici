@@ -2,11 +2,11 @@ import { z } from 'zod'
 
 // Categories enum
 export const CategoryEnum = z.enum([
-  'ecommerce',
-  'fashion',
-  'jewelry',
-  'technology',
-  'beauty',
+  'eticaret',
+  'giyim',
+  'teknoloji',
+  'guzellik',
+  'taki',
 ])
 
 export type Category = z.infer<typeof CategoryEnum>
@@ -19,14 +19,14 @@ export const Base64ImageSchema = z
   .string()
   .regex(
     base64ImageRegex,
-    'Invalid image format. Must be base64 encoded JPEG, PNG, or WebP'
+    'Geçersiz resim formatı. Base64 kodlu JPEG, PNG veya WebP olmalıdır'
   )
   .refine(data => {
     // Check file size (approximately 10MB in base64)
     // Base64 encoding increases size by ~33%, so 10MB = ~13.3MB base64
     const maxSizeBase64 = 13.3 * 1024 * 1024 // ~13.3MB
     return data.length <= maxSizeBase64
-  }, 'Image size must be less than 10MB')
+  }, "Resim boyutu 10MB'dan küçük olmalıdır")
 
 // Generation request schema
 export const GenerateRequestSchema = z.object({
@@ -145,8 +145,8 @@ export type Environment = z.infer<typeof EnvironmentSchema>
 // Webhook payload schema for n8n
 export const WebhookPayloadSchema = z.object({
   category: CategoryEnum,
-  urun_resmi: z.string(), // product image base64
-  model_resmi: z.string(), // model image base64
+  urun_resmi: z.string(), // product image base64 (raw, without data URL prefix)
+  model_resmi: z.string(), // model image base64 (raw, without data URL prefix)
   callback_url: z.string().url().optional(),
   generation_id: z.string(),
 })
@@ -156,6 +156,7 @@ export type WebhookPayload = z.infer<typeof WebhookPayloadSchema>
 // Webhook response schema from n8n
 export const WebhookResponseSchema = z.object({
   generated_image: z.string(),
+  download_url: z.string().url().optional(),
   processing_time: z.number().optional(),
   metadata: z.record(z.string(), z.any()).optional(),
 })

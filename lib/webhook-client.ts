@@ -3,6 +3,7 @@ import {
   WebhookResponseSchema,
   CategoryEnum,
 } from './schemas'
+import { extractBase64Data } from './image-utils'
 import { z } from 'zod'
 
 // Webhook configuration
@@ -252,8 +253,8 @@ export async function generateImage(
 ): Promise<WebhookResponse> {
   const payload: WebhookPayload = {
     category,
-    urun_resmi: productImage,
-    model_resmi: modelImage,
+    urun_resmi: extractBase64Data(productImage),
+    model_resmi: extractBase64Data(modelImage),
     generation_id: generationId,
     callback_url: callbackUrl,
   }

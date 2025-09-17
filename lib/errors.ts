@@ -15,6 +15,9 @@ export enum ErrorCode {
   INVALID_INPUT = 'INVALID_INPUT',
   MISSING_REQUIRED_FIELD = 'MISSING_REQUIRED_FIELD',
 
+  // Quota and limiting
+  QUOTA_EXCEEDED = 'QUOTA_EXCEEDED',
+
   // External service errors
   WEBHOOK_ERROR = 'WEBHOOK_ERROR',
   EXTERNAL_SERVICE_ERROR = 'EXTERNAL_SERVICE_ERROR',
@@ -68,6 +71,7 @@ const ERROR_STATUS_MAP: Record<ErrorCode, number> = {
   [ErrorCode.VALIDATION_ERROR]: HTTP_STATUS.BAD_REQUEST,
   [ErrorCode.INVALID_INPUT]: HTTP_STATUS.BAD_REQUEST,
   [ErrorCode.MISSING_REQUIRED_FIELD]: HTTP_STATUS.BAD_REQUEST,
+  [ErrorCode.QUOTA_EXCEEDED]: HTTP_STATUS.TOO_MANY_REQUESTS,
   [ErrorCode.WEBHOOK_ERROR]: HTTP_STATUS.BAD_GATEWAY,
   [ErrorCode.EXTERNAL_SERVICE_ERROR]: HTTP_STATUS.BAD_GATEWAY,
   [ErrorCode.TIMEOUT]: HTTP_STATUS.GATEWAY_TIMEOUT,
@@ -202,7 +206,7 @@ export function handlePrismaError(error: any): AppError {
     case 'P2002':
       return new AppError(
         ErrorCode.DUPLICATE_RECORD,
-        'A record with this information already exists',
+        'Bu bilgilerle bir kayıt zaten mevcut',
         true,
         { field: error.meta?.target }
       )
@@ -210,14 +214,14 @@ export function handlePrismaError(error: any): AppError {
     case 'P2025':
       return new AppError(
         ErrorCode.RECORD_NOT_FOUND,
-        'The requested record was not found',
+        'İstenen kayıt bulunamadı',
         true
       )
 
     case 'P2003':
       return new AppError(
         ErrorCode.VALIDATION_ERROR,
-        'Foreign key constraint failed',
+        'Yabancı anahtar kısıtlaması başarısız',
         true,
         { field: error.meta?.field_name }
       )
@@ -225,7 +229,7 @@ export function handlePrismaError(error: any): AppError {
     default:
       return new AppError(
         ErrorCode.DATABASE_ERROR,
-        'Database operation failed',
+        'Veritabanı işlemi başarısız',
         true,
         { prismaCode: error.code }
       )
@@ -237,16 +241,16 @@ export function handlePrismaError(error: any): AppError {
  */
 export function handleClerkError(error: any): AppError {
   if (error.status === 401) {
-    return new AppError(ErrorCode.UNAUTHORIZED, 'Authentication required')
+    return new AppError(ErrorCode.UNAUTHORIZED, 'Kimlik doğrulama gerekli')
   }
 
   if (error.status === 403) {
-    return new AppError(ErrorCode.FORBIDDEN, 'Access denied')
+    return new AppError(ErrorCode.FORBIDDEN, 'Erişim reddedildi')
   }
 
   return new AppError(
     ErrorCode.EXTERNAL_SERVICE_ERROR,
-    'Authentication service error',
+    'Kimlik doğrulama hizmeti hatası',
     true,
     { clerkError: error.message }
   )
@@ -263,7 +267,7 @@ export function createFileError(
     case 'size':
       return new AppError(
         ErrorCode.FILE_TOO_LARGE,
-        'File size exceeds the maximum allowed limit',
+        'Dosya boyutu izin verilen maksimum sınırı aşıyor',
         true,
         details
       )
@@ -271,7 +275,7 @@ export function createFileError(
     case 'type':
       return new AppError(
         ErrorCode.UNSUPPORTED_FILE_TYPE,
-        'File type is not supported',
+        'Dosya türü desteklenmiyor',
         true,
         details
       )
@@ -279,7 +283,7 @@ export function createFileError(
     case 'processing':
       return new AppError(
         ErrorCode.IMAGE_PROCESSING_ERROR,
-        'Failed to process the image',
+        'Resim işleme başarısız',
         true,
         details
       )
@@ -287,7 +291,7 @@ export function createFileError(
     default:
       return new AppError(
         ErrorCode.UNKNOWN_ERROR,
-        'File processing error',
+        'Dosya işleme hatası',
         true,
         details
       )
