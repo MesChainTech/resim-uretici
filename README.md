@@ -11,11 +11,23 @@ Model görsellerini ürün görselleri ile birleştirerek profesyonel ürün fot
 - **Modern Arayüz**: Tailwind CSS ve Framer Motion animasyonları ile duyarlı tasarım
 - **Gerçek Zamanlı Geri Bildirim**: Doğrulama ve ilerleme göstergeleri ile sürükle-bırak yükleme
 
+## 📸 Ekran Görüntüleri
+
+### Ana Sayfa
+
+![Ana Sayfa](./screenshots/homepage.png)
+_Modern ve kullanıcı dostu ana sayfa tasarımı_
+
+### Görsel Üretim Paneli
+
+![Görsel Üretim](./screenshots/generate.png)
+_Sürükle-bırak ile kolay dosya yükleme ve kategori seçimi_
+
 ## Teknoloji Yığını
 
 - **Framework**: Next.js 15 (App Router)
 - **Dil**: TypeScript
-- **Stil**: Tailwind CSS 3.4
+- **Stil**: Tailwind CSS v4
 - **UI Bileşenleri**: shadcn/ui, Lucide React
 - **Kimlik Doğrulama**: Clerk
 - **Veritabanı**: Prisma ORM ile PostgreSQL
