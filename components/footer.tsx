@@ -2,25 +2,36 @@ import { Camera, Zap } from 'lucide-react';
 
 export function Footer() {
     return (
-        <footer className="bg-gray-900 text-white py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <footer className="border-t border-border/60 bg-background/90">
+            <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
                 <div className="text-center">
-                    <div className="flex items-center justify-center mb-4">
-                        <div className="relative mr-3">
-                            <Camera className="w-8 h-8 text-blue-400" />
-                            <Zap className="w-4 h-4 text-yellow-400 absolute -top-1 -right-1" />
-                        </div>
-                        <h3 className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 bg-clip-text text-transparent tracking-tight">Axe Resim Üretici</h3>
+                    <div className="mb-6 flex items-center justify-center gap-3">
+                        <span className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15">
+                            <Camera className="h-6 w-6" />
+                            <Zap className="absolute -top-1 -right-1 h-4 w-4 text-accent" />
+                        </span>
+                        <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                            Axe Resim Üretici
+                        </h3>
                     </div>
-                    <p className="text-gray-400 mb-8">
-                        Modern işletmeler için profesyonel AI destekli ürün fotoğrafçılığı.
+
+                    <p className="mx-auto max-w-2xl text-sm text-muted-foreground">
+                        Modern işletmeler için profesyonel, AI destekli ürün fotoğrafçılığı deneyimi.
                     </p>
-                    <div className="flex justify-center space-x-8 text-sm text-gray-400">
-                        <a href="#" className="hover:text-white transition-colors">Gizlilik Politikası</a>
-                        <a href="#" className="hover:text-white transition-colors">Kullanım Koşulları</a>
-                        <a href="#" className="hover:text-white transition-colors">İletişim</a>
+
+                    <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+                        <a href="#" className="transition-colors hover:text-foreground">
+                            Gizlilik Politikası
+                        </a>
+                        <a href="#" className="transition-colors hover:text-foreground">
+                            Kullanım Koşulları
+                        </a>
+                        <a href="#" className="transition-colors hover:text-foreground">
+                            İletişim
+                        </a>
                     </div>
-                    <div className="mt-8 pt-8 border-t border-gray-800 text-sm text-gray-400">
+
+                    <div className="mt-10 border-t border-border/40 pt-6 text-xs text-muted-foreground/80">
                         <p>&copy; 2025 Axe Resim Üretici. Tüm hakları saklıdır.</p>
                     </div>
                 </div>

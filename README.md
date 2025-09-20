@@ -1,142 +1,142 @@
-# AI Product Generator
+# Axe Resim Üretici
 
-A Next.js SaaS application that uses AI to generate professional product photography by combining model images with product images.
+Model görsellerini ürün görselleri ile birleştirerek profesyonel ürün fotoğrafçılığı oluşturmak için AI kullanan bir Next.js SaaS uygulaması.
 
-## Features
+## Özellikler
 
-- **AI-Powered Image Generation**: Upload model and product images to create stunning product photography
-- **Multiple Categories**: Support for e-commerce, fashion, jewelry, technology, and beauty products
-- **Secure Authentication**: Clerk-based user authentication and session management
-- **Image Processing**: Advanced validation and optimization with Sharp
-- **Modern UI**: Responsive design with Tailwind CSS and Framer Motion animations
-- **Real-time Feedback**: Drag-and-drop uploads with validation and progress indicators
+- **AI Destekli Görsel Üretimi**: Model ve ürün görsellerini yükleyerek çarpıcı ürün fotoğrafları oluşturun
+- **Çoklu Kategoriler**: E-ticaret, giyim, takı, teknoloji ve güzellik ürünleri için destek
+- **Güvenli Kimlik Doğrulama**: Clerk tabanlı kullanıcı kimlik doğrulama ve oturum yönetimi
+- **Görsel İşleme**: Sharp ile gelişmiş doğrulama ve optimizasyon
+- **Modern Arayüz**: Tailwind CSS ve Framer Motion animasyonları ile duyarlı tasarım
+- **Gerçek Zamanlı Geri Bildirim**: Doğrulama ve ilerleme göstergeleri ile sürükle-bırak yükleme
 
-## Tech Stack
+## Teknoloji Yığını
 
 - **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS 3.4
-- **UI Components**: shadcn/ui, Lucide React
-- **Authentication**: Clerk
-- **Database**: PostgreSQL with Prisma ORM
-- **Image Processing**: Sharp
-- **Form Handling**: React Hook Form with Zod validation
-- **Animations**: Framer Motion
-- **File Uploads**: react-dropzone
+- **Dil**: TypeScript
+- **Stil**: Tailwind CSS 3.4
+- **UI Bileşenleri**: shadcn/ui, Lucide React
+- **Kimlik Doğrulama**: Clerk
+- **Veritabanı**: Prisma ORM ile PostgreSQL
+- **Görsel İşleme**: Sharp
+- **Form İşleme**: Zod doğrulama ile React Hook Form
+- **Animasyonlar**: Framer Motion
+- **Dosya Yükleme**: react-dropzone
 
-## Getting Started
+## Başlarken
 
-### Prerequisites
+### Ön Gereksinimler
 
 - Node.js 18+
-- PostgreSQL database
-- Clerk account for authentication
-- n8n webhook endpoint for AI image generation
+- PostgreSQL veritabanı
+- Kimlik doğrulama için Clerk hesabı
+- AI görsel üretimi için n8n webhook uç noktası
 
-### Installation
+### Kurulum
 
-1. **Clone the repository**
+1. **Depoyu klonlayın**
 
    ```bash
    git clone <repository-url>
    cd speckit-app
    ```
 
-2. **Install dependencies**
+2. **Bağımlılıkları yükleyin**
 
    ```bash
    npm install
    ```
 
-3. **Environment Setup**
+3. **Ortam Kurulumu**
 
    ```bash
-   # Copy the environment template
+   # Ortam şablonunu kopyalayın
    cp .env.example .env.local
    ```
 
-4. **Configure Environment Variables**
+4. **Ortam Değişkenlerini Yapılandırın**
 
-   Edit `.env.local` with your actual values:
+   `.env.local` dosyasını gerçek değerlerinizle düzenleyin:
 
    ```bash
-   # Database
-   DATABASE_URL="postgresql://username:password@localhost:5432/ai_product_generator"
-   DIRECT_URL="postgresql://username:password@localhost:5432/ai_product_generator"
+   # Veritabanı
+   DATABASE_URL="postgresql://kullaniciadi:sifre@localhost:5432/ai_product_generator"
+   DIRECT_URL="postgresql://kullaniciadi:sifre@localhost:5432/ai_product_generator"
 
-   # Clerk Authentication (get from https://clerk.com)
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
-   CLERK_SECRET_KEY="your_clerk_secret_key"
+   # Clerk Kimlik Doğrulama (https://clerk.com adresinden alın)
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="clerk_publishable_key_iniz"
+   CLERK_SECRET_KEY="clerk_secret_key_iniz"
 
-   # n8n Webhook for AI processing
-   N8N_WEBHOOK_URL="your_n8n_webhook_url"
-   N8N_API_KEY="your_n8n_api_key"
+   # AI işleme için n8n Webhook
+   N8N_WEBHOOK_URL="n8n_webhook_url_iniz"
+   N8N_API_KEY="n8n_api_key_iniz"
    ```
 
-5. **Database Setup**
+5. **Veritabanı Kurulumu**
 
    ```bash
-   # Generate Prisma client
+   # Prisma istemcisini oluşturun
    npx prisma generate
 
-   # Run database migrations
+   # Veritabanı migrasyonlarını çalıştırın
    npx prisma migrate dev --name init
    ```
 
-6. **Start Development Server**
+6. **Geliştirme Sunucusunu Başlatın**
 
    ```bash
    npm run dev
    ```
 
-   The application will be available at `http://localhost:3000`
+   Uygulama `http://localhost:3000` adresinde erişilebilir olacaktır
 
-## Project Structure
+## Proje Yapısı
 
 ```
-├── app/                    # Next.js App Router pages
-│   ├── api/               # API routes
-│   │   ├── generate/      # Image generation endpoint
-│   │   └── health/        # Health check endpoint
-│   ├── generate/          # Main generation page
-│   ├── sign-in/           # Authentication pages
+├── app/                    # Next.js App Router sayfaları
+│   ├── api/               # API rotaları
+│   │   ├── generate/      # Görsel üretimi uç noktası
+│   │   └── health/        # Sağlık kontrolü uç noktası
+│   ├── generate/          # Ana üretim sayfası
+│   ├── sign-in/           # Kimlik doğrulama sayfaları
 │   ├── sign-up/
-│   └── page.tsx           # Home page
-├── components/            # React components
-│   └── image-generator.tsx # Main image upload component
-├── lib/                   # Utility libraries
-│   ├── schemas.ts         # Zod validation schemas
-│   ├── image-utils.ts     # Image processing utilities
-│   ├── webhook-client.ts  # n8n webhook integration
-│   └── errors.ts          # Custom error classes
-├── prisma/               # Database schema and migrations
-└── middleware.ts         # Clerk authentication middleware
+│   └── page.tsx           # Ana sayfa
+├── components/            # React bileşenleri
+│   └── image-generator.tsx # Ana görsel yükleme bileşeni
+├── lib/                   # Yardımcı kütüphaneler
+│   ├── schemas.ts         # Zod doğrulama şemaları
+│   ├── image-utils.ts     # Görsel işleme yardımcıları
+│   ├── webhook-client.ts  # n8n webhook entegrasyonu
+│   └── errors.ts          # Özel hata sınıfları
+├── prisma/               # Veritabanı şeması ve migrasyonları
+└── middleware.ts         # Clerk kimlik doğrulama ara yazılımı
 ```
 
-## API Documentation
+## API Dokümantasyonu
 
 ### POST /api/generate
 
-Generate a new product image by combining model and product images.
+Model ve ürün görsellerini birleştirerek yeni bir ürün görseli oluşturun.
 
-**Request Body:**
+**İstek Gövdesi:**
 
 ```json
 {
-  "category": "ecommerce" | "fashion" | "jewelry" | "technology" | "beauty",
-  "modelImage": "base64_encoded_image",
-  "productImage": "base64_encoded_image"
+  "category": "eticaret" | "giyim" | "taki" | "teknoloji" | "guzellik",
+  "modelImage": "base64_kodlu_gorsel",
+  "productImage": "base64_kodlu_gorsel"
 }
 ```
 
-**Response:**
+**Yanıt:**
 
 ```json
 {
   "success": true,
   "data": {
     "generationId": "uuid",
-    "generatedImage": "base64_encoded_result",
+    "generatedImage": "base64_kodlu_sonuc",
     "downloadUrl": "https://..."
   }
 }
@@ -144,109 +144,109 @@ Generate a new product image by combining model and product images.
 
 ### GET /api/health
 
-Health check endpoint for monitoring application status.
+Uygulama durumunu izlemek için sağlık kontrolü uç noktası.
 
-## Environment Variables
+## Ortam Değişkenleri
 
-| Variable                            | Description                               | Required                            |
-| ----------------------------------- | ----------------------------------------- | ----------------------------------- |
-| `DATABASE_URL`                      | PostgreSQL connection string              | Yes                                 |
-| `DIRECT_URL`                        | Direct database connection for migrations | Yes                                 |
-| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk publishable key                     | Yes                                 |
-| `CLERK_SECRET_KEY`                  | Clerk secret key                          | Yes                                 |
-| `N8N_WEBHOOK_URL`                   | n8n webhook endpoint for AI processing    | Yes                                 |
-| `N8N_API_KEY`                       | n8n API authentication key                | Yes                                 |
-| `N8N_WEBHOOK_TIMEOUT`               | Webhook timeout in milliseconds           | No (default: 300000)                |
-| `NEXT_PUBLIC_APP_URL`               | Application base URL                      | No (default: http://localhost:3000) |
+| Değişken                            | Açıklama                                         | Gerekli                                   |
+| ----------------------------------- | ------------------------------------------------ | ----------------------------------------- |
+| `DATABASE_URL`                      | PostgreSQL bağlantı dizesi                       | Evet                                      |
+| `DIRECT_URL`                        | Migrasyonlar için doğrudan veritabanı bağlantısı | Evet                                      |
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk genel anahtarı                             | Evet                                      |
+| `CLERK_SECRET_KEY`                  | Clerk gizli anahtarı                             | Evet                                      |
+| `N8N_WEBHOOK_URL`                   | AI işleme için n8n webhook uç noktası            | Evet                                      |
+| `N8N_API_KEY`                       | n8n API kimlik doğrulama anahtarı                | Evet                                      |
+| `N8N_WEBHOOK_TIMEOUT`               | Webhook zaman aşımı (milisaniye)                 | Hayır (varsayılan: 300000)                |
+| `NEXT_PUBLIC_APP_URL`               | Uygulama temel URL'si                            | Hayır (varsayılan: http://localhost:3000) |
 
-## Development
+## Geliştirme
 
-### Code Style and Linting
+### Kod Stili ve Linting
 
 ```bash
-# Run linting
+# Linting çalıştır
 npm run lint
 
-# Run type checking
+# Tip kontrolü çalıştır
 npm run type-check
 
-# Run tests
+# Testleri çalıştır
 npm test
 ```
 
-### Database Management
+### Veritabanı Yönetimi
 
 ```bash
-# Create new migration
-npx prisma migrate dev --name migration_name
+# Yeni migrasyon oluştur
+npx prisma migrate dev --name migrasyon_adi
 
-# Reset database
+# Veritabanını sıfırla
 npx prisma migrate reset
 
-# View database in Prisma Studio
+# Veritabanını Prisma Studio'da görüntüle
 npx prisma studio
 ```
 
-## Deployment
+## Dağıtım
 
-1. **Build the application**
+1. **Uygulamayı derleyin**
 
    ```bash
    npm run build
    ```
 
-2. **Set up production environment variables**
-   - Configure all required environment variables in your hosting platform
-   - Ensure database is accessible and properly configured
-   - Set up Clerk authentication for production domain
+2. **Üretim ortam değişkenlerini ayarlayın**
+   - Hosting platformunuzda tüm gerekli ortam değişkenlerini yapılandırın
+   - Veritabanının erişilebilir ve düzgün yapılandırıldığından emin olun
+   - Üretim domaini için Clerk kimlik doğrulamasını ayarlayın
 
-3. **Run database migrations**
+3. **Veritabanı migrasyonlarını çalıştırın**
    ```bash
    npx prisma migrate deploy
    ```
 
-## Authentication Setup
+## Kimlik Doğrulama Kurulumu
 
-1. Create a Clerk account at [clerk.com](https://clerk.com)
-2. Create a new application
-3. Configure authentication settings:
-   - Enable email/password authentication
-   - Set up redirect URLs for your domain
-   - Configure session settings as needed
-4. Copy the publishable key and secret key to your environment variables
+1. [clerk.com](https://clerk.com) adresinde bir Clerk hesabı oluşturun
+2. Yeni bir uygulama oluşturun
+3. Kimlik doğrulama ayarlarını yapılandırın:
+   - Email/şifre kimlik doğrulamasını etkinleştirin
+   - Domaininiz için yönlendirme URL'lerini ayarlayın
+   - Gerektiğinde oturum ayarlarını yapılandırın
+4. Genel anahtar ve gizli anahtarı ortam değişkenlerinize kopyalayın
 
-## n8n Webhook Setup
+## n8n Webhook Kurulumu
 
-1. Set up an n8n instance (cloud or self-hosted)
-2. Create a webhook workflow for AI image processing
-3. Configure the webhook URL and authentication
-4. Test the webhook integration with the health endpoint
+1. Bir n8n örneği kurun (bulut veya kendi sunucunuzda)
+2. AI görsel işleme için bir webhook iş akışı oluşturun
+3. Webhook URL'sini ve kimlik doğrulamasını yapılandırın
+4. Sağlık uç noktası ile webhook entegrasyonunu test edin
 
-## Contributing
+## Katkıda Bulunma
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-feature`
-3. Make your changes and add tests
-4. Commit your changes: `git commit -am 'Add new feature'`
-5. Push to the branch: `git push origin feature/new-feature`
-6. Submit a pull request
+1. Depoyu fork edin
+2. Özellik dalı oluşturun: `git checkout -b feature/yeni-ozellik`
+3. Değişikliklerinizi yapın ve testler ekleyin
+4. Değişikliklerinizi commit edin: `git commit -am 'Yeni özellik ekle'`
+5. Dala push edin: `git push origin feature/yeni-ozellik`
+6. Bir pull request gönderin
 
-## License
+## Lisans
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Bu proje MIT Lisansı altında lisanslanmıştır - ayrıntılar için LICENSE dosyasına bakın.
 
-## Support
+## Destek
 
-For support and questions:
+Destek ve sorular için:
 
-- Create an issue in the GitHub repository
-- Check the documentation for common setup issues
-- Review the environment variable configuration
+- GitHub deposunda bir issue oluşturun
+- Yaygın kurulum sorunları için dokümantasyonu kontrol edin
+- Ortam değişkeni yapılandırmasını gözden geçirin
 
-## Roadmap
+## Yol Haritası
 
-- [ ] Add support for batch image processing
-- [ ] Implement image history and management
-- [ ] Add more AI models and styles
-- [ ] Implement usage analytics and billing
-- [ ] Add social sharing features
+- [ ] Toplu görsel işleme desteği ekle
+- [ ] Görsel geçmişi ve yönetimi uygula
+- [ ] Daha fazla AI modeli ve stil ekle
+- [ ] Kullanım analitikleri ve faturalandırma uygula
+- [ ] Sosyal paylaşım özellikleri ekle

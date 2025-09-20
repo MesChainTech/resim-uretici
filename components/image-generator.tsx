@@ -203,17 +203,19 @@ export function ImageGenerator() {
     };
 
     return (
-        <div className="w-full max-w-4xl mx-auto p-6 space-y-8">
-            <div className="text-center space-y-4">
-                <h1 className="text-3xl font-bold text-gray-900">AI Ürün Görsel Üretici</h1>
-                <p className="text-lg text-gray-600">
+        <div className="w-full max-w-4xl mx-auto space-y-10">
+            <div className="text-center space-y-3">
+                <h1 className="text-2xl font-semibold text-foreground sm:text-3xl">AI Ürün Görsel Üretici</h1>
+                <p className="text-sm text-muted-foreground sm:text-base">
                     Çarpıcı ürün fotoğrafçılığı oluşturmak için model resmi ve ürün resmi yükleyin
                 </p>
-            </div>            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
                 {/* Category Selection */}
                 <div className="space-y-4">
-                    <label className="text-sm font-medium text-gray-700">
-                        Kategori <span className="text-red-500">*</span>
+                    <label className="text-sm font-medium text-muted-foreground">
+                        Kategori <span className="text-destructive">*</span>
                     </label>
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
                         {CATEGORIES.map((category) => (
@@ -230,20 +232,17 @@ export function ImageGenerator() {
                                         className="sr-only"
                                     />
                                     <div
-                                        className={`p-4 rounded-lg border-2 transition-all ${selectedCategory === category.value
-                                            ? 'border-blue-500 bg-blue-50'
-                                            : 'border-gray-200 hover:border-gray-300'
-                                            }`}
+                                        className={`rounded-2xl border px-5 py-4 transition-all backdrop-blur ${selectedCategory === category.value ? 'border-primary/60 bg-primary/10 text-primary' : 'border-border/50 bg-card/40 hover:border-primary/30 hover:bg-card/50'}`}
                                     >
-                                        <div className="text-sm font-medium text-gray-900">{category.label}</div>
-                                        <div className="text-xs text-gray-500 mt-1">{category.description}</div>
+                                        <div className={`text-sm font-semibold ${selectedCategory === category.value ? 'text-primary' : 'text-foreground'}`}>{category.label}</div>
+                                        <div className="mt-1 text-xs text-muted-foreground/80">{category.description}</div>
                                     </div>
                                 </label>
                             </motion.div>
                         ))}
                     </div>
                     {errors.category && (
-                        <p className="text-sm text-red-500">{errors.category.message}</p>
+                        <p className="text-sm text-destructive">{errors.category.message}</p>
                     )}
                 </div>
 
@@ -251,15 +250,12 @@ export function ImageGenerator() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Model Image Upload */}
                     <div className="space-y-4">
-                        <label className="text-sm font-medium text-gray-700">
-                            Model Resmi <span className="text-red-500">*</span>
+                        <label className="text-sm font-medium text-muted-foreground">
+                            Model Resmi <span className="text-destructive">*</span>
                         </label>
                         <div
                             {...modelImageDropzone.getRootProps()}
-                            className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${modelImageDropzone.isDragActive
-                                ? 'border-blue-400 bg-blue-50'
-                                : 'border-gray-300 hover:border-gray-400'
-                                }`}
+                            className={`relative overflow-hidden rounded-2xl border-2 border-dashed p-8 text-center shadow-lg shadow-black/10 backdrop-blur transition-all cursor-pointer ${modelImageDropzone.isDragActive ? 'border-primary/50 bg-primary/10' : 'border-border/60 bg-card/40 hover:border-primary/30 hover:bg-card/50'}`}
                         >
                             <input {...modelImageDropzone.getInputProps()} />
 
@@ -279,17 +275,17 @@ export function ImageGenerator() {
                                             e.stopPropagation();
                                             removeImage('model');
                                         }}
-                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
+                                        className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground rounded-full p-1 hover:bg-destructive/90 transition-colors"
                                     >
                                         <X className="w-4 h-4" />
                                     </button>
                                     {!modelImage.isValid && (
-                                        <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded text-xs text-red-600">
+                                        <div className="mt-2 p-2 bg-destructive/10 border border-destructive/40 rounded text-xs text-destructive">
                                             {modelImage.errors.join(', ')}
                                         </div>
                                     )}
                                     {modelImage.isValid && (
-                                        <div className="mt-2 flex items-center justify-center text-green-600">
+                                        <div className="mt-2 flex items-center justify-center text-primary">
                                             <CheckCircle className="w-4 h-4 mr-1" />
                                             <span className="text-xs">Geçerli resim</span>
                                         </div>
@@ -297,13 +293,13 @@ export function ImageGenerator() {
                                 </div>
                             ) : (
                                 <div className="space-y-4">
-                                    <Upload className="w-12 h-12 mx-auto text-gray-400" />
+                                    <Upload className="w-12 h-12 mx-auto text-muted-foreground/70" />
                                     <div>
-                                        <p className="text-sm text-gray-600">
+                                        <p className="text-sm text-muted-foreground">
                                             Model resminizi buraya sürükleyin, veya{' '}
-                                            <span className="text-blue-500 font-medium">göz atın</span>
+                                            <span className="text-primary font-semibold hover:underline">göz atın</span>
                                         </p>
-                                        <p className="text-xs text-gray-400 mt-1">
+                                        <p className="text-xs text-muted-foreground/70 mt-1">
                                             Desteklenen formatlar: JPEG, PNG, WebP (max 10MB)
                                         </p>
                                     </div>
@@ -311,21 +307,18 @@ export function ImageGenerator() {
                             )}
                         </div>
                         {errors.modelImage && (
-                            <p className="text-sm text-red-500">{errors.modelImage.message}</p>
+                            <p className="text-sm text-destructive">{errors.modelImage.message}</p>
                         )}
                     </div>
 
                     {/* Product Image Upload */}
                     <div className="space-y-4">
-                        <label className="text-sm font-medium text-gray-700">
-                            Ürün Resmi <span className="text-red-500">*</span>
+                        <label className="text-sm font-medium text-muted-foreground">
+                            Ürün Resmi <span className="text-destructive">*</span>
                         </label>
                         <div
                             {...productImageDropzone.getRootProps()}
-                            className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${productImageDropzone.isDragActive
-                                ? 'border-blue-400 bg-blue-50'
-                                : 'border-gray-300 hover:border-gray-400'
-                                }`}
+                            className={`relative overflow-hidden rounded-2xl border-2 border-dashed p-8 text-center shadow-lg shadow-black/10 backdrop-blur transition-all cursor-pointer ${productImageDropzone.isDragActive ? 'border-primary/50 bg-primary/10' : 'border-border/60 bg-card/40 hover:border-primary/30 hover:bg-card/50'}`}
                         >
                             <input {...productImageDropzone.getInputProps()} />
 
@@ -345,17 +338,17 @@ export function ImageGenerator() {
                                             e.stopPropagation();
                                             removeImage('product');
                                         }}
-                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
+                                        className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground rounded-full p-1 hover:bg-destructive/90 transition-colors"
                                     >
                                         <X className="w-4 h-4" />
                                     </button>
                                     {!productImage.isValid && (
-                                        <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded text-xs text-red-600">
+                                        <div className="mt-2 p-2 bg-destructive/10 border border-destructive/40 rounded text-xs text-destructive">
                                             {productImage.errors.join(', ')}
                                         </div>
                                     )}
                                     {productImage.isValid && (
-                                        <div className="mt-2 flex items-center justify-center text-green-600">
+                                        <div className="mt-2 flex items-center justify-center text-primary">
                                             <CheckCircle className="w-4 h-4 mr-1" />
                                             <span className="text-xs">Geçerli resim</span>
                                         </div>
@@ -363,13 +356,13 @@ export function ImageGenerator() {
                                 </div>
                             ) : (
                                 <div className="space-y-4">
-                                    <Upload className="w-12 h-12 mx-auto text-gray-400" />
+                                    <Upload className="w-12 h-12 mx-auto text-muted-foreground/70" />
                                     <div>
-                                        <p className="text-sm text-gray-600">
+                                        <p className="text-sm text-muted-foreground">
                                             Ürün resminizi buraya sürükleyin, veya{' '}
-                                            <span className="text-blue-500 font-medium">göz atın</span>
+                                            <span className="text-primary font-semibold hover:underline">göz atın</span>
                                         </p>
-                                        <p className="text-xs text-gray-400 mt-1">
+                                        <p className="text-xs text-muted-foreground/70 mt-1">
                                             Desteklenen formatlar: JPEG, PNG, WebP (max 10MB)
                                         </p>
                                     </div>
@@ -377,7 +370,7 @@ export function ImageGenerator() {
                             )}
                         </div>
                         {errors.productImage && (
-                            <p className="text-sm text-red-500">{errors.productImage.message}</p>
+                            <p className="text-sm text-destructive">{errors.productImage.message}</p>
                         )}
                     </div>
                 </div>
@@ -387,7 +380,7 @@ export function ImageGenerator() {
                     <button
                         type="submit"
                         disabled={!isValid || isGenerating || !modelImage?.isValid || !productImage?.isValid}
-                        className="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                        className="inline-flex items-center justify-center rounded-xl bg-primary px-8 py-3 font-semibold text-primary-foreground shadow-lg shadow-black/10 transition-all hover:bg-primary/90 disabled:bg-primary/40 disabled:text-primary-foreground/70 disabled:cursor-not-allowed"
                     >
                         {isGenerating ? (
                             <>
@@ -406,7 +399,7 @@ export function ImageGenerator() {
                         type="button"
                         onClick={resetForm}
                         disabled={isGenerating}
-                        className="px-8 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 disabled:bg-gray-50 disabled:cursor-not-allowed transition-colors"
+                        className="inline-flex items-center justify-center rounded-xl border border-border/50 bg-card/60 px-8 py-3 font-semibold text-foreground shadow-lg shadow-black/5 transition-all hover:bg-card/80 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                         Sıfırla
                     </button>
@@ -423,20 +416,20 @@ export function ImageGenerator() {
                         className="mt-8"
                     >
                         {generationResult.success ? (
-                            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-8 shadow-sm">
+                            <div className="rounded-3xl border border-primary/40 bg-primary/10 p-8 shadow-xl shadow-black/20 backdrop-blur">
                                 <div className="flex items-center mb-6">
-                                    <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                                        <CheckCircle className="w-5 h-5 text-green-600" />
+                                    <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                                        <CheckCircle className="w-5 h-5 text-primary" />
                                     </div>
-                                    <h3 className="text-lg font-semibold text-green-900">Görsel Başarıyla Oluşturuldu!</h3>
+                                    <h3 className="text-lg font-semibold text-primary">Görsel Başarıyla Oluşturuldu!</h3>
                                 </div>
 
-                                <div className="space-y-6 w-fit">
-                                    <div className="rounded-lg p-4 border border-gray-100">
+                                <div className="space-y-6">
+                                    <div className="rounded-2xl border border-border/40 bg-card/60 p-4 shadow-lg shadow-black/10 backdrop-blur">
                                         <img
                                             src={generationResult.data?.generatedImage || ''}
                                             alt="Generated product"
-                                            className="w-full h-auto rounded-lg max-h-[500px] object-contain mx-auto shadow-md padding-5"
+                                            className="w-full h-auto max-h-[500px] rounded-2xl object-contain mx-auto shadow-lg shadow-black/20"
                                         />
                                     </div>
 
@@ -444,7 +437,7 @@ export function ImageGenerator() {
                                         <a
                                             href={generationResult.data?.downloadUrl}
                                             download
-                                            className="inline-flex items-center justify-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-all duration-200 shadow-sm hover:shadow-md"
+                                            className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-lg shadow-black/10 transition-all duration-200 hover:bg-primary/90"
                                         >
                                             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -454,7 +447,7 @@ export function ImageGenerator() {
 
                                         <button
                                             onClick={() => setGenerationResult(null)}
-                                            className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-700 font-medium rounded-lg border border-gray-200 hover:bg-gray-50 transition-all duration-200 shadow-sm hover:shadow-md"
+                                            className="inline-flex items-center justify-center rounded-xl border border-border/60 bg-card/60 px-6 py-3 font-semibold text-foreground shadow-lg shadow-black/5 transition-all duration-200 hover:bg-card/80"
                                         >
                                             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -465,17 +458,17 @@ export function ImageGenerator() {
                                 </div>
                             </div>
                         ) : (
-                            <div className="bg-gradient-to-br from-red-50 to-rose-50 border border-red-200 rounded-xl p-8 shadow-sm">
+                            <div className="rounded-3xl border border-destructive/40 bg-destructive/10 p-8 shadow-xl shadow-black/20 backdrop-blur">
                                 <div className="flex items-center mb-4">
-                                    <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-3">
-                                        <AlertCircle className="w-5 h-5 text-red-600" />
+                                    <div className="flex-shrink-0 w-8 h-8 bg-destructive/10 rounded-full flex items-center justify-center mr-3">
+                                        <AlertCircle className="w-5 h-5 text-destructive" />
                                     </div>
-                                    <h3 className="text-lg font-semibold text-red-900">Oluşturma Başarısız</h3>
+                                    <h3 className="text-lg font-semibold text-destructive">Oluşturma Başarısız</h3>
                                 </div>
-                                <p className="text-red-700 mb-6 leading-relaxed">{generationResult.error?.message}</p>
+                                <p className="text-destructive mb-6 leading-relaxed">{generationResult.error?.message}</p>
                                 <button
                                     onClick={() => setGenerationResult(null)}
-                                    className="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-all duration-200 shadow-sm hover:shadow-md"
+                                    className="inline-flex items-center justify-center rounded-xl bg-destructive px-6 py-3 font-semibold text-destructive-foreground shadow-lg shadow-black/10 transition-all duration-200 hover:bg-destructive/90"
                                 >
                                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
