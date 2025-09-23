@@ -5,9 +5,7 @@ const nextConfig = {
     domains: [],
     formats: ['image/webp', 'image/avif'],
   },
-  experimental: {
-    serverComponentsExternalPackages: ['@prisma/client'],
-  },
+  serverExternalPackages: ['@prisma/client'],
 }
 
 module.exports = nextConfig
