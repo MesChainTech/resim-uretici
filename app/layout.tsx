@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description: 'AI teknolojisi kullanarak çarpıcı ürün görselleri oluşturun',
     keywords: ['AI', 'ürün fotoğrafçılığı', 'görsel oluşturma', 'e-ticaret'],
     authors: [{ name: 'Axe Resim Üretici Ekibi' }],
+    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
     openGraph: {
         title: 'Axe Resim Üretici',
         description: 'AI teknolojisi kullanarak çarpıcı ürün görselleri oluşturun',
@@ -44,11 +45,12 @@ export const metadata: Metadata = {
             'max-snippet': -1,
         },
     },
-    viewport: {
-        width: 'device-width',
-        initialScale: 1,
-        maximumScale: 1,
-    },
+};
+
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
 };
 
 export default function RootLayout({

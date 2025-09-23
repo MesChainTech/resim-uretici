@@ -43,4 +43,10 @@ export default async function GeneratePage() {
 export const metadata = {
     title: 'Olustur - Axe Resim Uretici',
     description: 'AI teknolojisi kullanarak carpici urun gorselleri olusturun',
+    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+};
+
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
 };
