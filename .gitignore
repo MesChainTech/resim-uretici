@@ -49,3 +49,5 @@ yarn-error.log*
 # Cache
 .cache
 .eslintcache
+# clerk configuration (can include secrets)
+/.clerk/
