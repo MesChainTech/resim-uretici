@@ -22,7 +22,6 @@ export async function POST(request: NextRequest) {
     
     // Test the connection - Correct parameter order
     const response = await webhookClient.generateImage(
-      process.env.N8N_WEBHOOK_URL!,
       testPayload.urun_resmi,
       testPayload.model_resmi,
       testPayload.category,
