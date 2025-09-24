@@ -4,7 +4,6 @@ import { SignInButton, useAuth } from '@clerk/nextjs';
 import { ArrowRight, ImageIcon, Sparkles, Zap, Shield, ChevronUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { ChatBoard } from '@/components';
 
 export default function HomePage() {
     const { userId } = useAuth();
@@ -716,9 +715,6 @@ export default function HomePage() {
                     </motion.div>
                 </motion.div>
             </motion.section>
-
-            {/* Chat Board */}
-            <ChatBoard />
 
             {/* Yukarı Çık Butonu */}
             {showScrollTop && (
