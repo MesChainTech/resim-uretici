@@ -1,0 +1,60 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+// Initialize Gemini AI
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+
+export async function POST(request: NextRequest) {
+  try {
+    const { message } = await request.json();
+
+    if (!message || typeof message !== 'string') {
+      return NextResponse.json(
+        { error: 'Geçerli bir mesaj gönderilmelidir' },
+        { status: 400 }
+      );
+    }
+
+    // Get Gemini model
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+
+    // Create system prompt for Turkish AI assistant
+    const systemPrompt = `Sen Türkçe konuşan bir AI asistanısın. Kullanıcılara yardımcı olmak için buradasın. 
+    Cevaplarını Türkçe ver, samimi ve yardımsever ol. 
+    Axe Resim Üretici hakkında bilgi verebilir, genel soruları yanıtlayabilir ve kullanıcılara rehberlik edebilirsin.
+    Kısa ve öz cevaplar ver, gereksiz uzunluktan kaçın.`;
+
+    const fullPrompt = `${systemPrompt}\n\nKullanıcı: ${message}\n\nAsistan:`;
+
+    // Generate content
+    const result = await model.generateContent(fullPrompt);
+    const response = await result.response;
+    const text = response.text();
+
+    // For now, we'll return text only
+    // In the future, we can add TTS integration here
+    return NextResponse.json({
+      response: text,
+      audioUrl: null // Placeholder for future TTS integration
+    });
+
+  } catch (error) {
+    console.error('Gemini API Error:', error);
+    
+    return NextResponse.json(
+      { 
+        error: 'AI servisi şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
+        response: 'Üzgünüm, şu anda bir teknik sorun yaşıyorum. Lütfen daha sonra tekrar deneyin.'
+      },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET() {
+  return NextResponse.json({
+    message: 'Chat API endpoint',
+    status: 'active',
+    model: 'gemini-2.0-flash-exp'
+  });
+}
