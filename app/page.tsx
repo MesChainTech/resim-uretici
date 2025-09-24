@@ -1,7 +1,7 @@
 'use client';
 
 import { SignInButton, useAuth } from '@clerk/nextjs';
-import { ArrowRight, ImageIcon, Sparkles, Zap, Shield } from 'lucide-react';
+import { ArrowRight, ImageIcon, Sparkles, Zap, Shield, ChevronUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ChatBoard } from '@/components';
@@ -11,6 +11,7 @@ export default function HomePage() {
     const [dolphinPosition, setDolphinPosition] = useState({ x: 50, y: 50 });
     const [showDolphin, setShowDolphin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [showScrollTop, setShowScrollTop] = useState(false);
 
     // Framer Motion hooks
     const { scrollYProgress } = useScroll();
@@ -27,6 +28,17 @@ export default function HomePage() {
         return () => clearTimeout(timer);
     }, []);
 
+    useEffect(() => {
+        // Scroll event listener
+        const handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            setShowScrollTop(scrollTop > 300);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const handleMouseClick = (e: React.MouseEvent) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -39,6 +51,13 @@ export default function HomePage() {
         setTimeout(() => {
             setShowDolphin(false);
         }, 12000);
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     };
 
     return (
@@ -700,6 +719,21 @@ export default function HomePage() {
 
             {/* Chat Board */}
             <ChatBoard />
+
+            {/* Yukarı Çık Butonu */}
+            {showScrollTop && (
+                <motion.button
+                    onClick={scrollToTop}
+                    className="fixed bottom-24 right-6 z-50 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-3 rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <ChevronUp className="w-6 h-6" />
+                </motion.button>
+            )}
         </motion.div>
     );
 }
