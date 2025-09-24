@@ -27,8 +27,20 @@ interface ChatSession {
   createdAt: Date;
 }
 
-export default function ChatBoard() {
-  const [isOpen, setIsOpen] = useState(false);
+interface ChatBoardProps {
+  isOpen?: boolean;
+  onToggle?: () => void;
+  isMicrophoneActive?: boolean;
+  onMicrophoneToggle?: () => void;
+}
+
+export default function ChatBoard({ 
+  isOpen: externalIsOpen, 
+  onToggle, 
+  isMicrophoneActive = false, 
+  onMicrophoneToggle 
+}: ChatBoardProps = {}) {
+  const [isOpen, setIsOpen] = useState(externalIsOpen ?? true); // Sayfa açılınca otomatik aç
   const [mounted, setMounted] = useState(false);
   const [currentSession, setCurrentSession] = useState<ChatSession | null>(null);
   const [sessions, setSessions] = useState<ChatSession[]>([]);
@@ -186,6 +198,12 @@ export default function ChatBoard() {
     }
   };
 
+  const handleToggle = () => {
+    const newIsOpen = !isOpen;
+    setIsOpen(newIsOpen);
+    onToggle?.();
+  };
+
   // Mount kontrolü - tüm hook'lar çağrıldıktan sonra
   if (!mounted) return null;
 
@@ -194,7 +212,7 @@ export default function ChatBoard() {
       {/* Chat Toggle Button - Sadece kapalıyken göster */}
       {!isOpen && (
         <motion.button
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={handleToggle}
           className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
@@ -236,7 +254,7 @@ export default function ChatBoard() {
                   />
                   {/* Kapatma butonu - Resmin üst sağ köşesinde */}
                   <button
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleToggle}
                     className="absolute top-2 right-2 p-2 rounded-full bg-black/30 hover:bg-black/50 transition-all duration-300 backdrop-blur-sm"
                   >
                     <ChevronDown className="w-4 h-4 text-white" />

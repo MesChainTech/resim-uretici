@@ -1,7 +1,7 @@
 'use client';
 
 import { SignInButton, useAuth } from '@clerk/nextjs';
-import { ArrowRight, ImageIcon, Sparkles, Zap, Shield, ChevronUp } from 'lucide-react';
+import { ArrowRight, ImageIcon, Sparkles, Zap, Shield, ChevronUp, MessageSquare, Mic, MicOff } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ChatBoard } from '@/components';
@@ -12,6 +12,8 @@ export default function HomePage() {
     const [showDolphin, setShowDolphin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [showScrollTop, setShowScrollTop] = useState(false);
+    const [isChatBoardOpen, setIsChatBoardOpen] = useState(true); // Chat board otomatik açık
+    const [isMicrophoneActive, setIsMicrophoneActive] = useState(false); // Mikrofon durumu
 
     // Framer Motion hooks
     const { scrollYProgress } = useScroll();
@@ -47,10 +49,22 @@ export default function HomePage() {
         setDolphinPosition({ x, y });
         setShowDolphin(true);
         
-        // 12 saniye sonra yunus kaybolsun
-        setTimeout(() => {
-            setShowDolphin(false);
-        }, 12000);
+        // Mikrofon aktif değilse 8 saniye sonra yunus kaybolsun
+        if (!isMicrophoneActive) {
+            setTimeout(() => {
+                setShowDolphin(false);
+            }, 8000);
+        }
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (isMicrophoneActive && showDolphin) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            
+            setDolphinPosition({ x, y });
+        }
     };
 
     const scrollToTop = () => {
@@ -60,10 +74,23 @@ export default function HomePage() {
         });
     };
 
+    const handleChatBoardToggle = () => {
+        setIsChatBoardOpen(!isChatBoardOpen);
+    };
+
+    const handleMicrophoneToggle = () => {
+        setIsMicrophoneActive(!isMicrophoneActive);
+        if (!isMicrophoneActive) {
+            // Mikrofon açılıyorsa yunus göster
+            setShowDolphin(true);
+        }
+    };
+
     return (
         <motion.div 
             className="relative min-h-screen overflow-hidden" 
             onClick={handleMouseClick}
+            onMouseMove={handleMouseMove}
             style={{ y, opacity }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -218,6 +245,43 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
             >
+                {/* Header Butonları */}
+                <div className="absolute top-4 right-4 z-50 flex gap-3">
+                    {/* Chat Board Toggle Button */}
+                    <motion.button
+                        onClick={handleChatBoardToggle}
+                        className={`p-3 rounded-full shadow-2xl transition-all duration-300 ${
+                            isChatBoardOpen 
+                                ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white' 
+                                : 'bg-white/20 text-white hover:bg-white/30'
+                        }`}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                    >
+                        <MessageSquare className="w-5 h-5" />
+                    </motion.button>
+
+                    {/* Microphone Toggle Button */}
+                    <motion.button
+                        onClick={handleMicrophoneToggle}
+                        className={`p-3 rounded-full shadow-2xl transition-all duration-300 ${
+                            isMicrophoneActive 
+                                ? 'bg-gradient-to-r from-red-500 to-pink-600 text-white' 
+                                : 'bg-white/20 text-white hover:bg-white/30'
+                        }`}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                    >
+                        {isMicrophoneActive ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                    </motion.button>
+                </div>
+
                 <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
                     <motion.div 
                         className="text-left"
@@ -717,8 +781,14 @@ export default function HomePage() {
                 </motion.div>
             </motion.section>
 
-            {/* Chat Board - Sadece bir kez render */}
-            <ChatBoard key="chat-board" />
+            {/* Chat Board */}
+            <ChatBoard 
+                key="chat-board"
+                isOpen={isChatBoardOpen}
+                onToggle={handleChatBoardToggle}
+                isMicrophoneActive={isMicrophoneActive}
+                onMicrophoneToggle={handleMicrophoneToggle}
+            />
 
             {/* Yukarı Çık Butonu */}
             {showScrollTop && (
