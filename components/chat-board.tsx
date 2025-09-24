@@ -173,7 +173,7 @@ export default function ChatBoard() {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="absolute right-0 top-0 h-full w-full max-w-md bg-white rounded-t-3xl shadow-2xl"
+              className="absolute right-0 top-0 h-full w-full max-w-sm bg-white rounded-t-2xl shadow-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -182,27 +182,27 @@ export default function ChatBoard() {
             >
               <div className="flex flex-col h-full">
                 {/* Header */}
-                <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                <div className="flex items-center justify-between p-3 border-b border-gray-200">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full overflow-hidden">
+                    <div className="w-16 h-16 overflow-hidden rounded-lg">
                       <Image
                         src="/chat.jpg"
                         alt="AI Asistan"
-                        width={48}
-                        height={48}
+                        width={64}
+                        height={64}
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">AI Asistan</h3>
-                      <p className="text-sm text-gray-500">Her zaman burada</p>
+                      <h3 className="font-semibold text-gray-900 text-sm">AI Asistan</h3>
+                      <p className="text-xs text-gray-500">Her zaman burada</p>
                     </div>
                   </div>
                   <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 rounded-full hover:bg-gray-100 transition-colors"
                   >
-                    <ChevronDown className="w-5 h-5 text-gray-600" />
+                    <ChevronDown className="w-4 h-4 text-gray-600" />
                   </button>
                 </div>
 
@@ -221,12 +221,12 @@ export default function ChatBoard() {
                             transition={{ duration: 0.3 }}
                           >
                             {message.role === 'assistant' && (
-                              <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                              <div className="w-6 h-6 overflow-hidden rounded-lg flex-shrink-0">
                                 <Image
                                   src="/chat.jpg"
                                   alt="AI Asistan"
-                                  width={32}
-                                  height={32}
+                                  width={24}
+                                  height={24}
                                   className="w-full h-full object-cover"
                                 />
                               </div>
@@ -266,12 +266,12 @@ export default function ChatBoard() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                           >
-                            <div className="w-8 h-8 rounded-full overflow-hidden">
+                            <div className="w-6 h-6 overflow-hidden rounded-lg">
                               <Image
                                 src="/chat.jpg"
                                 alt="AI Asistan"
-                                width={32}
-                                height={32}
+                                width={24}
+                                height={24}
                                 className="w-full h-full object-cover"
                               />
                             </div>
@@ -313,13 +313,13 @@ export default function ChatBoard() {
                       </div>
                     </>
                   ) : (
-                    <div className="flex-1 flex flex-col items-center justify-center p-8">
-                      <div className="w-24 h-24 rounded-full overflow-hidden mb-6">
+                    <div className="flex-1 flex flex-col items-center justify-center p-6">
+                      <div className="w-20 h-20 overflow-hidden rounded-lg mb-4">
                         <Image
                           src="/chat.jpg"
                           alt="AI Asistan"
-                          width={96}
-                          height={96}
+                          width={80}
+                          height={80}
                           className="w-full h-full object-cover"
                         />
                       </div>
