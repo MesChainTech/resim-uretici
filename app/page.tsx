@@ -373,8 +373,3 @@ export default function HomePage() {
         </div>
     );
 }
-
-export const metadata = {
-    title: 'AI Product Generator - Transform Your Photos with AI',
-    description: 'Create stunning product photography using AI. Upload your model and product images to generate professional-quality photos in seconds.',
-};
