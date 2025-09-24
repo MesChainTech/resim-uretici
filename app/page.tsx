@@ -433,10 +433,10 @@ export default function HomePage() {
                                     Görselleriniz güvenli bir şekilde işlenir ve gereğinden uzun süre saklanmaz. Gizlilik ve güvenlik en büyük önceliğimizdir.
                                 </p>
                             </div>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
-            </section>
+            </motion.section>
 
             {/* Categories Section */}
             <motion.section 
@@ -627,10 +627,10 @@ export default function HomePage() {
                                     Kozmetik ve cilt bakımı ürünleri için özel renk doğruluğu. Güzellik ürünlerinizi en çekici şekilde gösterin ve satışları artırın.
                                 </p>
                             </div>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
-            </section>
+            </motion.section>
 
             {/* CTA Section */}
             <motion.section 
