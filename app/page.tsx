@@ -362,13 +362,13 @@ export default function HomePage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
                         {/* E-ticaret */}
                         <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/50 hover:shadow-blue-500/30">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="relative p-6">
-                                <div className="mb-4 flex justify-center">
-                                    <div className="relative h-24 w-24 overflow-hidden rounded-xl">
+                            <div className="relative p-4">
+                                <div className="mb-3 flex justify-center">
+                                    <div className="relative h-32 w-32 overflow-hidden rounded-xl">
                                         <img 
                                             src="/E-Ticaret.webp" 
                                             alt="E-ticaret ürünleri" 
@@ -377,9 +377,9 @@ export default function HomePage() {
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                                     </div>
                                 </div>
-                                <h3 className="mb-3 text-xl font-bold text-white">E-ticaret</h3>
-                                <p className="text-sm text-white/80 leading-relaxed">
-                                    Genel ürünler için profesyonel fotoğraf çekimi. Her türlü e-ticaret ürününüzü stüdyo kalitesinde görselleştirin.
+                                <h3 className="mb-2 text-lg font-bold text-white">E-ticaret</h3>
+                                <p className="text-xs text-white/80 leading-relaxed">
+                                    Genel ürünler için profesyonel fotoğraf çekimi.
                                 </p>
                             </div>
                         </div>
@@ -387,9 +387,9 @@ export default function HomePage() {
                         {/* Giyim */}
                         <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-pink-400/50 hover:shadow-pink-500/30">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="relative p-6">
-                                <div className="mb-4 flex justify-center">
-                                    <div className="relative h-24 w-24 overflow-hidden rounded-xl">
+                            <div className="relative p-4">
+                                <div className="mb-3 flex justify-center">
+                                    <div className="relative h-32 w-32 overflow-hidden rounded-xl">
                                         <img 
                                             src="/Giyim.webp" 
                                             alt="Giyim ve aksesuarlar" 
@@ -398,9 +398,9 @@ export default function HomePage() {
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                                     </div>
                                 </div>
-                                <h3 className="mb-3 text-xl font-bold text-white">Giyim</h3>
-                                <p className="text-sm text-white/80 leading-relaxed">
-                                    Kıyafet ve aksesuarlar için özel ışıklandırma. Moda ürünlerinizi en iyi şekilde sergileyin.
+                                <h3 className="mb-2 text-lg font-bold text-white">Giyim</h3>
+                                <p className="text-xs text-white/80 leading-relaxed">
+                                    Kıyafet ve aksesuarlar için özel ışıklandırma.
                                 </p>
                             </div>
                         </div>
@@ -408,9 +408,9 @@ export default function HomePage() {
                         {/* Takı */}
                         <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400/50 hover:shadow-yellow-500/30">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="relative p-6">
-                                <div className="mb-4 flex justify-center">
-                                    <div className="relative h-24 w-24 overflow-hidden rounded-xl">
+                            <div className="relative p-4">
+                                <div className="mb-3 flex justify-center">
+                                    <div className="relative h-32 w-32 overflow-hidden rounded-xl">
                                         <img 
                                             src="/Taki.webp" 
                                             alt="Takı ve mücevherler" 
@@ -419,9 +419,9 @@ export default function HomePage() {
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                                     </div>
                                 </div>
-                                <h3 className="mb-3 text-xl font-bold text-white">Takı</h3>
-                                <p className="text-sm text-white/80 leading-relaxed">
-                                    Yüzük ve kolyeler için özel makro çekim teknikleri. Değerli takılarınızı parlaklığıyla öne çıkarın.
+                                <h3 className="mb-2 text-lg font-bold text-white">Takı</h3>
+                                <p className="text-xs text-white/80 leading-relaxed">
+                                    Yüzük ve kolyeler için özel makro çekim.
                                 </p>
                             </div>
                         </div>
@@ -429,9 +429,9 @@ export default function HomePage() {
                         {/* Teknoloji */}
                         <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/50 hover:shadow-cyan-500/30">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="relative p-6">
-                                <div className="mb-4 flex justify-center">
-                                    <div className="relative h-24 w-24 overflow-hidden rounded-xl">
+                            <div className="relative p-4">
+                                <div className="mb-3 flex justify-center">
+                                    <div className="relative h-32 w-32 overflow-hidden rounded-xl">
                                         <img 
                                             src="/Teknoloji.webp" 
                                             alt="Teknoloji ürünleri" 
@@ -440,9 +440,9 @@ export default function HomePage() {
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                                     </div>
                                 </div>
-                                <h3 className="mb-3 text-xl font-bold text-white">Teknoloji</h3>
-                                <p className="text-sm text-white/80 leading-relaxed">
-                                    Elektronik ve cihazlar için teknik detayları öne çıkaran çekimler. Modern teknoloji ürünlerinizi profesyonelce sunun.
+                                <h3 className="mb-2 text-lg font-bold text-white">Teknoloji</h3>
+                                <p className="text-xs text-white/80 leading-relaxed">
+                                    Elektronik ve cihazlar için teknik detaylar.
                                 </p>
                             </div>
                         </div>
@@ -450,9 +450,9 @@ export default function HomePage() {
                         {/* Güzellik */}
                         <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-rose-400/50 hover:shadow-rose-500/30">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rose-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="relative p-6">
-                                <div className="mb-4 flex justify-center">
-                                    <div className="relative h-24 w-24 overflow-hidden rounded-xl">
+                            <div className="relative p-4">
+                                <div className="mb-3 flex justify-center">
+                                    <div className="relative h-32 w-32 overflow-hidden rounded-xl">
                                         <img 
                                             src="/Guzellik.webp" 
                                             alt="Güzellik ve kozmetik" 
@@ -461,9 +461,9 @@ export default function HomePage() {
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                                     </div>
                                 </div>
-                                <h3 className="mb-3 text-xl font-bold text-white">Güzellik</h3>
-                                <p className="text-sm text-white/80 leading-relaxed">
-                                    Kozmetik ve cilt bakımı ürünleri için özel renk doğruluğu. Güzellik ürünlerinizi en çekici şekilde gösterin.
+                                <h3 className="mb-2 text-lg font-bold text-white">Güzellik</h3>
+                                <p className="text-xs text-white/80 leading-relaxed">
+                                    Kozmetik ve cilt bakımı için renk doğruluğu.
                                 </p>
                             </div>
                         </div>
