@@ -7,8 +7,11 @@ export default async function HomePage() {
 
     return (
         <div className="relative min-h-screen overflow-hidden">
-            {/* Leonardo.Ai tarzı gradient arka plan */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-pink-900 to-red-900" />
+            {/* Leonardo.Ai tarzı gradient arka plan - siyah tonunda koyulaştırılmış */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black" />
+            
+            {/* Renkli gradient overlay - aşağı doğru azalan */}
+            <div className="absolute inset-0 bg-gradient-to-b from-purple-900/60 via-pink-900/40 to-transparent" />
             
             {/* Grid pattern overlay - daha belirgin */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0di00aC0ydjRoLTR2Mmg0djRoMnYtNGg0di0yaC00em0wLTMwVjBoLTJ2NGgtNHYyaDR2NGgyVjZoNFY0aC00ek02IDM0di00SDR2NEgwdjJoNHY0aDJ2LTRoNHYtMkg2ek02IDRWMGgydjRINHYyaDR2NGgyVjZoNFY0SDZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50" />
@@ -16,10 +19,10 @@ export default async function HomePage() {
             {/* Ek grid çizgileri - daha belirgin */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30" />
             
-            {/* Loş ışık efektleri */}
-            <div className="absolute -top-40 -right-20 h-96 w-96 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl" />
-            <div className="absolute -bottom-40 -left-20 h-80 w-80 rounded-full bg-gradient-to-r from-pink-500/20 to-red-500/20 blur-3xl" />
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-64 w-64 rounded-full bg-gradient-to-r from-purple-400/10 to-red-400/10 blur-3xl" />
+            {/* Loş ışık efektleri - aşağı doğru azalan */}
+            <div className="absolute -top-40 -right-20 h-96 w-96 rounded-full bg-gradient-to-b from-purple-500/30 to-transparent blur-3xl" />
+            <div className="absolute -bottom-40 -left-20 h-80 w-80 rounded-full bg-gradient-to-b from-pink-500/20 to-transparent blur-3xl" />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-64 w-64 rounded-full bg-gradient-to-b from-purple-400/15 to-transparent blur-3xl" />
 
             {/* Hero Section */}
             <section className="relative overflow-hidden px-4 pt-32 pb-24 sm:px-6 sm:pt-24 sm:pb-32 lg:px-8">
@@ -121,7 +124,7 @@ export default async function HomePage() {
 
             {/* Features Section */}
             <section id="features" className="relative py-20">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/60" />
                 <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mb-16 text-center">
                         <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
@@ -168,7 +171,7 @@ export default async function HomePage() {
 
             {/* Categories Section */}
             <section className="relative py-20">
-                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black" />
                 <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mb-16 text-center">
                         <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
@@ -199,7 +202,7 @@ export default async function HomePage() {
 
             {/* CTA Section */}
             <section className="relative py-20">
-                <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-black" />
                 <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
                     <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
                         Ürün fotoğraflarınızı dönüştürmeye hazır mısınız?
