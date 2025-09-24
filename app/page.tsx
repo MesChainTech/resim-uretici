@@ -3,12 +3,18 @@
 import { SignInButton, useAuth } from '@clerk/nextjs';
 import { ArrowRight, ImageIcon, Sparkles, Zap, Shield } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 
 export default function HomePage() {
     const { userId } = useAuth();
     const [dolphinPosition, setDolphinPosition] = useState({ x: 50, y: 50 });
     const [showDolphin, setShowDolphin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+
+    // Framer Motion hooks
+    const { scrollYProgress } = useScroll();
+    const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
     useEffect(() => {
         // Sayfa yüklendiğinde yunus göster
@@ -35,7 +41,14 @@ export default function HomePage() {
     };
 
     return (
-        <div className="relative min-h-screen overflow-hidden" onClick={handleMouseClick}>
+        <motion.div 
+            className="relative min-h-screen overflow-hidden" 
+            onClick={handleMouseClick}
+            style={{ y, opacity }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+        >
             {/* Koyu siyah-yeşil ana gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-green-900" />
             
@@ -179,23 +192,53 @@ export default function HomePage() {
             )}
 
             {/* Hero Section */}
-            <section className="relative overflow-hidden px-4 pt-32 pb-24 sm:px-6 sm:pt-24 sm:pb-32 lg:px-8">
+            <motion.section 
+                className="relative overflow-hidden px-4 pt-32 pb-24 sm:px-6 sm:pt-24 sm:pb-32 lg:px-8"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+            >
                 <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
-                    <div className="text-left">
-                        <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white shadow-lg ring-1 ring-white/20 backdrop-blur">
+                    <motion.div 
+                        className="text-left"
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                        <motion.div 
+                            className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white shadow-lg ring-1 ring-white/20 backdrop-blur"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
+                        >
                             <Sparkles className="h-4 w-4" />
                             <span>Stüdyo kalitesi saniyeler içinde</span>
-                        </div>
-                        <h1 className="mt-8 text-4xl font-bold leading-tight text-white/60 md:text-6xl">
+                        </motion.div>
+                        <motion.h1 
+                            className="mt-8 text-4xl font-bold leading-tight text-white/60 md:text-6xl"
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.8 }}
+                        >
                             <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                                 Ürün fotoğraflarınızı saniyeler içinde yapay zeka ile dönüştürün
                             </span>
-                        </h1>
-                        <p className="mt-6 max-w-2xl text-lg text-white/80 md:text-xl">
+                        </motion.h1>
+                        <motion.p 
+                            className="mt-6 max-w-2xl text-lg text-white/80 md:text-xl"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 1.0 }}
+                        >
                             Model ve ürün görsellerinizi yükleyin; markanıza uygun stüdyo kalitesinde kareleri tek tıkla elde edin.
-                        </p>
+                        </motion.p>
 
-                        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                        <motion.div 
+                            className="mt-10 flex flex-col gap-4 sm:flex-row"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 1.2 }}
+                        >
                             {userId ? (
                                 <a
                                     href="/generate"
@@ -264,7 +307,14 @@ export default function HomePage() {
             </section>
 
             {/* Features Section */}
-            <section id="features" className="relative py-20">
+            <motion.section 
+                id="features" 
+                className="relative py-20"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8 }}
+            >
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/60" />
                 <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mb-16 text-center">
@@ -276,9 +326,26 @@ export default function HomePage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                    <motion.div 
+                        className="grid grid-cols-1 gap-8 md:grid-cols-3"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                    >
                         {/* Şimşek Hızında - Aurora Efektli */}
-                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-purple-400/50 hover:shadow-purple-500/30 hover:scale-105">
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-purple-400/50 hover:shadow-purple-500/30 hover:scale-105"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            whileHover={{ 
+                                scale: 1.05,
+                                rotateY: 5,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
                             {/* Aurora köşe efektleri */}
                             <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-purple-400/60 to-pink-400/40 blur-sm"></div>
                             <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-gradient-to-bl from-pink-400/50 to-purple-400/30 blur-sm"></div>
@@ -301,7 +368,18 @@ export default function HomePage() {
                         </div>
 
                         {/* AI Destekli Kalite - Aurora Efektli */}
-                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-pink-400/50 hover:shadow-pink-500/30 hover:scale-105">
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-pink-400/50 hover:shadow-pink-500/30 hover:scale-105"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            whileHover={{ 
+                                scale: 1.05,
+                                rotateY: -5,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
                             {/* Aurora köşe efektleri */}
                             <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-pink-400/60 to-red-400/40 blur-sm"></div>
                             <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-gradient-to-bl from-red-400/50 to-pink-400/30 blur-sm"></div>
@@ -324,7 +402,18 @@ export default function HomePage() {
                         </div>
 
                         {/* Güvenli ve Özel - Aurora Efektli */}
-                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-blue-400/50 hover:shadow-blue-500/30 hover:scale-105">
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-blue-400/50 hover:shadow-blue-500/30 hover:scale-105"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            whileHover={{ 
+                                scale: 1.05,
+                                rotateY: 5,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
                             {/* Aurora köşe efektleri */}
                             <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-blue-400/60 to-purple-400/40 blur-sm"></div>
                             <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-gradient-to-bl from-purple-400/50 to-blue-400/30 blur-sm"></div>
@@ -350,7 +439,13 @@ export default function HomePage() {
             </section>
 
             {/* Categories Section */}
-            <section className="relative py-20">
+            <motion.section 
+                className="relative py-20"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8 }}
+            >
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black" />
                 <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mb-16 text-center">
@@ -362,9 +457,26 @@ export default function HomePage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
+                    <motion.div 
+                        className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                    >
                         {/* E-ticaret */}
-                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/50 hover:shadow-blue-500/30">
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/50 hover:shadow-blue-500/30"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            whileHover={{ 
+                                y: -8,
+                                rotateX: 5,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                             <div className="relative p-3">
                                 <div className="mb-4 flex justify-center">
@@ -386,7 +498,18 @@ export default function HomePage() {
                         </div>
 
                         {/* Giyim */}
-                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-pink-400/50 hover:shadow-pink-500/30">
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-pink-400/50 hover:shadow-pink-500/30"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            whileHover={{ 
+                                y: -8,
+                                rotateX: -5,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                             <div className="relative p-3">
                                 <div className="mb-4 flex justify-center">
@@ -408,7 +531,18 @@ export default function HomePage() {
                         </div>
 
                         {/* Takı */}
-                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400/50 hover:shadow-yellow-500/30">
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400/50 hover:shadow-yellow-500/30"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                            whileHover={{ 
+                                y: -8,
+                                rotateX: 5,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                             <div className="relative p-3">
                                 <div className="mb-4 flex justify-center">
@@ -430,7 +564,18 @@ export default function HomePage() {
                         </div>
 
                         {/* Teknoloji */}
-                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/50 hover:shadow-cyan-500/30">
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/50 hover:shadow-cyan-500/30"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.4 }}
+                            whileHover={{ 
+                                y: -8,
+                                rotateX: -5,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                             <div className="relative p-3">
                                 <div className="mb-4 flex justify-center">
@@ -452,7 +597,18 @@ export default function HomePage() {
                         </div>
 
                         {/* Güzellik */}
-                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-rose-400/50 hover:shadow-rose-500/30">
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-rose-400/50 hover:shadow-rose-500/30"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.5 }}
+                            whileHover={{ 
+                                y: -8,
+                                rotateX: 5,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rose-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                             <div className="relative p-3">
                                 <div className="mb-4 flex justify-center">
@@ -477,34 +633,69 @@ export default function HomePage() {
             </section>
 
             {/* CTA Section */}
-            <section className="relative py-20">
+            <motion.section 
+                className="relative py-20"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8 }}
+            >
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-black" />
-                <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-                    <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
+                <motion.div 
+                    className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                    <motion.h2 
+                        className="mb-6 text-3xl font-bold text-white md:text-4xl"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                    >
                         Fotoğraflarınızı dönüştürmeye hazır mısınız?
-                    </h2>
-                    <p className="mx-auto mb-8 max-w-2xl text-xl text-white/80">
+                    </motion.h2>
+                    <motion.p 
+                        className="mx-auto mb-8 max-w-2xl text-xl text-white/80"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                    >
                         Çarpıcı ürün fotoğrafları oluşturmak için AI kullanan binlerce işletmeye katılın.
-                    </p>
+                    </motion.p>
 
-                    {userId ? (
-                        <a
-                            href="/generate"
-                            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 hover:scale-105"
-                        >
-                            Şimdi üretmeye başla
-                            <ArrowRight className="ml-2 h-5 w-5" />
-                        </a>
-                    ) : (
-                        <SignInButton mode="modal">
-                            <button className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 hover:scale-105">
-                                Ücretsiz başlayın
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.8 }}
+                        whileHover={{ 
+                            scale: 1.05,
+                            transition: { duration: 0.3 }
+                        }}
+                    >
+                        {userId ? (
+                            <a
+                                href="/generate"
+                                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 hover:scale-105"
+                            >
+                                Şimdi üretmeye başla
                                 <ArrowRight className="ml-2 h-5 w-5" />
-                            </button>
-                        </SignInButton>
-                    )}
-                </div>
-            </section>
-        </div>
+                            </a>
+                        ) : (
+                            <SignInButton mode="modal">
+                                <button className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 hover:scale-105">
+                                    Ücretsiz başlayın
+                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                </button>
+                            </SignInButton>
+                        )}
+                    </motion.div>
+                </motion.div>
+            </motion.section>
+        </motion.div>
     );
 }
