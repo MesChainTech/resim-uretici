@@ -304,7 +304,7 @@ export default function HomePage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </motion.section>
 
             {/* Features Section */}
             <motion.section 
