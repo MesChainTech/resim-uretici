@@ -6,10 +6,10 @@ export default function SignInPage() {
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="text-center">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                        AI Product Generator
+                        Axe Resim Üretici
                     </h1>
                     <h2 className="text-xl text-gray-600">
-                        Sign in to your account
+                        Hesabınıza giriş yapın
                     </h2>
                 </div>
             </div>
@@ -25,12 +25,12 @@ export default function SignInPage() {
 
             <div className="mt-8 text-center">
                 <p className="text-sm text-gray-600">
-                    Don't have an account?{' '}
+                    Hesabınız yok mu?{' '}
                     <a
                         href="/sign-up"
                         className="font-medium text-blue-600 hover:text-blue-500"
                     >
-                        Sign up for free
+                        Ücretsiz kayıt olun
                     </a>
                 </p>
             </div>
@@ -39,6 +39,6 @@ export default function SignInPage() {
 }
 
 export const metadata = {
-    title: 'Sign In - AI Product Generator',
-    description: 'Sign in to access the AI Product Generator',
+    title: 'Giriş Yap - Axe Resim Üretici',
+    description: 'Axe Resim Üretici\'ye erişmek için giriş yapın',
 };
