@@ -247,22 +247,20 @@ export default function HomePage() {
             >
                 {/* Header Butonları */}
                 <div className="absolute top-4 right-4 z-50 flex gap-3">
-                    {/* Chat Board Toggle Button */}
-                    <motion.button
-                        onClick={handleChatBoardToggle}
-                        className={`p-3 rounded-full shadow-2xl transition-all duration-300 ${
-                            isChatBoardOpen 
-                                ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white' 
-                                : 'bg-white/20 text-white hover:bg-white/30'
-                        }`}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                    >
-                        <MessageSquare className="w-5 h-5" />
-                    </motion.button>
+                    {/* Chat Board Toggle Button - Sadece chat board kapalıyken göster */}
+                    {!isChatBoardOpen && (
+                        <motion.button
+                            onClick={handleChatBoardToggle}
+                            className="p-3 rounded-full shadow-2xl transition-all duration-300 bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:bg-green-600"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                        >
+                            <MessageSquare className="w-5 h-5" />
+                        </motion.button>
+                    )}
 
                     {/* Microphone Toggle Button */}
                     <motion.button
@@ -305,7 +303,7 @@ export default function HomePage() {
                             transition={{ duration: 0.8, delay: 0.8 }}
                         >
                             <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                                Ürün fotoğraflarınızı saniyeler içinde yapay zeka ile dönüştürün
+                                HidLight MedyaTech ile ürün fotoğraflarınızı saniyeler içinde yapay zeka ile dönüştürün
                             </span>
                         </motion.h1>
                         <motion.p 
@@ -403,7 +401,7 @@ export default function HomePage() {
                 <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mb-16 text-center">
                         <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
-                            Neden Axe Resim Üretici'yi Seçmelisiniz?
+                            Neden HidLight MedyaTech'i Seçmelisiniz?
                         </h2>
                         <p className="mx-auto max-w-2xl text-lg text-white/80">
                             Zaman kazandıran ve profesyonel sonuçlar sunan AI destekli ürün fotoğrafçılığının gücünü deneyimleyin.

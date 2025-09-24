@@ -11,7 +11,7 @@ export function Footer() {
                             <Zap className="absolute -top-1 -right-1 h-4 w-4 text-accent" />
                         </span>
                         <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                            Axe Resim Üretici
+                            HidLight MedyaTech
                         </h3>
                     </div>
 
@@ -32,7 +32,7 @@ export function Footer() {
                     </div>
 
                     <div className="mt-10 border-t border-border/40 pt-6 text-xs text-muted-foreground/80">
-                        <p>&copy; 2025 Axe Resim Üretici. Tüm hakları saklıdır.</p>
+                        <p>&copy; 2025 HidLight MedyaTech. Tüm hakları saklıdır.</p>
                     </div>
                 </div>
             </div>

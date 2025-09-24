@@ -7,22 +7,22 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Axe Resim Üretici',
+    title: 'HidLight MedyaTech',
     description: 'AI teknolojisi kullanarak çarpıcı ürün görselleri oluşturun',
     keywords: ['AI', 'ürün fotoğrafçılığı', 'görsel oluşturma', 'e-ticaret'],
-    authors: [{ name: 'Axe Resim Üretici Ekibi' }],
+    authors: [{ name: 'HidLight MedyaTech Ekibi' }],
     metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL?.replace(/['"]/g, '') || 'http://localhost:3000'),
     openGraph: {
-        title: 'Axe Resim Üretici',
+        title: 'HidLight MedyaTech',
         description: 'AI teknolojisi kullanarak çarpıcı ürün görselleri oluşturun',
         url: process.env.NEXT_PUBLIC_APP_URL?.replace(/['"]/g, '') || 'http://localhost:3000',
-        siteName: 'Axe Resim Üretici',
+        siteName: 'HidLight MedyaTech',
         images: [
             {
                 url: '/og-image.png',
                 width: 1200,
                 height: 630,
-                alt: 'Axe Resim Üretici',
+                alt: 'HidLight MedyaTech',
             },
         ],
         locale: 'tr_TR',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Axe Resim Üretici',
+        title: 'HidLight MedyaTech',
         description: 'AI teknolojisi kullanarak çarpıcı ürün görselleri oluşturun',
         images: ['/og-image.png'],
     },

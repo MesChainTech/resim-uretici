@@ -209,21 +209,6 @@ export default function ChatBoard({
 
   return (
     <div id="chat-board-container">
-      {/* Chat Toggle Button - Sadece kapalıyken göster */}
-      {!isOpen && (
-        <motion.button
-          onClick={handleToggle}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2 }}
-        >
-          <MessageSquare className="w-6 h-6" />
-        </motion.button>
-      )}
-
       {/* Chat Board */}
       <AnimatePresence>
         {isOpen && (
@@ -384,7 +369,7 @@ export default function ChatBoard({
 
                 {/* Footer - Sabit boyut */}
                 <div className="p-2 border-t border-gray-200 bg-gray-50 flex-shrink-0">
-                  <p className="text-xs text-gray-500 text-center">Powered by HidLight Medya</p>
+                  <p className="text-xs text-gray-500 text-center">Powered by HidLight MedyaTech</p>
                 </div>
               </div>
             </motion.div>
