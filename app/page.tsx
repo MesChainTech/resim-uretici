@@ -272,9 +272,9 @@ export default async function HomePage() {
             <section className="relative py-20">
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-black" />
                 <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-                    <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
-                        Ürün fotoğraflarınızı dönüştürmeye hazır mısınız?
-                    </h2>
+                            <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
+                                Fotoğraflarınızı dönüştürmeye hazır mısınız?
+                            </h2>
                     <p className="mx-auto mb-8 max-w-2xl text-xl text-white/80">
                         Çarpıcı ürün fotoğrafları oluşturmak için AI kullanan binlerce işletmeye katılın.
                     </p>
