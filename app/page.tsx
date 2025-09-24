@@ -35,10 +35,10 @@ export default function HomePage() {
         setDolphinPosition({ x, y });
         setShowDolphin(true);
         
-        // 3 saniye sonra yunus kaybolsun
+        // 8 saniye sonra yunus kaybolsun
         setTimeout(() => {
             setShowDolphin(false);
-        }, 3000);
+        }, 8000);
     };
 
     return (
