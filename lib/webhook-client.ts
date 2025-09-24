@@ -356,14 +356,10 @@ export function createWebhookClient(): WebhookClient {
   }
 
   return new WebhookClient(webhookUrl, {
-    timeout: WEBHOOK_CONFIG.TIMEOUT,
+    timeout: parseInt(process.env.N8N_WEBHOOK_TIMEOUT || WEBHOOK_CONFIG.TIMEOUT.toString()),
     retries: WEBHOOK_CONFIG.RETRY_ATTEMPTS,
-    headers: {
-      Authorization: process.env.N8N_WEBHOOK_AUTH_TOKEN
-        ? `Bearer ${process.env.N8N_WEBHOOK_AUTH_TOKEN}`
-        : undefined,
-    }.Authorization
-      ? { Authorization: `Bearer ${process.env.N8N_WEBHOOK_AUTH_TOKEN}` }
+    headers: process.env.N8N_API_KEY
+      ? { Authorization: `Bearer ${process.env.N8N_API_KEY}` }
       : {},
   })
 }
