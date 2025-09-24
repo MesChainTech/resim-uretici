@@ -8,9 +8,14 @@ export async function POST(request: NextRequest) {
   try {
     const { message } = await request.json();
 
-    // Debug: API key kontrolü
+    // Debug: Tüm environment variables'ları kontrol et
+    console.log('=== ENVIRONMENT VARIABLES DEBUG ===');
     console.log('GEMINI_API_KEY var mı:', !!process.env.GEMINI_API_KEY);
     console.log('GEMINI_API_KEY uzunluğu:', process.env.GEMINI_API_KEY?.length || 0);
+    console.log('GEMINI_API_KEY ilk 10 karakter:', process.env.GEMINI_API_KEY?.substring(0, 10) || 'YOK');
+    console.log('NODE_ENV:', process.env.NODE_ENV);
+    console.log('Tüm env keys:', Object.keys(process.env).filter(key => key.includes('GEMINI')));
+    console.log('===================================');
 
     if (!message || typeof message !== 'string') {
       return NextResponse.json(
@@ -21,6 +26,7 @@ export async function POST(request: NextRequest) {
 
     // API key kontrolü
     if (!process.env.GEMINI_API_KEY) {
+      console.error('GEMINI_API_KEY bulunamadı!');
       return NextResponse.json(
         { 
           error: 'Gemini API key bulunamadı. Lütfen .env.local dosyasını kontrol edin.',
