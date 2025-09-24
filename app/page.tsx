@@ -399,7 +399,7 @@ export default function HomePage() {
                                     Gelişmiş AI algoritmalarımız, profesyonel stüdyolarla yarışan yüksek kaliteli ve gerçekçi ürün fotoğrafları sağlar.
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Güvenli ve Özel - Aurora Efektli */}
                         <motion.div 
