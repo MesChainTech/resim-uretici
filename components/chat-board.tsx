@@ -173,7 +173,7 @@ export default function ChatBoard() {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="absolute right-0 top-0 h-full w-80 bg-white shadow-2xl"
+              className="absolute right-0 top-0 h-96 w-80 bg-white shadow-2xl rounded-t-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -184,12 +184,12 @@ export default function ChatBoard() {
                 {/* Header */}
                 <div className="flex items-center justify-between p-2 border-b border-gray-200">
                   <div className="flex items-center gap-2">
-                    <div className="w-12 h-12 overflow-hidden rounded-lg">
+                    <div className="w-16 h-16 overflow-hidden rounded-lg">
                       <Image
                         src="/chat.jpg"
                         alt="AI Asistan"
-                        width={48}
-                        height={48}
+                        width={64}
+                        height={64}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -221,12 +221,12 @@ export default function ChatBoard() {
                             transition={{ duration: 0.3 }}
                           >
                             {message.role === 'assistant' && (
-                              <div className="w-6 h-6 overflow-hidden rounded-lg flex-shrink-0">
+                              <div className="w-10 h-10 overflow-hidden rounded-lg flex-shrink-0">
                                 <Image
                                   src="/chat.jpg"
                                   alt="AI Asistan"
-                                  width={24}
-                                  height={24}
+                                  width={40}
+                                  height={40}
                                   className="w-full h-full object-cover"
                                 />
                               </div>
@@ -266,12 +266,12 @@ export default function ChatBoard() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                           >
-                            <div className="w-6 h-6 overflow-hidden rounded-lg">
+                            <div className="w-10 h-10 overflow-hidden rounded-lg">
                               <Image
                                 src="/chat.jpg"
                                 alt="AI Asistan"
-                                width={24}
-                                height={24}
+                                width={40}
+                                height={40}
                                 className="w-full h-full object-cover"
                               />
                             </div>
@@ -313,18 +313,18 @@ export default function ChatBoard() {
                       </div>
                     </>
                   ) : (
-                    <div className="flex-1 flex flex-col items-center justify-center p-4">
-                      <div className="w-16 h-16 overflow-hidden rounded-lg mb-3">
+                    <div className="flex-1 flex flex-col items-center justify-center p-2">
+                      <div className="w-40 h-40 overflow-hidden rounded-2xl mb-4">
                         <Image
                           src="/chat.jpg"
                           alt="AI Asistan"
-                          width={64}
-                          height={64}
+                          width={160}
+                          height={160}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Asistanınız Hazır</h3>
-                      <p className="text-gray-500 mb-4 text-center text-sm">Merhaba, ben AI asistanınız. Size nasıl yardımcı olabilirim?</p>
+                      <h3 className="text-base font-semibold text-gray-900 mb-2">AI Asistanınız Hazır</h3>
+                      <p className="text-gray-500 mb-3 text-center text-xs">Merhaba, ben AI asistanınız. Size nasıl yardımcı olabilirim?</p>
                       <button
                         onClick={createNewSession}
                         className="bg-green-500 text-white py-2 px-4 rounded-xl hover:bg-green-600 transition-all duration-300 flex items-center gap-2 text-sm"
