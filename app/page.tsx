@@ -13,11 +13,22 @@ export default async function HomePage() {
             {/* Renkli gradient overlay - aşağı doğru azalan */}
             <div className="absolute inset-0 bg-gradient-to-b from-purple-900/60 via-pink-900/40 to-transparent" />
             
-            {/* Grid pattern overlay - daha belirgin */}
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xNSI+PHBhdGggZD0iTTM2IDM0di00aC0ydjRoLTR2Mmg0djRoMnYtNGg0di0yaC00em0wLTMwVjBoLTJ2NGgtNHYyaDR2NGgyVjZoNFY0aC00ek02IDM0di00SDR2NEgwdjJoNHY0aDJ2LTRoNHYtMkg2ek02IDRWMGgydjRINHYyaDR2NGgyVjZoNFY0SDZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50" />
+            {/* Azaltılmış grid pattern */}
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDgiPjxwYXRoIGQ9Ik03MiA2OHYtOGgtNHY4aC04djhoOHY4aDR2LThoOHYtOGgtNHptMC02MFYwaC00djhoLTh2OGg4djhoNFY4aDhWNGgtNHpNMTIgNjh2LThIOHY4SDh2OGg0djhoNHYtOGg4di04aC00ek0xMiA4VjBoNHY4aDh2OGg0VjhoOFY0aC00eiIvPjwvZz48L2c+PC9zdmc+')] opacity-40" />
             
-            {/* Ek grid çizgileri - daha belirgin */}
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30" />
+            {/* Normal kareler - pembe puslu gölgeli */}
+            <div className="absolute inset-0">
+                <div className="absolute top-20 left-20 w-4 h-4 bg-pink-400/20 rounded-sm shadow-lg shadow-pink-500/30 blur-sm"></div>
+                <div className="absolute top-40 right-32 w-3 h-3 bg-pink-300/25 rounded-sm shadow-lg shadow-pink-400/40 blur-sm"></div>
+                <div className="absolute top-60 left-1/3 w-5 h-5 bg-pink-500/15 rounded-sm shadow-lg shadow-pink-600/35 blur-sm"></div>
+                <div className="absolute top-80 right-20 w-2 h-2 bg-pink-400/30 rounded-sm shadow-lg shadow-pink-500/25 blur-sm"></div>
+                <div className="absolute top-96 left-1/4 w-3 h-3 bg-pink-300/20 rounded-sm shadow-lg shadow-pink-400/30 blur-sm"></div>
+                
+                <div className="absolute top-32 left-1/2 w-4 h-4 bg-pink-400/18 rounded-sm shadow-lg shadow-pink-500/35 blur-sm"></div>
+                <div className="absolute top-52 right-1/3 w-2 h-2 bg-pink-500/22 rounded-sm shadow-lg shadow-pink-600/40 blur-sm"></div>
+                <div className="absolute top-72 left-16 w-3 h-3 bg-pink-300/28 rounded-sm shadow-lg shadow-pink-400/25 blur-sm"></div>
+                <div className="absolute top-88 right-1/4 w-4 h-4 bg-pink-400/16 rounded-sm shadow-lg shadow-pink-500/30 blur-sm"></div>
+            </div>
             
             {/* Loş ışık efektleri - aşağı doğru azalan */}
             <div className="absolute -top-40 -right-20 h-96 w-96 rounded-full bg-gradient-to-b from-purple-500/30 to-transparent blur-3xl" />
