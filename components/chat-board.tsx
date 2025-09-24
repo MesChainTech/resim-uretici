@@ -23,12 +23,6 @@ interface ChatSession {
 export default function ChatBoard() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
   const [currentSession, setCurrentSession] = useState<ChatSession | null>(null);
   const [sessions, setSessions] = useState<ChatSession[]>([]);
   const [inputMessage, setInputMessage] = useState('');
@@ -37,6 +31,11 @@ export default function ChatBoard() {
   const [isPlaying, setIsPlaying] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Mount kontrolü
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Scroll to bottom when new messages arrive
   useEffect(() => {
@@ -170,6 +169,9 @@ export default function ChatBoard() {
       setIsPlaying(false);
     }
   };
+
+  // Mount kontrolü - tüm hook'lar çağrıldıktan sonra
+  if (!mounted) return null;
 
   return (
     <>
