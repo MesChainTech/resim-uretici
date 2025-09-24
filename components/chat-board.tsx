@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Mic, MicOff, Volume2, VolumeX, Bot, User, Plus, MessageSquare } from 'lucide-react';
+import { Send, Mic, MicOff, Volume2, VolumeX, Bot, User, Plus, MessageSquare, Phone, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 interface Message {
   id: string;
@@ -151,7 +152,7 @@ export default function ChatBoard() {
       {/* Chat Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
+        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 100 }}
@@ -165,73 +166,50 @@ export default function ChatBoard() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="absolute right-0 top-0 h-full w-full max-w-4xl bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 shadow-2xl"
+              className="absolute right-0 top-0 h-full w-full max-w-md bg-white rounded-t-3xl shadow-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex h-full">
-                {/* Sol Panel - Chat Sessions */}
-                <div className="w-80 bg-gray-800/50 backdrop-blur border-r border-gray-700/50 flex flex-col">
-                  {/* Header */}
-                  <div className="p-4 border-b border-gray-700/50">
-                    <h2 className="text-xl font-bold text-white mb-4">AI Asistan</h2>
-                    <button
-                      onClick={createNewSession}
-                      className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-4 rounded-lg flex items-center gap-2 hover:shadow-lg transition-all duration-300"
-                    >
-                      <Plus className="w-5 h-5" />
-                      Yeni Sohbet
-                    </button>
+              <div className="flex flex-col h-full">
+                {/* Header */}
+                <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full overflow-hidden">
+                      <Image
+                        src="/chat.jpg"
+                        alt="AI Asistan"
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">AI Asistan</h3>
+                      <p className="text-sm text-gray-500">Her zaman burada</p>
+                    </div>
                   </div>
-
-                  {/* Sessions List */}
-                  <div className="flex-1 overflow-y-auto p-4 space-y-2">
-                    {sessions.map((session) => (
-                      <div
-                        key={session.id}
-                        onClick={() => setCurrentSession(session)}
-                        className={`p-3 rounded-lg cursor-pointer transition-all duration-300 ${
-                          currentSession?.id === session.id
-                            ? 'bg-blue-500/20 border border-blue-500/50'
-                            : 'bg-gray-700/30 hover:bg-gray-700/50'
-                        }`}
-                      >
-                        <h3 className="text-white font-medium truncate">{session.title}</h3>
-                        <p className="text-gray-400 text-sm">
-                          {session.messages.length} mesaj
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  >
+                    <ChevronDown className="w-5 h-5 text-gray-600" />
+                  </button>
                 </div>
 
-                {/* Sağ Panel - Chat Area */}
+                {/* Chat Content */}
                 <div className="flex-1 flex flex-col">
                   {currentSession ? (
                     <>
-                      {/* Chat Header */}
-                      <div className="p-4 border-b border-gray-700/50 bg-gray-800/30">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                            <Bot className="w-6 h-6 text-white" />
-                          </div>
-                          <div>
-                            <h3 className="text-white font-semibold">AI Asistan</h3>
-                            <p className="text-gray-400 text-sm">Her zaman burada</p>
-                          </div>
-                        </div>
-                      </div>
-
                       {/* Messages */}
                       <div className="flex-1 overflow-y-auto p-4 space-y-4">
                         {currentSession.messages.map((message) => (
@@ -243,15 +221,21 @@ export default function ChatBoard() {
                             transition={{ duration: 0.3 }}
                           >
                             {message.role === 'assistant' && (
-                              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                <Bot className="w-5 h-5 text-white" />
+                              <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                                <Image
+                                  src="/chat.jpg"
+                                  alt="AI Asistan"
+                                  width={32}
+                                  height={32}
+                                  className="w-full h-full object-cover"
+                                />
                               </div>
                             )}
                             
                             <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
                               message.role === 'user'
-                                ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
-                                : 'bg-gray-700/50 text-gray-100'
+                                ? 'bg-green-500 text-white'
+                                : 'bg-gray-100 text-gray-900'
                             }`}>
                               <p className="text-sm leading-relaxed">{message.content}</p>
                               
@@ -259,7 +243,7 @@ export default function ChatBoard() {
                                 <div className="mt-2 flex gap-2">
                                   <button
                                     onClick={() => isPlaying ? stopAudio() : playAudio(message.audioUrl!)}
-                                    className="text-xs bg-gray-600/50 hover:bg-gray-600 px-2 py-1 rounded flex items-center gap-1"
+                                    className="text-xs bg-gray-200 hover:bg-gray-300 px-2 py-1 rounded flex items-center gap-1"
                                   >
                                     {isPlaying ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
                                     {isPlaying ? 'Durdur' : 'Dinle'}
@@ -269,8 +253,8 @@ export default function ChatBoard() {
                             </div>
 
                             {message.role === 'user' && (
-                              <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                <User className="w-5 h-5 text-white" />
+                              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+                                <User className="w-5 h-5 text-gray-600" />
                               </div>
                             )}
                           </motion.div>
@@ -282,10 +266,16 @@ export default function ChatBoard() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                           >
-                            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                              <Bot className="w-5 h-5 text-white" />
+                            <div className="w-8 h-8 rounded-full overflow-hidden">
+                              <Image
+                                src="/chat.jpg"
+                                alt="AI Asistan"
+                                width={32}
+                                height={32}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
-                            <div className="bg-gray-700/50 text-gray-100 px-4 py-3 rounded-2xl">
+                            <div className="bg-gray-100 text-gray-900 px-4 py-3 rounded-2xl">
                               <div className="flex gap-1">
                                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
                                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
@@ -299,15 +289,15 @@ export default function ChatBoard() {
                       </div>
 
                       {/* Input Area */}
-                      <div className="p-4 border-t border-gray-700/50 bg-gray-800/30">
+                      <div className="p-4 border-t border-gray-200 bg-white">
                         <form onSubmit={handleSubmit} className="flex gap-3">
                           <div className="flex-1 relative">
                             <input
                               type="text"
                               value={inputMessage}
                               onChange={(e) => setInputMessage(e.target.value)}
-                              placeholder="Mesajınızı yazın..."
-                              className="w-full bg-gray-700/50 text-white px-4 py-3 rounded-lg border border-gray-600/50 focus:border-blue-500/50 focus:outline-none"
+                              placeholder="Sesli veya yazılı görüşme başlatın..."
+                              className="w-full bg-gray-100 text-gray-900 px-4 py-3 rounded-2xl border-0 focus:outline-none focus:ring-2 focus:ring-green-500"
                               disabled={isLoading}
                             />
                           </div>
@@ -315,7 +305,7 @@ export default function ChatBoard() {
                           <button
                             type="submit"
                             disabled={!inputMessage.trim() || isLoading}
-                            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="bg-green-500 text-white p-3 rounded-2xl hover:bg-green-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                           >
                             <Send className="w-5 h-5" />
                           </button>
@@ -323,20 +313,32 @@ export default function ChatBoard() {
                       </div>
                     </>
                   ) : (
-                    <div className="flex-1 flex items-center justify-center">
-                      <div className="text-center">
-                        <Bot className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold text-white mb-2">AI Asistanınız Hazır</h3>
-                        <p className="text-gray-400 mb-6">Yeni bir sohbet başlatın ve sorularınızı sorun</p>
-                        <button
-                          onClick={createNewSession}
-                          className="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-lg hover:shadow-lg transition-all duration-300"
-                        >
-                          Sohbet Başlat
-                        </button>
+                    <div className="flex-1 flex flex-col items-center justify-center p-8">
+                      <div className="w-24 h-24 rounded-full overflow-hidden mb-6">
+                        <Image
+                          src="/chat.jpg"
+                          alt="AI Asistan"
+                          width={96}
+                          height={96}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">AI Asistanınız Hazır</h3>
+                      <p className="text-gray-500 mb-6 text-center">Merhaba, ben AI asistanınız. Size nasıl yardımcı olabilirim?</p>
+                      <button
+                        onClick={createNewSession}
+                        className="bg-green-500 text-white py-3 px-6 rounded-2xl hover:bg-green-600 transition-all duration-300 flex items-center gap-2"
+                      >
+                        <Phone className="w-5 h-5" />
+                        Başlat
+                      </button>
                     </div>
                   )}
+                </div>
+
+                {/* Footer */}
+                <div className="p-4 border-t border-gray-200 bg-gray-50">
+                  <p className="text-xs text-gray-500 text-center">Powered by Axe Resim Üretici</p>
                 </div>
               </div>
             </motion.div>
