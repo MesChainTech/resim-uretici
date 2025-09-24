@@ -175,7 +175,7 @@ export default function ChatBoard() {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="absolute right-0 bottom-20 h-[500px] w-80 bg-white shadow-2xl rounded-t-2xl"
+              className="absolute right-0 bottom-20 h-96 w-80 bg-white shadow-2xl rounded-t-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -184,12 +184,12 @@ export default function ChatBoard() {
             >
               <div className="flex flex-col h-full">
                 {/* Büyük Resim - Header'ın üstünde */}
-                <div className="w-full h-32 overflow-hidden">
+                <div className="w-full h-40 overflow-hidden">
                   <Image
                     src="/chat.jpg"
                     alt="AI Asistan"
                     width={320}
-                    height={128}
+                    height={160}
                     className="w-full h-full object-cover"
                   />
                 </div>
