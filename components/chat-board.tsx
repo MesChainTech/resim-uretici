@@ -175,7 +175,7 @@ export default function ChatBoard() {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="absolute right-0 bottom-20 h-[768px] w-[640px] bg-white shadow-2xl rounded-t-2xl"
+              className="absolute right-0 bottom-20 h-[668px] w-[380px] bg-white shadow-2xl rounded-t-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -183,26 +183,26 @@ export default function ChatBoard() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col h-full">
-                {/* Büyük Resim - Header'ın üstünde */}
-                <div className="w-full h-64 overflow-hidden">
+                {/* Büyük Resim - Header'ın üstünde - Sabit boyut */}
+                <div className="w-full h-84 overflow-hidden flex-shrink-0">
                   <Image
                     src="/chat.jpg"
                     alt="AI Asistan"
-                    width={640}
-                    height={256}
+                    width={512}
+                    height={512}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 
-                {/* Header */}
-                <div className="flex items-center justify-between p-2 border-b border-gray-200">
+                {/* Header - Sabit boyut */}
+                <div className="flex items-center justify-between p-2 border-b border-gray-200 flex-shrink-0">
                   <div className="flex items-center gap-2">
                     <div className="w-16 h-16 overflow-hidden rounded-lg">
                       <Image
                         src="/chat.jpg"
                         alt="AI Asistan"
-                        width={64}
-                        height={64}
+                        width={128}
+                        height={128}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -220,11 +220,11 @@ export default function ChatBoard() {
                 </div>
 
                 {/* Chat Content */}
-                <div className="flex-1 flex flex-col">
+                <div className="flex-1 flex flex-col min-h-0">
                   {currentSession ? (
                     <>
                       {/* Messages */}
-                      <div className="flex-1 overflow-y-auto p-2 space-y-2">
+                      <div className="flex-1 overflow-y-auto p-2 space-y-2 min-h-0">
                         {currentSession.messages.map((message) => (
                           <motion.div
                             key={message.id}
@@ -301,8 +301,8 @@ export default function ChatBoard() {
                         <div ref={messagesEndRef} />
                       </div>
 
-                      {/* Input Area */}
-                      <div className="p-2 border-t border-gray-200 bg-white">
+                      {/* Input Area - Sabit boyut */}
+                      <div className="p-2 border-t border-gray-200 bg-white flex-shrink-0">
                         <form onSubmit={handleSubmit} className="flex gap-2">
                           <div className="flex-1 relative">
                             <input
@@ -340,8 +340,8 @@ export default function ChatBoard() {
                   )}
                 </div>
 
-                {/* Footer */}
-                <div className="p-2 border-t border-gray-200 bg-gray-50">
+                {/* Footer - Sabit boyut */}
+                <div className="p-2 border-t border-gray-200 bg-gray-50 flex-shrink-0">
                   <p className="text-xs text-gray-500 text-center">Powered by Axe Resim Üretici</p>
                 </div>
               </div>
