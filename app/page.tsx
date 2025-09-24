@@ -16,18 +16,24 @@ export default async function HomePage() {
             {/* Azaltılmış grid pattern */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDgiPjxwYXRoIGQ9Ik03MiA2OHYtOGgtNHY4aC04djhoOHY4aDR2LThoOHYtOGgtNHptMC02MFYwaC00djhoLTh2OGg4djhoNFY4aDhWNGgtNHpNMTIgNjh2LThIOHY4SDh2OGg0djhoNHYtOGg4di04aC00ek0xMiA4VjBoNHY4aDh2OGg0VjhoOFY0aC00eiIvPjwvZz48L2c+PC9zdmc+')] opacity-40" />
             
-            {/* Normal kareler - pembe puslu gölgeli */}
+            {/* Resimdeki gibi silik kareler - ortada ve daha büyük */}
             <div className="absolute inset-0">
-                <div className="absolute top-20 left-20 w-4 h-4 bg-pink-400/20 rounded-sm shadow-lg shadow-pink-500/30 blur-sm"></div>
-                <div className="absolute top-40 right-32 w-3 h-3 bg-pink-300/25 rounded-sm shadow-lg shadow-pink-400/40 blur-sm"></div>
-                <div className="absolute top-60 left-1/3 w-5 h-5 bg-pink-500/15 rounded-sm shadow-lg shadow-pink-600/35 blur-sm"></div>
-                <div className="absolute top-80 right-20 w-2 h-2 bg-pink-400/30 rounded-sm shadow-lg shadow-pink-500/25 blur-sm"></div>
-                <div className="absolute top-96 left-1/4 w-3 h-3 bg-pink-300/20 rounded-sm shadow-lg shadow-pink-400/30 blur-sm"></div>
+                {/* Sol üst bölge */}
+                <div className="absolute top-32 left-16 w-16 h-16 bg-white/5 rounded-lg shadow-2xl shadow-white/10 blur-sm border border-white/10"></div>
+                <div className="absolute top-48 left-32 w-12 h-12 bg-white/8 rounded-lg shadow-xl shadow-white/15 blur-sm border border-white/15"></div>
                 
-                <div className="absolute top-32 left-1/2 w-4 h-4 bg-pink-400/18 rounded-sm shadow-lg shadow-pink-500/35 blur-sm"></div>
-                <div className="absolute top-52 right-1/3 w-2 h-2 bg-pink-500/22 rounded-sm shadow-lg shadow-pink-600/40 blur-sm"></div>
-                <div className="absolute top-72 left-16 w-3 h-3 bg-pink-300/28 rounded-sm shadow-lg shadow-pink-400/25 blur-sm"></div>
-                <div className="absolute top-88 right-1/4 w-4 h-4 bg-pink-400/16 rounded-sm shadow-lg shadow-pink-500/30 blur-sm"></div>
+                {/* Sağ üst bölge */}
+                <div className="absolute top-40 right-24 w-14 h-14 bg-white/6 rounded-lg shadow-2xl shadow-white/12 blur-sm border border-white/12"></div>
+                <div className="absolute top-64 right-40 w-10 h-10 bg-white/7 rounded-lg shadow-xl shadow-white/18 blur-sm border border-white/18"></div>
+                
+                {/* Orta bölge - ana odak */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white/10 rounded-xl shadow-2xl shadow-white/20 blur-sm border border-white/20"></div>
+                <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-white/8 rounded-lg shadow-xl shadow-white/15 blur-sm border border-white/15"></div>
+                <div className="absolute top-1/2 right-1/3 w-18 h-18 bg-white/9 rounded-lg shadow-xl shadow-white/16 blur-sm border border-white/16"></div>
+                
+                {/* Alt bölge */}
+                <div className="absolute bottom-32 left-20 w-12 h-12 bg-white/6 rounded-lg shadow-xl shadow-white/12 blur-sm border border-white/12"></div>
+                <div className="absolute bottom-48 right-28 w-14 h-14 bg-white/7 rounded-lg shadow-xl shadow-white/14 blur-sm border border-white/14"></div>
             </div>
             
             {/* Loş ışık efektleri - aşağı doğru azalan */}
