@@ -8,10 +8,25 @@ export async function POST(request: NextRequest) {
   try {
     const { message } = await request.json();
 
+    // Debug: API key kontrolü
+    console.log('GEMINI_API_KEY var mı:', !!process.env.GEMINI_API_KEY);
+    console.log('GEMINI_API_KEY uzunluğu:', process.env.GEMINI_API_KEY?.length || 0);
+
     if (!message || typeof message !== 'string') {
       return NextResponse.json(
         { error: 'Geçerli bir mesaj gönderilmelidir' },
         { status: 400 }
+      );
+    }
+
+    // API key kontrolü
+    if (!process.env.GEMINI_API_KEY) {
+      return NextResponse.json(
+        { 
+          error: 'Gemini API key bulunamadı. Lütfen .env.local dosyasını kontrol edin.',
+          response: 'Üzgünüm, AI servisi şu anda kullanılamıyor. API key eksik.'
+        },
+        { status: 500 }
       );
     }
 
@@ -21,7 +36,7 @@ export async function POST(request: NextRequest) {
     // Create system prompt for Turkish AI assistant
     const systemPrompt = `Sen Türkçe konuşan bir AI asistanısın. Kullanıcılara yardımcı olmak için buradasın. 
     Cevaplarını Türkçe ver, samimi ve yardımsever ol. 
-    Axe Resim Üretici hakkında bilgi verebilir, genel soruları yanıtlayabilir ve kullanıcılara rehberlik edebilirsin.
+    HidLight MedyaTech hakkında bilgi verebilir, genel soruları yanıtlayabilir ve kullanıcılara rehberlik edebilirsin.
     Kısa ve öz cevaplar ver, gereksiz uzunluktan kaçın.`;
 
     const fullPrompt = `${systemPrompt}\n\nKullanıcı: ${message}\n\nAsistan:`;
