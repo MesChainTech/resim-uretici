@@ -51,6 +51,13 @@ export default function ChatBoard({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // External isOpen prop'unu dinle
+  useEffect(() => {
+    if (externalIsOpen !== undefined) {
+      setIsOpen(externalIsOpen);
+    }
+  }, [externalIsOpen]);
+
   // Global state kontrolü - sadece bir ChatBoard instance'ı olsun
   useEffect(() => {
     console.log('ChatBoard useEffect çalışıyor - mounted:', mounted);
