@@ -192,7 +192,7 @@ export default function ChatBoard() {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="absolute right-8 bottom-20 h-[800px] w-[380px] bg-white shadow-2xl rounded-t-2xl"
+              className="absolute right-8 bottom-20 h-[600px] w-[360px] bg-white shadow-2xl rounded-t-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -200,39 +200,21 @@ export default function ChatBoard() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col h-full">
-                {/* Büyük Resim - Header'ın üstünde - Sabit boyut */}
-                <div className="w-full h-84 overflow-hidden flex-shrink-0">
+                {/* Büyük Resim - Kapatma butonu ile - Sabit boyut */}
+                <div className="w-full h-84 overflow-hidden flex-shrink-0 relative">
                   <Image
                     src="/chat.jpg"
                     alt="AI Asistan"
-                    width={512}
-                    height={512}
+                    width={396}
+                    height={396}
                     className="w-full h-full object-cover"
                   />
-                </div>
-                
-                {/* Header - Sabit boyut */}
-                <div className="flex items-center justify-between p-2 border-b border-gray-200 flex-shrink-0">
-                  <div className="flex items-center gap-2">
-                    <div className="w-16 h-16 overflow-hidden rounded-lg">
-                      <Image
-                        src="/chat.jpg"
-                        alt="AI Asistan"
-                        width={128}
-                        height={128}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 text-xs">AI Asistan</h3>
-                      <p className="text-xs text-gray-500">Her zaman burada</p>
-                    </div>
-                  </div>
+                  {/* Kapatma butonu - Resmin üst sağ köşesinde */}
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+                    className="absolute top-2 right-2 p-2 rounded-full bg-black/30 hover:bg-black/50 transition-all duration-300 backdrop-blur-sm"
                   >
-                    <ChevronDown className="w-4 h-4 text-gray-600" />
+                    <ChevronDown className="w-4 h-4 text-white" />
                   </button>
                 </div>
 
