@@ -41,6 +41,17 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Gemini API Error:', error);
     
+    // Check if it's a Gemini API error
+    if (error instanceof Error && error.message.includes('403')) {
+      return NextResponse.json(
+        { 
+          error: 'Gemini API key geçersiz veya eksik. Lütfen API key\'i kontrol edin.',
+          response: 'Üzgünüm, AI servisi şu anda kullanılamıyor. API key sorunu var.'
+        },
+        { status: 500 }
+      );
+    }
+    
     return NextResponse.json(
       { 
         error: 'AI servisi şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',

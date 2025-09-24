@@ -77,7 +77,10 @@ export default function ChatBoard() {
         body: JSON.stringify({ message: content })
       });
 
-      if (!response.ok) throw new Error('API hatası');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `API hatası: ${response.status}`);
+      }
 
       const data = await response.json();
       
