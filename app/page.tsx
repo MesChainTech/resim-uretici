@@ -261,8 +261,8 @@ export default function HomePage() {
                             >
                                 Nasıl çalıştığını görün
                             </a>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
                     <div className="relative">
                         <div className="absolute inset-0 -z-10 translate-x-6 translate-y-6 rounded-3xl bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-2xl" />
