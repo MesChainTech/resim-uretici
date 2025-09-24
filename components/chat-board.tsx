@@ -149,18 +149,20 @@ export default function ChatBoard() {
 
   return (
     <>
-      {/* Chat Toggle Button */}
-      <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2 }}
-      >
-        <MessageSquare className="w-6 h-6" />
-      </motion.button>
+      {/* Chat Toggle Button - Sadece kapalıyken göster */}
+      {!isOpen && (
+        <motion.button
+          onClick={() => setIsOpen(!isOpen)}
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2 }}
+        >
+          <MessageSquare className="w-6 h-6" />
+        </motion.button>
+      )}
 
       {/* Chat Board */}
       <AnimatePresence>
@@ -173,7 +175,7 @@ export default function ChatBoard() {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="absolute right-0 bottom-20 h-96 w-80 bg-white shadow-2xl rounded-t-2xl"
+              className="absolute right-0 bottom-20 h-[500px] w-80 bg-white shadow-2xl rounded-t-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
