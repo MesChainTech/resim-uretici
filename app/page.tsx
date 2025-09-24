@@ -362,20 +362,111 @@ export default function HomePage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6 md:grid-cols-5">
-                        {[
-                            { name: 'E-ticaret', description: 'Genel ürünler' },
-                            { name: 'Giyim', description: 'Kıyafet ve aksesuarlar' },
-                            { name: 'Takı', description: 'Yüzük ve kolyeler' },
-                            { name: 'Teknoloji', description: 'Elektronik ve cihazlar' },
-                            { name: 'Güzellik', description: 'Kozmetik ve cilt bakımı' },
-                        ].map((category) => (
-                            <div key={category.name} className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 px-6 py-8 text-center shadow-lg backdrop-blur transition-all hover:-translate-y-1 hover:border-purple-400/50 hover:shadow-purple-500/20">
-                                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                                <h3 className="mt-1 mb-3 text-lg font-semibold text-white">{category.name}</h3>
-                                <p className="text-sm text-white/70">{category.description}</p>
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        {/* E-ticaret */}
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/50 hover:shadow-blue-500/30">
+                            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                            <div className="relative p-6">
+                                <div className="mb-4 flex justify-center">
+                                    <div className="relative h-24 w-24 overflow-hidden rounded-xl">
+                                        <img 
+                                            src="/image/E-Ticaret.webp" 
+                                            alt="E-ticaret ürünleri" 
+                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                    </div>
+                                </div>
+                                <h3 className="mb-3 text-xl font-bold text-white">E-ticaret</h3>
+                                <p className="text-sm text-white/80 leading-relaxed">
+                                    Genel ürünler için profesyonel fotoğraf çekimi. Her türlü e-ticaret ürününüzü stüdyo kalitesinde görselleştirin.
+                                </p>
                             </div>
-                        ))}
+                        </div>
+
+                        {/* Giyim */}
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-pink-400/50 hover:shadow-pink-500/30">
+                            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                            <div className="relative p-6">
+                                <div className="mb-4 flex justify-center">
+                                    <div className="relative h-24 w-24 overflow-hidden rounded-xl">
+                                        <img 
+                                            src="/image/Giyim.webp" 
+                                            alt="Giyim ve aksesuarlar" 
+                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                    </div>
+                                </div>
+                                <h3 className="mb-3 text-xl font-bold text-white">Giyim</h3>
+                                <p className="text-sm text-white/80 leading-relaxed">
+                                    Kıyafet ve aksesuarlar için özel ışıklandırma. Moda ürünlerinizi en iyi şekilde sergileyin.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Takı */}
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400/50 hover:shadow-yellow-500/30">
+                            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                            <div className="relative p-6">
+                                <div className="mb-4 flex justify-center">
+                                    <div className="relative h-24 w-24 overflow-hidden rounded-xl">
+                                        <img 
+                                            src="/image/Taki.webp" 
+                                            alt="Takı ve mücevherler" 
+                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                    </div>
+                                </div>
+                                <h3 className="mb-3 text-xl font-bold text-white">Takı</h3>
+                                <p className="text-sm text-white/80 leading-relaxed">
+                                    Yüzük ve kolyeler için özel makro çekim teknikleri. Değerli takılarınızı parlaklığıyla öne çıkarın.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Teknoloji */}
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/50 hover:shadow-cyan-500/30">
+                            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                            <div className="relative p-6">
+                                <div className="mb-4 flex justify-center">
+                                    <div className="relative h-24 w-24 overflow-hidden rounded-xl">
+                                        <img 
+                                            src="/image/Teknoloji.webp" 
+                                            alt="Teknoloji ürünleri" 
+                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                    </div>
+                                </div>
+                                <h3 className="mb-3 text-xl font-bold text-white">Teknoloji</h3>
+                                <p className="text-sm text-white/80 leading-relaxed">
+                                    Elektronik ve cihazlar için teknik detayları öne çıkaran çekimler. Modern teknoloji ürünlerinizi profesyonelce sunun.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Güzellik */}
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-rose-400/50 hover:shadow-rose-500/30">
+                            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rose-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                            <div className="relative p-6">
+                                <div className="mb-4 flex justify-center">
+                                    <div className="relative h-24 w-24 overflow-hidden rounded-xl">
+                                        <img 
+                                            src="/image/Guzellik.webp" 
+                                            alt="Güzellik ve kozmetik" 
+                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                    </div>
+                                </div>
+                                <h3 className="mb-3 text-xl font-bold text-white">Güzellik</h3>
+                                <p className="text-sm text-white/80 leading-relaxed">
+                                    Kozmetik ve cilt bakımı ürünleri için özel renk doğruluğu. Güzellik ürünlerinizi en çekici şekilde gösterin.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
