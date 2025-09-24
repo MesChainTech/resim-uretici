@@ -362,24 +362,25 @@ export default function HomePage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+                    <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
                         {/* E-ticaret */}
                         <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/50 hover:shadow-blue-500/30">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="relative p-4">
-                                <div className="mb-3 flex justify-center">
-                                    <div className="relative h-32 w-32 overflow-hidden rounded-xl">
+                            <div className="relative p-3">
+                                <div className="mb-4 flex justify-center">
+                                    <div className="relative h-48 w-36 overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-2 group-hover:shadow-blue-500/40">
                                         <img 
                                             src="/E-Ticaret.webp" 
                                             alt="E-ticaret ürünleri" 
-                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     </div>
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-white">E-ticaret</h3>
                                 <p className="text-xs text-white/80 leading-relaxed">
-                                    Genel ürünler için profesyonel fotoğraf çekimi.
+                                    Genel ürünler için profesyonel fotoğraf çekimi. Her türlü e-ticaret ürününüzü stüdyo kalitesinde görselleştirin ve satışlarınızı artırın.
                                 </p>
                             </div>
                         </div>
@@ -387,20 +388,21 @@ export default function HomePage() {
                         {/* Giyim */}
                         <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-pink-400/50 hover:shadow-pink-500/30">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="relative p-4">
-                                <div className="mb-3 flex justify-center">
-                                    <div className="relative h-32 w-32 overflow-hidden rounded-xl">
+                            <div className="relative p-3">
+                                <div className="mb-4 flex justify-center">
+                                    <div className="relative h-48 w-36 overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 group-hover:scale-110 group-hover:-rotate-2 group-hover:shadow-pink-500/40">
                                         <img 
                                             src="/Giyim.webp" 
                                             alt="Giyim ve aksesuarlar" 
-                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     </div>
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-white">Giyim</h3>
                                 <p className="text-xs text-white/80 leading-relaxed">
-                                    Kıyafet ve aksesuarlar için özel ışıklandırma.
+                                    Kıyafet ve aksesuarlar için özel ışıklandırma teknikleri. Moda ürünlerinizi en çekici şekilde sergileyin ve müşteri ilgisini artırın.
                                 </p>
                             </div>
                         </div>
@@ -408,20 +410,21 @@ export default function HomePage() {
                         {/* Takı */}
                         <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400/50 hover:shadow-yellow-500/30">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="relative p-4">
-                                <div className="mb-3 flex justify-center">
-                                    <div className="relative h-32 w-32 overflow-hidden rounded-xl">
+                            <div className="relative p-3">
+                                <div className="mb-4 flex justify-center">
+                                    <div className="relative h-48 w-36 overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-1 group-hover:shadow-yellow-500/40">
                                         <img 
                                             src="/Taki.webp" 
                                             alt="Takı ve mücevherler" 
-                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     </div>
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-white">Takı</h3>
                                 <p className="text-xs text-white/80 leading-relaxed">
-                                    Yüzük ve kolyeler için özel makro çekim.
+                                    Yüzük ve kolyeler için özel makro çekim teknikleri. Değerli takılarınızı parlaklığıyla öne çıkarın ve lüks hissiyat yaratın.
                                 </p>
                             </div>
                         </div>
@@ -429,20 +432,21 @@ export default function HomePage() {
                         {/* Teknoloji */}
                         <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/50 hover:shadow-cyan-500/30">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="relative p-4">
-                                <div className="mb-3 flex justify-center">
-                                    <div className="relative h-32 w-32 overflow-hidden rounded-xl">
+                            <div className="relative p-3">
+                                <div className="mb-4 flex justify-center">
+                                    <div className="relative h-48 w-36 overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 group-hover:scale-110 group-hover:-rotate-1 group-hover:shadow-cyan-500/40">
                                         <img 
                                             src="/Teknoloji.webp" 
                                             alt="Teknoloji ürünleri" 
-                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     </div>
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-white">Teknoloji</h3>
                                 <p className="text-xs text-white/80 leading-relaxed">
-                                    Elektronik ve cihazlar için teknik detaylar.
+                                    Elektronik ve cihazlar için teknik detayları öne çıkaran çekimler. Modern teknoloji ürünlerinizi profesyonelce sunun ve güven verin.
                                 </p>
                             </div>
                         </div>
@@ -450,20 +454,21 @@ export default function HomePage() {
                         {/* Güzellik */}
                         <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-rose-400/50 hover:shadow-rose-500/30">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rose-400/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="relative p-4">
-                                <div className="mb-3 flex justify-center">
-                                    <div className="relative h-32 w-32 overflow-hidden rounded-xl">
+                            <div className="relative p-3">
+                                <div className="mb-4 flex justify-center">
+                                    <div className="relative h-48 w-36 overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-2 group-hover:shadow-rose-500/40">
                                         <img 
                                             src="/Guzellik.webp" 
                                             alt="Güzellik ve kozmetik" 
-                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-rose-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     </div>
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-white">Güzellik</h3>
                                 <p className="text-xs text-white/80 leading-relaxed">
-                                    Kozmetik ve cilt bakımı için renk doğruluğu.
+                                    Kozmetik ve cilt bakımı ürünleri için özel renk doğruluğu. Güzellik ürünlerinizi en çekici şekilde gösterin ve satışları artırın.
                                 </p>
                             </div>
                         </div>
