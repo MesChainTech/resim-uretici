@@ -184,12 +184,12 @@ export default function ChatBoard() {
             >
               <div className="flex flex-col h-full">
                 {/* Büyük Resim - Header'ın üstünde */}
-                <div className="w-full h-40 overflow-hidden">
+                <div className="w-full h-48 overflow-hidden">
                   <Image
                     src="/chat.jpg"
                     alt="AI Asistan"
                     width={320}
-                    height={160}
+                    height={192}
                     className="w-full h-full object-cover"
                   />
                 </div>
