@@ -370,7 +370,7 @@ export default function HomePage() {
                                 <div className="mb-4 flex justify-center">
                                     <div className="relative h-24 w-24 overflow-hidden rounded-xl">
                                         <img 
-                                            src="/image/E-Ticaret.webp" 
+                                            src="/E-Ticaret.webp" 
                                             alt="E-ticaret ürünleri" 
                                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
@@ -391,7 +391,7 @@ export default function HomePage() {
                                 <div className="mb-4 flex justify-center">
                                     <div className="relative h-24 w-24 overflow-hidden rounded-xl">
                                         <img 
-                                            src="/image/Giyim.webp" 
+                                            src="/Giyim.webp" 
                                             alt="Giyim ve aksesuarlar" 
                                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
@@ -412,7 +412,7 @@ export default function HomePage() {
                                 <div className="mb-4 flex justify-center">
                                     <div className="relative h-24 w-24 overflow-hidden rounded-xl">
                                         <img 
-                                            src="/image/Taki.webp" 
+                                            src="/Taki.webp" 
                                             alt="Takı ve mücevherler" 
                                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
@@ -433,7 +433,7 @@ export default function HomePage() {
                                 <div className="mb-4 flex justify-center">
                                     <div className="relative h-24 w-24 overflow-hidden rounded-xl">
                                         <img 
-                                            src="/image/Teknoloji.webp" 
+                                            src="/Teknoloji.webp" 
                                             alt="Teknoloji ürünleri" 
                                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
@@ -454,7 +454,7 @@ export default function HomePage() {
                                 <div className="mb-4 flex justify-center">
                                     <div className="relative h-24 w-24 overflow-hidden rounded-xl">
                                         <img 
-                                            src="/image/Guzellik.webp" 
+                                            src="/Guzellik.webp" 
                                             alt="Güzellik ve kozmetik" 
                                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
