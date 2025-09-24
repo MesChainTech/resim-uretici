@@ -5,6 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Mic, MicOff, Volume2, VolumeX, Bot, User, Plus, MessageSquare, Phone, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 
+// Global window type extension
+declare global {
+  interface Window {
+    chatBoardInstance?: boolean;
+  }
+}
+
 interface Message {
   id: string;
   content: string;
@@ -32,8 +39,14 @@ export default function ChatBoard() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Mount kontrolü
+  // Global state kontrolü - sadece bir ChatBoard instance'ı olsun
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (window.chatBoardInstance) {
+        return; // Zaten bir instance var, bu component'i render etme
+      }
+      window.chatBoardInstance = true;
+    }
     setMounted(true);
   }, []);
 
@@ -174,7 +187,7 @@ export default function ChatBoard() {
   if (!mounted) return null;
 
   return (
-    <>
+    <div id="chat-board-container">
       {/* Chat Toggle Button - Sadece kapalıyken göster */}
       {!isOpen && (
         <motion.button
@@ -364,6 +377,6 @@ export default function ChatBoard() {
         onEnded={() => setIsPlaying(false)}
         className="hidden"
       />
-    </>
+    </div>
   );
 }
