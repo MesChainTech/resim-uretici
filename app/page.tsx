@@ -1,12 +1,41 @@
-import { auth } from '@clerk/nextjs/server';
-import { SignInButton } from '@clerk/nextjs';
-import { ArrowRight, ImageIcon, Sparkles, Zap, Shield } from 'lucide-react';
+'use client';
 
-export default async function HomePage() {
-    const { userId } = await auth();
+import { SignInButton, useAuth } from '@clerk/nextjs';
+import { ArrowRight, ImageIcon, Sparkles, Zap, Shield } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+export default function HomePage() {
+    const { userId } = useAuth();
+    const [dolphinPosition, setDolphinPosition] = useState({ x: 50, y: 50 });
+    const [showDolphin, setShowDolphin] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // Sayfa yüklendiğinde yunus göster
+        const timer = setTimeout(() => {
+            setShowDolphin(true);
+            setIsLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    const handleMouseClick = (e: React.MouseEvent) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        setDolphinPosition({ x, y });
+        setShowDolphin(true);
+        
+        // 3 saniye sonra yunus kaybolsun
+        setTimeout(() => {
+            setShowDolphin(false);
+        }, 3000);
+    };
 
     return (
-                <div className="relative min-h-screen overflow-hidden">
+                <div className="relative min-h-screen overflow-hidden" onClick={handleMouseClick}>
                     {/* Koyu siyah-yeşil ana gradient */}
                     <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-green-900" />
                     
@@ -98,10 +127,55 @@ export default async function HomePage() {
                         <div className="absolute bottom-6 left-1/2 w-6 h-6 bg-gradient-to-r from-pink-300/10 to-rose-300/10 rounded-lg shadow-md shadow-pink-300/15 border border-pink-300/10 transform rotate-60"></div>
                     </div>
                     
-                    {/* Işık efektleri - mavi-pembe geçiş */}
-                    <div className="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-gradient-to-br from-pink-500/12 to-rose-400/6 blur-3xl" />
-                    <div className="absolute -bottom-32 -left-32 h-72 w-72 rounded-full bg-gradient-to-tr from-blue-500/10 to-cyan-400/5 blur-3xl" />
-                    <div className="absolute top-1/3 left-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-purple-500/8 to-pink-400/4 blur-3xl" />
+                    {/* Animasyonlu Yunus Maskot - Dinamik Pozisyon */}
+                    {showDolphin && (
+                        <div 
+                            className="absolute z-10 transition-all duration-1000 ease-out animate-fade-in-scale"
+                            style={{
+                                left: `${dolphinPosition.x}%`,
+                                top: `${dolphinPosition.y}%`,
+                                transform: 'translate(-50%, -50%)'
+                            }}
+                        >
+                            <div className="relative">
+                                {/* Ana yunus animasyonu */}
+                                <div className="animate-bounce-slow">
+                                    <img 
+                                        src="/dolphin.png" 
+                                        alt="Yunus Maskot" 
+                                        className="w-32 h-32 md:w-40 md:h-40 drop-shadow-2xl filter brightness-110 contrast-110"
+                                    />
+                                </div>
+                            
+                            {/* Işık halkaları animasyonu */}
+                            <div className="absolute inset-0 animate-ping">
+                                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-cyan-400/30"></div>
+                            </div>
+                            <div className="absolute inset-0 animate-ping" style={{animationDelay: '0.5s'}}>
+                                <div className="w-40 h-40 md:w-48 md:h-48 rounded-full border-2 border-blue-400/20"></div>
+                            </div>
+                            <div className="absolute inset-0 animate-ping" style={{animationDelay: '1s'}}>
+                                <div className="w-48 h-48 md:w-56 md:h-56 rounded-full border-2 border-purple-400/15"></div>
+                            </div>
+                            
+                            {/* Parlayan efektler */}
+                            <div className="absolute -top-2 -right-2 w-4 h-4 bg-cyan-400 rounded-full animate-pulse shadow-lg shadow-cyan-400/50"></div>
+                            <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-blue-400 rounded-full animate-pulse shadow-lg shadow-blue-400/50" style={{animationDelay: '0.3s'}}></div>
+                            <div className="absolute top-1/2 -left-4 w-2 h-2 bg-purple-400 rounded-full animate-pulse shadow-lg shadow-purple-400/50" style={{animationDelay: '0.6s'}}></div>
+                            <div className="absolute top-1/2 -right-4 w-2 h-2 bg-pink-400 rounded-full animate-pulse shadow-lg shadow-pink-400/50" style={{animationDelay: '0.9s'}}></div>
+                            
+                            {/* Su dalgaları efekti */}
+                            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+                                <div className="flex space-x-1">
+                                    <div className="w-1 h-4 bg-cyan-300/40 rounded-full animate-wave" style={{animationDelay: '0s'}}></div>
+                                    <div className="w-1 h-6 bg-blue-300/40 rounded-full animate-wave" style={{animationDelay: '0.2s'}}></div>
+                                    <div className="w-1 h-5 bg-purple-300/40 rounded-full animate-wave" style={{animationDelay: '0.4s'}}></div>
+                                    <div className="w-1 h-7 bg-pink-300/40 rounded-full animate-wave" style={{animationDelay: '0.6s'}}></div>
+                                    <div className="w-1 h-4 bg-cyan-300/40 rounded-full animate-wave" style={{animationDelay: '0.8s'}}></div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
             {/* Hero Section */}
             <section className="relative overflow-hidden px-4 pt-32 pb-24 sm:px-6 sm:pt-24 sm:pb-32 lg:px-8">
