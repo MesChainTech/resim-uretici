@@ -277,34 +277,73 @@ export default function HomePage() {
                     </div>
 
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                        <div className="rounded-lg border border-white/20 bg-white/10 p-8 text-center shadow-lg backdrop-blur">
-                            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                                <Zap className="h-8 w-8 text-white" />
+                        {/* Şimşek Hızında - Aurora Efektli */}
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-purple-400/50 hover:shadow-purple-500/30 hover:scale-105">
+                            {/* Aurora köşe efektleri */}
+                            <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-purple-400/60 to-pink-400/40 blur-sm"></div>
+                            <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-gradient-to-bl from-pink-400/50 to-purple-400/30 blur-sm"></div>
+                            <div className="absolute -bottom-2 -left-2 h-6 w-6 rounded-full bg-gradient-to-tr from-purple-400/40 to-pink-400/50 blur-sm"></div>
+                            <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-gradient-to-tl from-pink-400/60 to-purple-400/40 blur-sm"></div>
+                            
+                            {/* Hover ışık efekti */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-pink-500/0 to-purple-500/0 transition-all duration-700 group-hover:from-purple-500/10 group-hover:via-pink-500/15 group-hover:to-purple-500/10"></div>
+                            
+                            {/* İçerik */}
+                            <div className="relative z-10">
+                                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30">
+                                    <Zap className="h-8 w-8 text-white" />
+                                </div>
+                                <h3 className="mb-4 text-xl font-semibold text-white">Şimşek Hızında</h3>
+                                <p className="text-white/70">
+                                    Saatler değil saniyeler içinde profesyonel ürün fotoğrafları oluşturun. Görsellerinizi yükleyin ve anında sonuç alın.
+                                </p>
                             </div>
-                            <h3 className="mb-4 text-xl font-semibold text-white">Şimşek Hızında</h3>
-                            <p className="text-white/70">
-                                Saatler değil saniyeler içinde profesyonel ürün fotoğrafları oluşturun. Görsellerinizi yükleyin ve anında sonuç alın.
-                            </p>
                         </div>
 
-                        <div className="rounded-lg border border-white/20 bg-white/10 p-8 text-center shadow-lg backdrop-blur">
-                            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-red-500">
-                                <Sparkles className="h-8 w-8 text-white" />
+                        {/* AI Destekli Kalite - Aurora Efektli */}
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-pink-400/50 hover:shadow-pink-500/30 hover:scale-105">
+                            {/* Aurora köşe efektleri */}
+                            <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-pink-400/60 to-red-400/40 blur-sm"></div>
+                            <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-gradient-to-bl from-red-400/50 to-pink-400/30 blur-sm"></div>
+                            <div className="absolute -bottom-2 -left-2 h-6 w-6 rounded-full bg-gradient-to-tr from-pink-400/40 to-red-400/50 blur-sm"></div>
+                            <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-gradient-to-tl from-red-400/60 to-pink-400/40 blur-sm"></div>
+                            
+                            {/* Hover ışık efekti */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 via-red-500/0 to-pink-500/0 transition-all duration-700 group-hover:from-pink-500/10 group-hover:via-red-500/15 group-hover:to-pink-500/10"></div>
+                            
+                            {/* İçerik */}
+                            <div className="relative z-10">
+                                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-red-500 shadow-lg shadow-pink-500/30">
+                                    <Sparkles className="h-8 w-8 text-white" />
+                                </div>
+                                <h3 className="mb-4 text-xl font-semibold text-white">AI Destekli Kalite</h3>
+                                <p className="text-white/70">
+                                    Gelişmiş AI algoritmalarımız, profesyonel stüdyolarla yarışan yüksek kaliteli ve gerçekçi ürün fotoğrafları sağlar.
+                                </p>
                             </div>
-                            <h3 className="mb-4 text-xl font-semibold text-white">AI Destekli Kalite</h3>
-                            <p className="text-white/70">
-                                Gelişmiş AI algoritmalarımız, profesyonel stüdyolarla yarışan yüksek kaliteli ve gerçekçi ürün fotoğrafları sağlar.
-                            </p>
                         </div>
 
-                        <div className="rounded-lg border border-white/20 bg-white/10 p-8 text-center shadow-lg backdrop-blur">
-                            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-blue-600">
-                                <Shield className="h-8 w-8 text-white" />
+                        {/* Güvenli ve Özel - Aurora Efektli */}
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-blue-400/50 hover:shadow-blue-500/30 hover:scale-105">
+                            {/* Aurora köşe efektleri */}
+                            <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-blue-400/60 to-purple-400/40 blur-sm"></div>
+                            <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-gradient-to-bl from-purple-400/50 to-blue-400/30 blur-sm"></div>
+                            <div className="absolute -bottom-2 -left-2 h-6 w-6 rounded-full bg-gradient-to-tr from-blue-400/40 to-purple-400/50 blur-sm"></div>
+                            <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-gradient-to-tl from-purple-400/60 to-blue-400/40 blur-sm"></div>
+                            
+                            {/* Hover ışık efekti */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-blue-500/0 transition-all duration-700 group-hover:from-blue-500/10 group-hover:via-purple-500/15 group-hover:to-blue-500/10"></div>
+                            
+                            {/* İçerik */}
+                            <div className="relative z-10">
+                                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-blue-600 shadow-lg shadow-blue-500/30">
+                                    <Shield className="h-8 w-8 text-white" />
+                                </div>
+                                <h3 className="mb-4 text-xl font-semibold text-white">Güvenli ve Özel</h3>
+                                <p className="text-white/70">
+                                    Görselleriniz güvenli bir şekilde işlenir ve gereğinden uzun süre saklanmaz. Gizlilik ve güvenlik en büyük önceliğimizdir.
+                                </p>
                             </div>
-                            <h3 className="mb-4 text-xl font-semibold text-white">Güvenli ve Özel</h3>
-                            <p className="text-white/70">
-                                Görselleriniz güvenli bir şekilde işlenir ve gereğinden uzun süre saklanmaz. Gizlilik ve güvenlik en büyük önceliğimizdir.
-                            </p>
                         </div>
                     </div>
                 </div>
