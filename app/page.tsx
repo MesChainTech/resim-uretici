@@ -365,7 +365,7 @@ export default function HomePage() {
                                     Saatler değil saniyeler içinde profesyonel ürün fotoğrafları oluşturun. Görsellerinizi yükleyin ve anında sonuç alın.
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* AI Destekli Kalite - Aurora Efektli */}
                         <motion.div 
