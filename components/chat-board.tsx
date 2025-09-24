@@ -192,7 +192,7 @@ export default function ChatBoard() {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="absolute right-8 bottom-4 h-[680px] w-[380px] bg-white shadow-2xl rounded-t-3xl"
+              className="absolute right-8 bottom-4 h-[680px] w-[340px] bg-white shadow-2xl rounded-t-3xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -341,7 +341,7 @@ export default function ChatBoard() {
 
                 {/* Footer - Sabit boyut */}
                 <div className="p-2 border-t border-gray-200 bg-gray-50 flex-shrink-0">
-                  <p className="text-xs text-gray-500 text-center">Powered by Axe Resim Üretici</p>
+                  <p className="text-xs text-gray-500 text-center">Powered by HidLight Medya</p>
                 </div>
               </div>
             </motion.div>

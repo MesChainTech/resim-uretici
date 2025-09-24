@@ -717,8 +717,8 @@ export default function HomePage() {
                 </motion.div>
             </motion.section>
 
-            {/* Chat Board */}
-            <ChatBoard />
+            {/* Chat Board - Sadece bir kez render */}
+            <ChatBoard key="chat-board" />
 
             {/* Yukarı Çık Butonu */}
             {showScrollTop && (
