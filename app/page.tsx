@@ -359,12 +359,12 @@ export default function HomePage() {
                             <div className="relative z-10">
                                 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30">
                                     <Zap className="h-8 w-8 text-white" />
-                                </div>
+                            </div>
                                 <h3 className="mb-4 text-xl font-semibold text-white">Şimşek Hızında</h3>
                                 <p className="text-white/70">
-                                    Saatler değil saniyeler içinde profesyonel ürün fotoğrafları oluşturun. Görsellerinizi yükleyin ve anında sonuç alın.
-                                </p>
-                            </div>
+                                Saatler değil saniyeler içinde profesyonel ürün fotoğrafları oluşturun. Görsellerinizi yükleyin ve anında sonuç alın.
+                            </p>
+                        </div>
                         </motion.div>
 
                         {/* AI Destekli Kalite - Aurora Efektli */}
@@ -393,12 +393,12 @@ export default function HomePage() {
                             <div className="relative z-10">
                                 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-red-500 shadow-lg shadow-pink-500/30">
                                     <Sparkles className="h-8 w-8 text-white" />
-                                </div>
+                            </div>
                                 <h3 className="mb-4 text-xl font-semibold text-white">AI Destekli Kalite</h3>
                                 <p className="text-white/70">
-                                    Gelişmiş AI algoritmalarımız, profesyonel stüdyolarla yarışan yüksek kaliteli ve gerçekçi ürün fotoğrafları sağlar.
-                                </p>
-                            </div>
+                                Gelişmiş AI algoritmalarımız, profesyonel stüdyolarla yarışan yüksek kaliteli ve gerçekçi ürün fotoğrafları sağlar.
+                            </p>
+                        </div>
                         </motion.div>
 
                         {/* Güvenli ve Özel - Aurora Efektli */}
@@ -427,12 +427,12 @@ export default function HomePage() {
                             <div className="relative z-10">
                                 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-blue-600 shadow-lg shadow-blue-500/30">
                                     <Shield className="h-8 w-8 text-white" />
-                                </div>
+                            </div>
                                 <h3 className="mb-4 text-xl font-semibold text-white">Güvenli ve Özel</h3>
                                 <p className="text-white/70">
-                                    Görselleriniz güvenli bir şekilde işlenir ve gereğinden uzun süre saklanmaz. Gizlilik ve güvenlik en büyük önceliğimizdir.
-                                </p>
-                            </div>
+                                Görselleriniz güvenli bir şekilde işlenir ve gereğinden uzun süre saklanmaz. Gizlilik ve güvenlik en büyük önceliğimizdir.
+                            </p>
+                        </div>
                         </motion.div>
                     </motion.div>
                 </div>
@@ -495,7 +495,7 @@ export default function HomePage() {
                                     Genel ürünler için profesyonel fotoğraf çekimi. Her türlü e-ticaret ürününüzü stüdyo kalitesinde görselleştirin ve satışlarınızı artırın.
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Giyim */}
                         <motion.div 
@@ -528,7 +528,7 @@ export default function HomePage() {
                                     Kıyafet ve aksesuarlar için özel ışıklandırma teknikleri. Moda ürünlerinizi en çekici şekilde sergileyin ve müşteri ilgisini artırın.
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Takı */}
                         <motion.div 
@@ -561,7 +561,7 @@ export default function HomePage() {
                                     Yüzük ve kolyeler için özel makro çekim teknikleri. Değerli takılarınızı parlaklığıyla öne çıkarın ve lüks hissiyat yaratın.
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Teknoloji */}
                         <motion.div 
@@ -594,7 +594,7 @@ export default function HomePage() {
                                     Elektronik ve cihazlar için teknik detayları öne çıkaran çekimler. Modern teknoloji ürünlerinizi profesyonelce sunun ve güven verin.
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Güzellik */}
                         <motion.div 
@@ -626,7 +626,7 @@ export default function HomePage() {
                                 <p className="text-xs text-white/80 leading-relaxed">
                                     Kozmetik ve cilt bakımı ürünleri için özel renk doğruluğu. Güzellik ürünlerinizi en çekici şekilde gösterin ve satışları artırın.
                                 </p>
-                            </div>
+                    </div>
                         </motion.div>
                     </motion.div>
                 </div>
@@ -677,22 +677,22 @@ export default function HomePage() {
                             transition: { duration: 0.3 }
                         }}
                     >
-                        {userId ? (
-                            <a
-                                href="/generate"
+                    {userId ? (
+                        <a
+                            href="/generate"
                                 className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 hover:scale-105"
-                            >
-                                Şimdi üretmeye başla
-                                <ArrowRight className="ml-2 h-5 w-5" />
-                            </a>
-                        ) : (
-                            <SignInButton mode="modal">
+                        >
+                            Şimdi üretmeye başla
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                        </a>
+                    ) : (
+                        <SignInButton mode="modal">
                                 <button className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 hover:scale-105">
-                                    Ücretsiz başlayın
-                                    <ArrowRight className="ml-2 h-5 w-5" />
-                                </button>
-                            </SignInButton>
-                        )}
+                                Ücretsiz başlayın
+                                <ArrowRight className="ml-2 h-5 w-5" />
+                            </button>
+                        </SignInButton>
+                    )}
                     </motion.div>
                 </motion.div>
             </motion.section>
