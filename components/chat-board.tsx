@@ -313,18 +313,18 @@ export default function ChatBoard() {
                       </div>
                     </>
                   ) : (
-                    <div className="flex-1 flex flex-col items-center justify-center p-2">
-                      <div className="w-40 h-40 overflow-hidden rounded-2xl mb-4">
+                    <div className="flex-1 flex flex-col items-center justify-center p-1">
+                      <div className="w-64 h-64 overflow-hidden rounded-2xl mb-2">
                         <Image
                           src="/chat.jpg"
                           alt="AI Asistan"
-                          width={160}
-                          height={160}
+                          width={256}
+                          height={256}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <h3 className="text-base font-semibold text-gray-900 mb-2">AI Asistanınız Hazır</h3>
-                      <p className="text-gray-500 mb-3 text-center text-xs">Merhaba, ben AI asistanınız. Size nasıl yardımcı olabilirim?</p>
+                      <h3 className="text-sm font-semibold text-gray-900 mb-1">AI Asistanınız Hazır</h3>
+                      <p className="text-gray-500 mb-2 text-center text-xs">Merhaba, ben AI asistanınız. Size nasıl yardımcı olabilirim?</p>
                       <button
                         onClick={createNewSession}
                         className="bg-green-500 text-white py-2 px-4 rounded-xl hover:bg-green-600 transition-all duration-300 flex items-center gap-2 text-sm"
