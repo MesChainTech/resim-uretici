@@ -175,7 +175,7 @@ export default function ChatBoard() {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              className="absolute right-8 bottom-20 h-[668px] w-[380px] bg-white shadow-2xl rounded-t-2xl"
+              className="absolute right-8 bottom-20 h-[800px] w-[380px] bg-white shadow-2xl rounded-t-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
