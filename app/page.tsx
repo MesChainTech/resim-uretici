@@ -312,7 +312,7 @@ export default function HomePage() {
                 className="relative py-20"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ amount: 0.3 }}
                 transition={{ duration: 0.8 }}
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/60" />
@@ -330,7 +330,7 @@ export default function HomePage() {
                         className="grid grid-cols-1 gap-8 md:grid-cols-3"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ amount: 0.3 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         {/* Şimşek Hızında - Aurora Efektli */}
@@ -338,7 +338,7 @@ export default function HomePage() {
                             className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-purple-400/50 hover:shadow-purple-500/30 hover:scale-105"
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ amount: 0.3 }}
                             transition={{ duration: 0.6, delay: 0.1 }}
                             whileHover={{ 
                                 scale: 1.05,
@@ -372,7 +372,7 @@ export default function HomePage() {
                             className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-pink-400/50 hover:shadow-pink-500/30 hover:scale-105"
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ amount: 0.3 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                             whileHover={{ 
                                 scale: 1.05,
@@ -406,7 +406,7 @@ export default function HomePage() {
                             className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur transition-all duration-500 hover:border-blue-400/50 hover:shadow-blue-500/30 hover:scale-105"
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ amount: 0.3 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
                             whileHover={{ 
                                 scale: 1.05,
@@ -443,7 +443,7 @@ export default function HomePage() {
                 className="relative py-20"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ amount: 0.3 }}
                 transition={{ duration: 0.8 }}
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black" />
@@ -461,7 +461,7 @@ export default function HomePage() {
                         className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ amount: 0.3 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         {/* E-ticaret */}
@@ -469,7 +469,7 @@ export default function HomePage() {
                             className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/50 hover:shadow-blue-500/30"
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ amount: 0.3 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
                             whileHover={{ 
                                 y: -8,
@@ -502,7 +502,7 @@ export default function HomePage() {
                             className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-pink-400/50 hover:shadow-pink-500/30"
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ amount: 0.3 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
                             whileHover={{ 
                                 y: -8,
@@ -535,7 +535,7 @@ export default function HomePage() {
                             className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400/50 hover:shadow-yellow-500/30"
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ amount: 0.3 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                             whileHover={{ 
                                 y: -8,
@@ -568,7 +568,7 @@ export default function HomePage() {
                             className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/50 hover:shadow-cyan-500/30"
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ amount: 0.3 }}
                             transition={{ duration: 0.5, delay: 0.4 }}
                             whileHover={{ 
                                 y: -8,
@@ -601,7 +601,7 @@ export default function HomePage() {
                             className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-xl backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-rose-400/50 hover:shadow-rose-500/30"
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ amount: 0.3 }}
                             transition={{ duration: 0.5, delay: 0.5 }}
                             whileHover={{ 
                                 y: -8,
@@ -637,7 +637,7 @@ export default function HomePage() {
                 className="relative py-20"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ amount: 0.3 }}
                 transition={{ duration: 0.8 }}
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-black" />
@@ -645,14 +645,14 @@ export default function HomePage() {
                     className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ amount: 0.3 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
                     <motion.h2 
                         className="mb-6 text-3xl font-bold text-white md:text-4xl"
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ amount: 0.3 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
                         Fotoğraflarınızı dönüştürmeye hazır mısınız?
@@ -661,7 +661,7 @@ export default function HomePage() {
                         className="mx-auto mb-8 max-w-2xl text-xl text-white/80"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ amount: 0.3 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
                     >
                         Çarpıcı ürün fotoğrafları oluşturmak için AI kullanan binlerce işletmeye katılın.
@@ -670,7 +670,7 @@ export default function HomePage() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ amount: 0.3 }}
                         transition={{ duration: 0.6, delay: 0.8 }}
                         whileHover={{ 
                             scale: 1.05,
