@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     description: 'AI teknolojisi kullanarak çarpıcı ürün görselleri oluşturun',
     keywords: ['AI', 'ürün fotoğrafçılığı', 'görsel oluşturma', 'e-ticaret'],
     authors: [{ name: 'Axe Resim Üretici Ekibi' }],
-    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL?.replace(/['"]/g, '') || 'http://localhost:3000'),
     openGraph: {
         title: 'Axe Resim Üretici',
         description: 'AI teknolojisi kullanarak çarpıcı ürün görselleri oluşturun',
-        url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
+        url: process.env.NEXT_PUBLIC_APP_URL?.replace(/['"]/g, '') || 'http://localhost:3000',
         siteName: 'Axe Resim Üretici',
         images: [
             {
