@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: oklch(1.0000 0 0);
@@ -150,10 +152,6 @@
   --shadow-2xl: var(--shadow-2xl);
 }
 @layer base {
-  * {
-    @apply border-border;
-  }
-
   body {
     @apply bg-background text-foreground;
   }

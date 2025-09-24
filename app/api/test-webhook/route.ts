@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     // Test payload
     const testPayload = {
-      category: 'ecommerce' as const,
+      category: 'eticaret' as const,
       urun_resmi: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', // 1x1 transparent PNG
       model_resmi: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', // 1x1 transparent PNG
       generation_id: 'test-' + Date.now(),
@@ -20,18 +20,14 @@ export async function POST(request: NextRequest) {
     // Create webhook client
     const webhookClient = createWebhookClient()
     
-    // Test the connection
+    // Test the connection - Correct parameter order
     const response = await webhookClient.generateImage(
       process.env.N8N_WEBHOOK_URL!,
       testPayload.urun_resmi,
       testPayload.model_resmi,
       testPayload.category,
       testPayload.generation_id,
-      testPayload.callback_url,
-      {
-        timeout: parseInt(process.env.N8N_WEBHOOK_TIMEOUT || '300000'),
-        retries: 1, // Only 1 retry for test
-      }
+      testPayload.callback_url
     )
 
     console.log('✅ n8n webhook test successful!')
