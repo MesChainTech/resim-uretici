@@ -41,11 +41,14 @@ export default function ChatBoard() {
 
   // Global state kontrolü - sadece bir ChatBoard instance'ı olsun
   useEffect(() => {
+    console.log('ChatBoard useEffect çalışıyor - mounted:', mounted);
     if (typeof window !== 'undefined') {
       if (window.chatBoardInstance) {
+        console.log('Zaten bir ChatBoard instance var, bu component render edilmeyecek');
         return; // Zaten bir instance var, bu component'i render etme
       }
       window.chatBoardInstance = true;
+      console.log('ChatBoard instance oluşturuldu');
     }
     setMounted(true);
   }, []);
