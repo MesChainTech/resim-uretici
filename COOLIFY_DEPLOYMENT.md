@@ -18,7 +18,7 @@ N8N_WEBHOOK_TIMEOUT=300000
 N8N_API_KEY=your_n8n_api_key_here
 NEXT_PUBLIC_APP_URL=https://hidlight.hidlightmedya.tr
 NODE_ENV=production
-GEMINI_API_KEY=AIzaSyDivCvu5u9NvU_vhbU5UuZ2TeHw5u9jHLc
+GEMINI_API_KEY=AIzaSyDRy8xDLPtEMQe9TBroZOFQtsFYKPTeNLY
 ```
 
 ## Important Notes
