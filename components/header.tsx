@@ -19,7 +19,7 @@ export function Header() {
                             <Zap className="absolute -top-1 -right-1 h-4 w-4 text-accent" />
                         </span>
                         <span className="text-lg font-semibold tracking-tight text-foreground">
-                            Axe Resim Üretici
+                            HidLight MedyaTech
                         </span>
                     </a>
                 </div>

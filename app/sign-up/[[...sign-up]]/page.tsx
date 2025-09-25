@@ -6,7 +6,7 @@ export default function SignUpPage() {
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="text-center">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                        Axe Resim Üretici
+                        HidLight MedyaTech
                     </h1>
                     <h2 className="text-xl text-gray-600">
                         Hesabınızı oluşturun
@@ -39,6 +39,6 @@ export default function SignUpPage() {
 }
 
 export const metadata = {
-    title: 'Kayıt Ol - Axe Resim Üretici',
-    description: 'Axe Resim Üretici\'yi kullanmak için hesap oluşturun',
+    title: 'Kayıt Ol - HidLight MedyaTech',
+    description: 'HidLight MedyaTech\'i kullanmak için hesap oluşturun',
 };

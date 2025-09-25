@@ -6,7 +6,7 @@ export default function SignInPage() {
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="text-center">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                        Axe Resim Üretici
+                        HidLight MedyaTech
                     </h1>
                     <h2 className="text-xl text-gray-600">
                         Hesabınıza giriş yapın
@@ -39,6 +39,6 @@ export default function SignInPage() {
 }
 
 export const metadata = {
-    title: 'Giriş Yap - Axe Resim Üretici',
-    description: 'Axe Resim Üretici\'ye erişmek için giriş yapın',
+    title: 'Giriş Yap - HidLight MedyaTech',
+    description: 'HidLight MedyaTech\'e erişmek için giriş yapın',
 };
