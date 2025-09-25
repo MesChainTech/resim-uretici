@@ -1,11 +1,57 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  // Disable image optimization to avoid sharp issues in Docker
   images: {
-    domains: [],
-    formats: ['image/webp', 'image/avif'],
+    unoptimized: true,
   },
-  serverExternalPackages: ['@prisma/client'],
-}
+  // Enable experimental features
+  experimental: {
+    serverComponentsExternalPackages: ['sharp'],
+  },
+  // Output configuration for static export if needed
+  output: 'standalone',
+  // Disable strict mode to avoid double rendering issues
+  reactStrictMode: false,
+  // Enable SWC minification
+  swcMinify: true,
+  // Compiler options
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Webpack configuration
+  webpack: (config, { isServer }) => {
+    // Handle sharp module for server-side rendering
+    if (isServer) {
+      config.externals.push('sharp');
+    }
+    return config;
+  },
+  // Environment variables
+  env: {
+    CUSTOM_KEY: process.env.CUSTOM_KEY,
+  },
+  // Headers for security
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+        ],
+      },
+    ];
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
