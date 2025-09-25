@@ -253,8 +253,8 @@ export async function generateImage(
 ): Promise<WebhookResponse> {
   const payload: WebhookPayload = {
     category,
-    urun_resmi: extractBase64Data(productImage),
-    model_resmi: extractBase64Data(modelImage),
+    urun_resmi: productImage, // Direkt base64 data gönder
+    model_resmi: modelImage,  // Direkt base64 data gönder
     generation_id: generationId,
     callback_url: callbackUrl,
   }
