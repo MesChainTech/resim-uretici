@@ -7,6 +7,8 @@ const isPublicRoute = createRouteMatcher([
   '/sign-in(.*)',
   '/sign-up(.*)',
   '/api/health',
+  '/api/test',
+  '/api/test-webhook',
   // Static assets and Next.js internal paths
   '/_next(.*)',
   '/favicon.ico',
@@ -29,13 +31,19 @@ const isProtectedPageRoute = createRouteMatcher([
 
 export default clerkMiddleware(async (auth, request) => {
   const { pathname } = request.nextUrl
+  const isDevelopment = process.env.NODE_ENV === 'development'
 
   // Allow public routes to pass through without authentication
   if (isPublicRoute(request)) {
     return NextResponse.next()
   }
 
-  // Protect API routes - require authentication
+  // In development mode, bypass authentication for API routes
+  if (isDevelopment && isProtectedApiRoute(request)) {
+    return NextResponse.next()
+  }
+
+  // Protect API routes - require authentication (production only)
   if (isProtectedApiRoute(request)) {
     try {
       const authResult = await auth()
