@@ -33,9 +33,15 @@ export async function POST(request: NextRequest) {
     // 1. Authenticate the user
     const { userId } = await auth()
 
-    if (!userId) {
+    // Development mode: allow requests without authentication
+    const isDevelopment = process.env.NODE_ENV === 'development'
+    const developmentUserId = 'dev-user-' + Date.now()
+
+    if (!userId && !isDevelopment) {
       throw ErrorFactory.unauthorized('Kimlik doğrulama gerekli')
     }
+
+    const effectiveUserId = userId || developmentUserId
 
     // 2. Parse and validate request body
     let body
@@ -79,11 +85,11 @@ export async function POST(request: NextRequest) {
     let user
     try {
       user = await prisma.user.upsert({
-        where: { clerkId: userId },
+        where: { clerkId: effectiveUserId },
         update: { updatedAt: new Date() },
         create: {
-          clerkId: userId,
-          email: '', // Will be updated when we get user info from Clerk
+          clerkId: effectiveUserId,
+          email: isDevelopment ? 'dev@example.com' : '', // Development email
           tier: 'FREE',
           monthlyCredits: 5,
           creditsUsed: 0,

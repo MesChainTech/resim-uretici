@@ -4,16 +4,13 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Enable experimental features
-  experimental: {
-    serverComponentsExternalPackages: ['sharp'],
-  },
+  // External packages for server components
+  serverExternalPackages: ['sharp'],
   // Output configuration for static export if needed
   output: 'standalone',
   // Disable strict mode to avoid double rendering issues
   reactStrictMode: false,
-  // Enable SWC minification
-  swcMinify: true,
+  // SWC minification is enabled by default in Next.js 13+
   // Compiler options
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
