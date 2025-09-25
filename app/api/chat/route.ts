@@ -13,6 +13,7 @@ export async function POST(request: NextRequest) {
     console.log('GEMINI_API_KEY var mı:', !!process.env.GEMINI_API_KEY);
     console.log('GEMINI_API_KEY uzunluğu:', process.env.GEMINI_API_KEY?.length || 0);
     console.log('GEMINI_API_KEY ilk 10 karakter:', process.env.GEMINI_API_KEY?.substring(0, 10) || 'YOK');
+    console.log('GEMINI_API_KEY tam değer:', process.env.GEMINI_API_KEY || 'YOK');
     console.log('NODE_ENV:', process.env.NODE_ENV);
     console.log('Tüm env keys:', Object.keys(process.env).filter(key => key.includes('GEMINI')));
     console.log('===================================');
