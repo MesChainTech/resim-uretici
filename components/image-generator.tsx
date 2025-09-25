@@ -41,12 +41,12 @@ interface GenerationResult {
     };
 }
 
-const CATEGORIES: { value: Category; label: string; description: string }[] = [
-    { value: 'eticaret', label: 'E-ticaret', description: 'Genel ürün fotoğrafçılığı' },
-    { value: 'giyim', label: 'Giyim', description: 'Kıyafet ve aksesuarlar' },
-    { value: 'taki', label: 'Takı', description: 'Yüzük, kolye ve aksesuarlar' },
-    { value: 'teknoloji', label: 'Teknoloji', description: 'Elektronik ve gadgetlar' },
-    { value: 'guzellik', label: 'Güzellik', description: 'Kozmetik ve cilt bakımı' },
+const CATEGORIES: { value: Category; label: string; description: string; color: string; neonColor: string }[] = [
+    { value: 'eticaret', label: 'E-ticaret', description: 'Genel ürün fotoğrafçılığı', color: 'blue', neonColor: 'blue-400' },
+    { value: 'giyim', label: 'Giyim', description: 'Kıyafet ve aksesuarlar', color: 'pink', neonColor: 'pink-400' },
+    { value: 'taki', label: 'Takı', description: 'Yüzük, kolye ve aksesuarlar', color: 'purple', neonColor: 'purple-400' },
+    { value: 'teknoloji', label: 'Teknoloji', description: 'Elektronik ve gadgetlar', color: 'cyan', neonColor: 'cyan-400' },
+    { value: 'guzellik', label: 'Güzellik', description: 'Kozmetik ve cilt bakımı', color: 'rose', neonColor: 'rose-400' },
 ];
 
 export function ImageGenerator() {
@@ -205,8 +205,8 @@ export function ImageGenerator() {
     return (
         <div className="w-full max-w-4xl mx-auto space-y-10">
             <div className="text-center space-y-3">
-                <h1 className="text-2xl font-semibold text-foreground sm:text-3xl">AI Ürün Görsel Üretici</h1>
-                <p className="text-sm text-muted-foreground sm:text-base">
+                <h1 className="text-2xl font-semibold text-white sm:text-3xl">AI Ürün Görsel Üretici</h1>
+                <p className="text-sm text-white/70 sm:text-base">
                     Çarpıcı ürün fotoğrafçılığı oluşturmak için model resmi ve ürün resmi yükleyin
                 </p>
             </div>
@@ -214,17 +214,18 @@ export function ImageGenerator() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
                 {/* Category Selection */}
                 <div className="space-y-4">
-                    <label className="text-sm font-medium text-muted-foreground">
-                        Kategori <span className="text-destructive">*</span>
+                    <label className="text-sm font-medium text-white/80">
+                        Kategori <span className="text-red-400">*</span>
                     </label>
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
                         {CATEGORIES.map((category) => (
                             <motion.div
                                 key={category.value}
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="relative"
                             >
-                                <label className="cursor-pointer">
+                                <label className="cursor-pointer block">
                                     <input
                                         type="radio"
                                         value={category.value}
@@ -232,17 +233,42 @@ export function ImageGenerator() {
                                         className="sr-only"
                                     />
                                     <div
-                                        className={`rounded-2xl border px-5 py-4 transition-all backdrop-blur ${selectedCategory === category.value ? 'border-primary/60 bg-primary/10 text-primary' : 'border-border/50 bg-card/40 hover:border-primary/30 hover:bg-card/50'}`}
+                                        className={`relative rounded-2xl border-2 px-5 py-4 transition-all duration-300 backdrop-blur ${
+                                            selectedCategory === category.value 
+                                                ? `border-${category.neonColor} bg-${category.color}-500/20 text-white shadow-2xl shadow-${category.neonColor}/50` 
+                                                : 'border-white/20 bg-white/5 text-white/80 hover:border-white/40 hover:bg-white/10'
+                                        }`}
                                     >
-                                        <div className={`text-sm font-semibold ${selectedCategory === category.value ? 'text-primary' : 'text-foreground'}`}>{category.label}</div>
-                                        <div className="mt-1 text-xs text-muted-foreground/80">{category.description}</div>
+                                        {/* Neon glow effect when selected */}
+                                        {selectedCategory === category.value && (
+                                            <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-${category.neonColor}/20 to-${category.neonColor}/10 animate-pulse`} />
+                                        )}
+                                        
+                                        {/* Content */}
+                                        <div className="relative z-10">
+                                            <div className={`text-sm font-semibold ${
+                                                selectedCategory === category.value ? 'text-white' : 'text-white/80'
+                                            }`}>
+                                                {category.label}
+                                            </div>
+                                            <div className={`mt-1 text-xs ${
+                                                selectedCategory === category.value ? 'text-white/90' : 'text-white/60'
+                                            }`}>
+                                                {category.description}
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Neon border effect when selected */}
+                                        {selectedCategory === category.value && (
+                                            <div className={`absolute inset-0 rounded-2xl border-2 border-${category.neonColor} opacity-50 animate-ping`} />
+                                        )}
                                     </div>
                                 </label>
                             </motion.div>
                         ))}
                     </div>
                     {errors.category && (
-                        <p className="text-sm text-destructive">{errors.category.message}</p>
+                        <p className="text-sm text-red-400">{errors.category.message}</p>
                     )}
                 </div>
 
@@ -250,12 +276,12 @@ export function ImageGenerator() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Model Image Upload */}
                     <div className="space-y-4">
-                        <label className="text-sm font-medium text-muted-foreground">
-                            Model Resmi <span className="text-destructive">*</span>
+                        <label className="text-sm font-medium text-white/80">
+                            Model Resmi <span className="text-red-400">*</span>
                         </label>
                         <div
                             {...modelImageDropzone.getRootProps()}
-                            className={`relative overflow-hidden rounded-2xl border-2 border-dashed p-8 text-center shadow-lg shadow-black/10 backdrop-blur transition-all cursor-pointer ${modelImageDropzone.isDragActive ? 'border-primary/50 bg-primary/10' : 'border-border/60 bg-card/40 hover:border-primary/30 hover:bg-card/50'}`}
+                            className={`relative overflow-hidden rounded-2xl border-2 border-dashed p-8 text-center shadow-lg shadow-black/20 backdrop-blur transition-all cursor-pointer ${modelImageDropzone.isDragActive ? 'border-blue-400/50 bg-blue-500/10' : 'border-white/30 bg-white/5 hover:border-white/50 hover:bg-white/10'}`}
                         >
                             <input {...modelImageDropzone.getInputProps()} />
 
@@ -275,17 +301,17 @@ export function ImageGenerator() {
                                             e.stopPropagation();
                                             removeImage('model');
                                         }}
-                                        className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground rounded-full p-1 hover:bg-destructive/90 transition-colors"
+                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
                                     >
                                         <X className="w-4 h-4" />
                                     </button>
                                     {!modelImage.isValid && (
-                                        <div className="mt-2 p-2 bg-destructive/10 border border-destructive/40 rounded text-xs text-destructive">
+                                        <div className="mt-2 p-2 bg-red-500/10 border border-red-500/40 rounded text-xs text-red-400">
                                             {modelImage.errors.join(', ')}
                                         </div>
                                     )}
                                     {modelImage.isValid && (
-                                        <div className="mt-2 flex items-center justify-center text-primary">
+                                        <div className="mt-2 flex items-center justify-center text-green-400">
                                             <CheckCircle className="w-4 h-4 mr-1" />
                                             <span className="text-xs">Geçerli resim</span>
                                         </div>
@@ -293,13 +319,13 @@ export function ImageGenerator() {
                                 </div>
                             ) : (
                                 <div className="space-y-4">
-                                    <Upload className="w-12 h-12 mx-auto text-muted-foreground/70" />
+                                    <Upload className="w-12 h-12 mx-auto text-white/70" />
                                     <div>
-                                        <p className="text-sm text-muted-foreground">
+                                        <p className="text-sm text-white/80">
                                             Model resminizi buraya sürükleyin, veya{' '}
-                                            <span className="text-primary font-semibold hover:underline">göz atın</span>
+                                            <span className="text-blue-400 font-semibold hover:underline">göz atın</span>
                                         </p>
-                                        <p className="text-xs text-muted-foreground/70 mt-1">
+                                        <p className="text-xs text-white/60 mt-1">
                                             Desteklenen formatlar: JPEG, PNG, WebP (max 10MB)
                                         </p>
                                     </div>
@@ -307,18 +333,18 @@ export function ImageGenerator() {
                             )}
                         </div>
                         {errors.modelImage && (
-                            <p className="text-sm text-destructive">{errors.modelImage.message}</p>
+                            <p className="text-sm text-red-400">{errors.modelImage.message}</p>
                         )}
                     </div>
 
                     {/* Product Image Upload */}
                     <div className="space-y-4">
-                        <label className="text-sm font-medium text-muted-foreground">
-                            Ürün Resmi <span className="text-destructive">*</span>
+                        <label className="text-sm font-medium text-white/80">
+                            Ürün Resmi <span className="text-red-400">*</span>
                         </label>
                         <div
                             {...productImageDropzone.getRootProps()}
-                            className={`relative overflow-hidden rounded-2xl border-2 border-dashed p-8 text-center shadow-lg shadow-black/10 backdrop-blur transition-all cursor-pointer ${productImageDropzone.isDragActive ? 'border-primary/50 bg-primary/10' : 'border-border/60 bg-card/40 hover:border-primary/30 hover:bg-card/50'}`}
+                            className={`relative overflow-hidden rounded-2xl border-2 border-dashed p-8 text-center shadow-lg shadow-black/20 backdrop-blur transition-all cursor-pointer ${productImageDropzone.isDragActive ? 'border-pink-400/50 bg-pink-500/10' : 'border-white/30 bg-white/5 hover:border-white/50 hover:bg-white/10'}`}
                         >
                             <input {...productImageDropzone.getInputProps()} />
 
@@ -338,17 +364,17 @@ export function ImageGenerator() {
                                             e.stopPropagation();
                                             removeImage('product');
                                         }}
-                                        className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground rounded-full p-1 hover:bg-destructive/90 transition-colors"
+                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
                                     >
                                         <X className="w-4 h-4" />
                                     </button>
                                     {!productImage.isValid && (
-                                        <div className="mt-2 p-2 bg-destructive/10 border border-destructive/40 rounded text-xs text-destructive">
+                                        <div className="mt-2 p-2 bg-red-500/10 border border-red-500/40 rounded text-xs text-red-400">
                                             {productImage.errors.join(', ')}
                                         </div>
                                     )}
                                     {productImage.isValid && (
-                                        <div className="mt-2 flex items-center justify-center text-primary">
+                                        <div className="mt-2 flex items-center justify-center text-green-400">
                                             <CheckCircle className="w-4 h-4 mr-1" />
                                             <span className="text-xs">Geçerli resim</span>
                                         </div>
@@ -356,13 +382,13 @@ export function ImageGenerator() {
                                 </div>
                             ) : (
                                 <div className="space-y-4">
-                                    <Upload className="w-12 h-12 mx-auto text-muted-foreground/70" />
+                                    <Upload className="w-12 h-12 mx-auto text-white/70" />
                                     <div>
-                                        <p className="text-sm text-muted-foreground">
+                                        <p className="text-sm text-white/80">
                                             Ürün resminizi buraya sürükleyin, veya{' '}
-                                            <span className="text-primary font-semibold hover:underline">göz atın</span>
+                                            <span className="text-pink-400 font-semibold hover:underline">göz atın</span>
                                         </p>
-                                        <p className="text-xs text-muted-foreground/70 mt-1">
+                                        <p className="text-xs text-white/60 mt-1">
                                             Desteklenen formatlar: JPEG, PNG, WebP (max 10MB)
                                         </p>
                                     </div>
@@ -370,7 +396,7 @@ export function ImageGenerator() {
                             )}
                         </div>
                         {errors.productImage && (
-                            <p className="text-sm text-destructive">{errors.productImage.message}</p>
+                            <p className="text-sm text-red-400">{errors.productImage.message}</p>
                         )}
                     </div>
                 </div>
@@ -380,7 +406,7 @@ export function ImageGenerator() {
                     <button
                         type="submit"
                         disabled={!isValid || isGenerating || !modelImage?.isValid || !productImage?.isValid}
-                        className="inline-flex items-center justify-center rounded-xl bg-primary px-8 py-3 font-semibold text-primary-foreground shadow-lg shadow-black/10 transition-all hover:bg-primary/90 disabled:bg-primary/40 disabled:text-primary-foreground/70 disabled:cursor-not-allowed"
+                        className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 font-semibold text-white shadow-lg shadow-purple-500/25 transition-all hover:shadow-purple-500/40 hover:scale-105 disabled:bg-gray-500/40 disabled:text-white/70 disabled:cursor-not-allowed disabled:scale-100"
                     >
                         {isGenerating ? (
                             <>
@@ -399,7 +425,7 @@ export function ImageGenerator() {
                         type="button"
                         onClick={resetForm}
                         disabled={isGenerating}
-                        className="inline-flex items-center justify-center rounded-xl border border-border/50 bg-card/60 px-8 py-3 font-semibold text-foreground shadow-lg shadow-black/5 transition-all hover:bg-card/80 disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-8 py-3 font-semibold text-white shadow-lg shadow-black/20 transition-all hover:bg-white/20 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
                     >
                         Sıfırla
                     </button>
