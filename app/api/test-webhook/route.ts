@@ -20,10 +20,13 @@ export async function POST(request: NextRequest) {
     // Create webhook client
     const webhookClient = createWebhookClient()
     
-    // Test the connection - Correct parameter order
+    // Test the connection - Convert base64 strings to Buffer
+    const productBuffer = Buffer.from(testPayload.urun_resmi, 'base64')
+    const modelBuffer = Buffer.from(testPayload.model_resmi, 'base64')
+    
     const response = await webhookClient.generateImage(
-      testPayload.urun_resmi,
-      testPayload.model_resmi,
+      productBuffer,
+      modelBuffer,
       testPayload.category,
       testPayload.generation_id,
       testPayload.callback_url
