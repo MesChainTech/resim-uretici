@@ -187,20 +187,44 @@ export async function sendWebhookRequest(
         }
       }
 
+      // Check if this is an async workflow response
+      if (responseData.message === 'Workflow was started' || responseData.status === 'started') {
+        console.log('Async workflow started, returning placeholder response')
+        return {
+          generated_image: 'WORKFLOW_STARTED', // Placeholder for async workflow
+          processing_time: 0,
+          metadata: { 
+            async: true, 
+            workflow_started: true,
+            message: responseData.message || 'Workflow started'
+          },
+          download_url: undefined,
+        }
+      }
+
       // Validate response structure
       try {
         return WebhookResponseSchema.parse(responseData)
       } catch (validationError) {
         // If validation fails, return a basic successful response
         console.warn('Webhook response validation failed:', validationError)
+        console.log('Response data:', responseData)
+        
+        // Try to extract image data from various possible fields
+        const imageData = responseData.generated_image ||
+          responseData.imageUrl ||
+          responseData.image_url ||
+          responseData.image ||
+          responseData.data ||
+          responseData.result ||
+          responseText || // If response is not JSON, use raw text
+          ''
+        
         return {
-          generated_image:
-            responseData.generated_image ||
-            responseData.imageUrl ||
-            responseData.image_url ||
-            '',
+          generated_image: imageData,
           processing_time: responseData.processing_time || 0,
           metadata: responseData.metadata || {},
+          download_url: responseData.download_url || responseData.downloadUrl,
         }
       }
     } catch (error: any) {
@@ -240,26 +264,198 @@ export async function sendWebhookRequest(
 }
 
 /**
- * Send image generation request to n8n webhook
+ * Send webhook request with file upload (FormData)
+ */
+export async function sendWebhookRequestWithFiles(
+  url: string,
+  formData: FormData,
+  options: WebhookRequestOptions = {}
+): Promise<WebhookResponse> {
+  const {
+    timeout = WEBHOOK_CONFIG.TIMEOUT,
+    retries = WEBHOOK_CONFIG.RETRY_ATTEMPTS,
+    headers = {},
+  } = options
+
+  // Validate URL
+  if (!validateWebhookUrl(url)) {
+    throw new WebhookRequestError(
+      'Invalid webhook URL',
+      400,
+      'INVALID_URL',
+      false
+    )
+  }
+
+  let lastError: WebhookError
+
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), timeout)
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'User-Agent': 'SpecKit-ImageGenerator/1.0',
+          ...headers,
+          // Don't set Content-Type for FormData, let browser set it with boundary
+        },
+        body: formData,
+        signal: controller.signal,
+      })
+
+      clearTimeout(timeoutId)
+
+      // Check if response is ok
+      if (!response.ok) {
+        const errorText = await response.text().catch(() => 'Unknown error')
+        const error = new WebhookRequestError(
+          `Webhook request failed: ${response.status} ${response.statusText} - ${errorText}`,
+          response.status,
+          'HTTP_ERROR',
+          response.status >= 500 || response.status === 429
+        )
+        lastError = error
+        continue
+      }
+
+      // Check if response is binary (image)
+      const contentType = response.headers.get('content-type')
+      if (contentType && contentType.startsWith('image/')) {
+        // Binary image response
+        const imageBuffer = await response.arrayBuffer()
+        const base64Image = Buffer.from(imageBuffer).toString('base64')
+        const dataUrl = `data:${contentType};base64,${base64Image}`
+        
+        return {
+          generated_image: dataUrl,
+          processing_time: 0,
+          metadata: { 
+            binary_response: true,
+            content_type: contentType,
+            file_size: imageBuffer.byteLength
+          },
+          download_url: undefined,
+        }
+      }
+
+      // Parse response
+      const responseText = await response.text()
+      let responseData: any
+
+      try {
+        responseData = JSON.parse(responseText)
+      } catch {
+        // If response is not JSON, wrap it in an object
+        responseData = {
+          message: responseText,
+          status: 'success',
+        }
+      }
+
+      // Check if this is an async workflow response
+      if (responseData.message === 'Workflow was started' || responseData.status === 'started') {
+        console.log('Async workflow started, returning placeholder response')
+        return {
+          generated_image: 'WORKFLOW_STARTED', // Placeholder for async workflow
+          processing_time: 0,
+          metadata: { 
+            async: true, 
+            workflow_started: true,
+            message: responseData.message || 'Workflow started'
+          },
+          download_url: undefined,
+        }
+      }
+
+      // Validate response structure
+      try {
+        return WebhookResponseSchema.parse(responseData)
+      } catch (validationError) {
+        // If validation fails, return a basic successful response
+        console.warn('Webhook response validation failed:', validationError)
+        console.log('Response data:', responseData)
+        
+        // Try to extract image data from various possible fields
+        const imageData = responseData.generated_image ||
+          responseData.imageUrl ||
+          responseData.image_url ||
+          responseData.image ||
+          responseData.data ||
+          responseData.result ||
+          responseText || // If response is not JSON, use raw text
+          ''
+        
+        return {
+          generated_image: imageData,
+          processing_time: responseData.processing_time || 0,
+          metadata: responseData.metadata || {},
+          download_url: responseData.download_url || responseData.downloadUrl,
+        }
+      }
+    } catch (error: any) {
+      // Handle fetch errors
+      if (error.name === 'AbortError') {
+        lastError = new WebhookRequestError(
+          'Webhook request timed out',
+          408,
+          'TIMEOUT',
+          true
+        )
+      } else if (error instanceof WebhookRequestError) {
+        lastError = error
+      } else {
+        lastError = new WebhookRequestError(
+          `Network error: ${error.message}`,
+          0,
+          'NETWORK_ERROR',
+          true
+        )
+      }
+
+      // Don't retry if it's the last attempt or error is not retryable
+      if (!lastError.retryable || attempt === retries) {
+        throw lastError
+      }
+
+      // Wait before retrying
+      if (attempt < retries) {
+        await sleep(calculateDelay(attempt))
+      }
+    }
+  }
+
+  // If we get here, all retries failed
+  throw lastError!
+}
+
+/**
+ * Send image generation request to n8n webhook with file upload
  */
 export async function generateImage(
   webhookUrl: string,
-  productImage: string,
-  modelImage: string,
+  productImageBuffer: Buffer,
+  modelImageBuffer: Buffer,
   category: Category,
   generationId: string,
   callbackUrl?: string,
   options: WebhookRequestOptions = {}
 ): Promise<WebhookResponse> {
-  const payload: WebhookPayload = {
-    category,
-    urun_resmi: productImage, // Direkt base64 data gönder
-    model_resmi: modelImage,  // Direkt base64 data gönder
-    generation_id: generationId,
-    callback_url: callbackUrl,
+  const formData = new FormData()
+  
+  // Add files
+  formData.append('urun_resmi', new Blob([new Uint8Array(productImageBuffer)], { type: 'image/png' }), 'product.png')
+  formData.append('model_resmi', new Blob([new Uint8Array(modelImageBuffer)], { type: 'image/png' }), 'model.png')
+  
+  // Add other fields
+  formData.append('category', category)
+  formData.append('generation_id', generationId)
+  if (callbackUrl) {
+    formData.append('callback_url', callbackUrl)
   }
 
-  return sendWebhookRequest(webhookUrl, payload, options)
+  return sendWebhookRequestWithFiles(webhookUrl, formData, options)
 }
 
 /**
@@ -289,8 +485,8 @@ export class WebhookClient {
    * Generate an image using the client's default configuration
    */
   async generateImage(
-    productImage: string,
-    modelImage: string,
+    productImageBuffer: Buffer,
+    modelImageBuffer: Buffer,
     category: Category,
     generationId: string,
     callbackUrl?: string,
@@ -299,8 +495,8 @@ export class WebhookClient {
     const mergedOptions = { ...this.defaultOptions, ...options }
     return generateImage(
       this.defaultUrl,
-      productImage,
-      modelImage,
+      productImageBuffer,
+      modelImageBuffer,
       category,
       generationId,
       callbackUrl,

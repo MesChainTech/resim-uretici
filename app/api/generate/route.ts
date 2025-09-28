@@ -86,12 +86,19 @@ export async function POST(request: NextRequest) {
     try {
       user = await prisma.user.upsert({
         where: { clerkId: effectiveUserId },
-        update: { updatedAt: new Date() },
+        update: { 
+          updatedAt: new Date(),
+          // Development'da mevcut kullanıcıları da güncelle
+          ...(isDevelopment && {
+            monthlyCredits: 999999, // Sınırsız kredi
+            creditsUsed: 0
+          })
+        },
         create: {
           clerkId: effectiveUserId,
           email: isDevelopment ? 'dev@example.com' : '', // Development email
           tier: 'FREE',
-          monthlyCredits: 5,
+          monthlyCredits: isDevelopment ? 999999 : 5, // Development'da sınırsız kredi
           creditsUsed: 0,
           creditResetAt: new Date(),
         },
@@ -101,7 +108,8 @@ export async function POST(request: NextRequest) {
     }
 
     // 5. Check user credits (basic credit system without rate limiting)
-    if (user.creditsUsed >= user.monthlyCredits) {
+    // Development'da sınırsız kredi kontrolü yapma
+    if (!isDevelopment && user.creditsUsed >= user.monthlyCredits) {
       throw new AppError(
         ErrorCode.QUOTA_EXCEEDED,
         'Aylık kredi limitinizi aştınız',
@@ -138,8 +146,8 @@ export async function POST(request: NextRequest) {
       const webhookClient = createWebhookClient()
 
       const webhookResponse = await webhookClient.generateImage(
-        optimizedProductImage.base64,
-        optimizedModelImage.base64,
+        optimizedProductImage.buffer,
+        optimizedModelImage.buffer,
         category,
         generationId,
         `${process.env.NEXT_PUBLIC_APP_URL}/api/webhook/callback`
@@ -190,6 +198,8 @@ export async function POST(request: NextRequest) {
           generationId,
           generatedImage: webhookResponse.generated_image,
           downloadUrl: webhookResponse.download_url,
+          isAsync: webhookResponse.metadata?.async || false,
+          workflowStarted: webhookResponse.metadata?.workflow_started || false,
         },
       }
 
