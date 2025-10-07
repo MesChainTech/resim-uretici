@@ -142,16 +142,33 @@ export async function POST(request: NextRequest) {
     }
 
     // 8. Send webhook request to n8n
+    let webhookResponse: any
     try {
       const webhookClient = createWebhookClient()
 
-      const webhookResponse = await webhookClient.generateImage(
+      webhookResponse = await webhookClient.generateImage(
         optimizedProductImage.buffer,
         optimizedModelImage.buffer,
         category,
         generationId,
         `${process.env.NEXT_PUBLIC_APP_URL}/api/webhook/callback`
       )
+    } catch (error) {
+      logError(error as Error, { userId, generationId }, requestId)
+      
+      // Development mode'da webhook hatası durumunda mock response döndür
+      if (isDevelopment) {
+        console.log('Development mode: Webhook failed, returning mock response')
+        webhookResponse = {
+          generated_image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
+          processing_time: 1000,
+          metadata: { mock: true, development: true },
+          download_url: undefined,
+        }
+      } else {
+        throw error
+      }
+    }
 
       // 9. Update generation with webhook response
       try {
