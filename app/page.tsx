@@ -1,7 +1,7 @@
 'use client';
 
 import { SignInButton, useAuth } from '@clerk/nextjs';
-import { ArrowRight, ImageIcon, Sparkles, Zap, Shield, ChevronUp, MessageSquare, Mic, MicOff } from 'lucide-react';
+import { ArrowRight, ImageIcon, Sparkles, Zap, Shield, ChevronUp, MessageSquare, Mic, MicOff, Calendar, Users, Globe, TrendingUp, Award, Target, Rocket, Star, CheckCircle, ExternalLink, Play, BarChart3, Wallet, ShoppingCart, Briefcase, Cpu, Database, Lock, Eye, Heart, Gift } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ChatBoard } from '@/components';
@@ -714,6 +714,511 @@ export default function HomePage() {
                 </div>
             </motion.section>
 
+            {/* MesChain Tarihsel Gelişim Timeline */}
+            <motion.section 
+                className="relative py-20"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ amount: 0.3 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black" />
+                <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="mb-16 text-center">
+                        <motion.h2 
+                            className="mb-4 text-3xl font-bold text-white md:text-4xl"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            MesChain'in Yolculuğu
+                        </motion.h2>
+                        <motion.p 
+                            className="mx-auto max-w-2xl text-lg text-white/80"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            2019'dan bugüne kadar MesChain'in blokzincir teknolojisi ile üretim ve tedarik zincirini dönüştürme yolculuğu
+                        </motion.p>
+                    </div>
+
+                    <div className="relative">
+                        {/* Timeline Line */}
+                        <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-gradient-to-b from-purple-500 via-pink-500 to-blue-500 rounded-full"></div>
+                        
+                        <div className="space-y-12">
+                            {/* 2019 - Kuruluş */}
+                            <motion.div 
+                                className="relative flex items-center"
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ amount: 0.3 }}
+                                transition={{ duration: 0.8, delay: 0.1 }}
+                            >
+                                <div className="flex-1 pr-8 text-right">
+                                    <div className="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-xl backdrop-blur">
+                                        <div className="mb-3 flex items-center justify-end gap-2">
+                                            <Calendar className="h-5 w-5 text-purple-400" />
+                                            <span className="text-sm font-semibold text-purple-400">2019</span>
+                                        </div>
+                                        <h3 className="mb-2 text-xl font-bold text-white">MesChain Kuruluşu</h3>
+                                        <p className="text-white/70">
+                                            Ethereum ağı üzerinde çalışan MES token projesi başlatıldı. Blokzincir teknolojisini üretimden tüketime tüm süreçlere entegre etme vizyonu ortaya kondu.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg">
+                                    <Rocket className="h-6 w-6 text-white" />
+                                </div>
+                                <div className="flex-1 pl-8"></div>
+                            </motion.div>
+
+                            {/* 2019 - SWFT Ortaklığı */}
+                            <motion.div 
+                                className="relative flex items-center"
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ amount: 0.3 }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                            >
+                                <div className="flex-1 pr-8"></div>
+                                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-red-500 shadow-lg">
+                                    <Users className="h-6 w-6 text-white" />
+                                </div>
+                                <div className="flex-1 pl-8">
+                                    <div className="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-xl backdrop-blur">
+                                        <div className="mb-3 flex items-center gap-2">
+                                            <Calendar className="h-5 w-5 text-pink-400" />
+                                            <span className="text-sm font-semibold text-pink-400">Aralık 2019</span>
+                                        </div>
+                                        <h3 className="mb-2 text-xl font-bold text-white">SWFT Blockchain Ortaklığı</h3>
+                                        <p className="text-white/70">
+                                            SWFT platformunda 200+ kripto para ile swap ve ödeme imkânı. MES tokeni küresel kripto ekosistemine entegre edildi.
+                                        </p>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* 2020 - Token Swap */}
+                            <motion.div 
+                                className="relative flex items-center"
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ amount: 0.3 }}
+                                transition={{ duration: 0.8, delay: 0.3 }}
+                            >
+                                <div className="flex-1 pr-8 text-right">
+                                    <div className="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-xl backdrop-blur">
+                                        <div className="mb-3 flex items-center justify-end gap-2">
+                                            <Calendar className="h-5 w-5 text-blue-400" />
+                                            <span className="text-sm font-semibold text-blue-400">13 Aralık 2020</span>
+                                        </div>
+                                        <h3 className="mb-2 text-xl font-bold text-white">MES Token Swap</h3>
+                                        <p className="text-white/70">
+                                            Cointiger borsasında otomatik token değişim süreci başlatıldı. Yeni tokenlerle borsalarda işlem yapabilme imkânı sağlandı.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 shadow-lg">
+                                    <TrendingUp className="h-6 w-6 text-white" />
+                                </div>
+                                <div className="flex-1 pl-8"></div>
+                            </motion.div>
+
+                            {/* 2021 - Borsa Listeleme */}
+                            <motion.div 
+                                className="relative flex items-center"
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ amount: 0.3 }}
+                                transition={{ duration: 0.8, delay: 0.4 }}
+                            >
+                                <div className="flex-1 pr-8"></div>
+                                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-green-500 shadow-lg">
+                                    <Globe className="h-6 w-6 text-white" />
+                                </div>
+                                <div className="flex-1 pl-8">
+                                    <div className="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-xl backdrop-blur">
+                                        <div className="mb-3 flex items-center gap-2">
+                                            <Calendar className="h-5 w-5 text-cyan-400" />
+                                            <span className="text-sm font-semibold text-cyan-400">2021</span>
+                                        </div>
+                                        <h3 className="mb-2 text-xl font-bold text-white">Küresel Borsa Listeleme</h3>
+                                        <p className="text-white/70">
+                                            PancakeSwap (BSC), MEXC, CoinTiger ve FOBGLATE borsalarında işlem görmeye başladı. Küresel erişim sağlandı.
+                                        </p>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* 2022-2024 - Ekosistem Genişleme */}
+                            <motion.div 
+                                className="relative flex items-center"
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ amount: 0.3 }}
+                                transition={{ duration: 0.8, delay: 0.5 }}
+                            >
+                                <div className="flex-1 pr-8 text-right">
+                                    <div className="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-xl backdrop-blur">
+                                        <div className="mb-3 flex items-center justify-end gap-2">
+                                            <Calendar className="h-5 w-5 text-green-400" />
+                                            <span className="text-sm font-semibold text-green-400">2022-2024</span>
+                                        </div>
+                                        <h3 className="mb-2 text-xl font-bold text-white">Ekosistem Genişleme</h3>
+                                        <p className="text-white/70">
+                                            Allmes e-ticaret platformu, NFT pazaryeri, freelancer platformu ve stake havuzları geliştirildi. Kapsamlı ekosistem oluşturuldu.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-emerald-500 shadow-lg">
+                                    <Award className="h-6 w-6 text-white" />
+                                </div>
+                                <div className="flex-1 pl-8"></div>
+                            </motion.div>
+
+                            {/* 2025 - AI Entegrasyonu */}
+                            <motion.div 
+                                className="relative flex items-center"
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ amount: 0.3 }}
+                                transition={{ duration: 0.8, delay: 0.6 }}
+                            >
+                                <div className="flex-1 pr-8"></div>
+                                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg">
+                                    <Cpu className="h-6 w-6 text-white" />
+                                </div>
+                                <div className="flex-1 pl-8">
+                                    <div className="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-xl backdrop-blur">
+                                        <div className="mb-3 flex items-center gap-2">
+                                            <Calendar className="h-5 w-5 text-emerald-400" />
+                                            <span className="text-sm font-semibold text-emerald-400">2025</span>
+                                        </div>
+                                        <h3 className="mb-2 text-xl font-bold text-white">AI Destekli Görsel Üretimi</h3>
+                                        <p className="text-white/70">
+                                            Google Gemini API ve N8N entegrasyonu ile profesyonel ürün fotoğraf üretimi başlatıldı. Yapay zeka ile görsel yaratıcılık demokratikleştirildi.
+                                        </p>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* MesChain Ekosistem ve Hizmetler */}
+            <motion.section 
+                className="relative py-20"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ amount: 0.3 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black" />
+                <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="mb-16 text-center">
+                        <motion.h2 
+                            className="mb-4 text-3xl font-bold text-white md:text-4xl"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            MesChain Ekosistemi
+                        </motion.h2>
+                        <motion.p 
+                            className="mx-auto max-w-2xl text-lg text-white/80"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            Blokzincir teknolojisi ile güçlendirilmiş kapsamlı dijital hizmetler ekosistemi
+                        </motion.p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        {/* E-Ticaret Platformu */}
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur transition-all duration-500 hover:border-purple-400/50 hover:shadow-purple-500/30 hover:scale-105"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                        >
+                            <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-purple-400/60 to-pink-400/40 blur-sm"></div>
+                            <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-gradient-to-tl from-pink-400/60 to-purple-400/40 blur-sm"></div>
+                            
+                            <div className="relative z-10">
+                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30">
+                                    <ShoppingCart className="h-8 w-8 text-white" />
+                                </div>
+                                <h3 className="mb-4 text-xl font-semibold text-white">Allmes E-Ticaret</h3>
+                                <p className="mb-4 text-white/70">
+                                    Trendyol, Hepsiburada, Amazon, eBay ve Etsy gibi küresel pazaryerlerinde satış yapın. MES token güvencesi ile sınır ötesi ticaret.
+                                </p>
+                                <div className="flex items-center gap-2 text-sm text-purple-400">
+                                    <ExternalLink className="h-4 w-4" />
+                                    <span>Küresel Pazaryerler</span>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* NFT ve Crowdfunding */}
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur transition-all duration-500 hover:border-pink-400/50 hover:shadow-pink-500/30 hover:scale-105"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                        >
+                            <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-pink-400/60 to-red-400/40 blur-sm"></div>
+                            <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-gradient-to-tl from-red-400/60 to-pink-400/40 blur-sm"></div>
+                            
+                            <div className="relative z-10">
+                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-red-500 shadow-lg shadow-pink-500/30">
+                                    <Gift className="h-8 w-8 text-white" />
+                                </div>
+                                <h3 className="mb-4 text-xl font-semibold text-white">NFT & Crowdfunding</h3>
+                                <p className="mb-4 text-white/70">
+                                    NFT koleksiyonları oluşturun, alın-satın. Diamond ve Blue Diamond crowdfunding projeleriyle özel yatırımlara katılın.
+                                </p>
+                                <div className="flex items-center gap-2 text-sm text-pink-400">
+                                    <Star className="h-4 w-4" />
+                                    <span>Dijital Varlıklar</span>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Freelancer Platformu */}
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur transition-all duration-500 hover:border-blue-400/50 hover:shadow-blue-500/30 hover:scale-105"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                        >
+                            <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-blue-400/60 to-purple-400/40 blur-sm"></div>
+                            <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-gradient-to-tl from-purple-400/60 to-blue-400/40 blur-sm"></div>
+                            
+                            <div className="relative z-10">
+                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg shadow-blue-500/30">
+                                    <Briefcase className="h-8 w-8 text-white" />
+                                </div>
+                                <h3 className="mb-4 text-xl font-semibold text-white">Freelancer Platform</h3>
+                                <p className="mb-4 text-white/70">
+                                    Blockchain destekli freelancer hizmet platformu. Çalışanlar ve işverenler MES token ile güvenli ödemeler yapın.
+                                </p>
+                                <div className="flex items-center gap-2 text-sm text-blue-400">
+                                    <Users className="h-4 w-4" />
+                                    <span>Serbest Çalışan Ekosistemi</span>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Staking Platformu */}
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur transition-all duration-500 hover:border-green-400/50 hover:shadow-green-500/30 hover:scale-105"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                        >
+                            <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-green-400/60 to-emerald-400/40 blur-sm"></div>
+                            <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-gradient-to-tl from-emerald-400/60 to-green-400/40 blur-sm"></div>
+                            
+                            <div className="relative z-10">
+                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-emerald-500 shadow-lg shadow-green-500/30">
+                                    <Wallet className="h-8 w-8 text-white" />
+                                </div>
+                                <h3 className="mb-4 text-xl font-semibold text-white">Stake Platformu</h3>
+                                <p className="mb-4 text-white/70">
+                                    MES token kilitleyerek pasif gelir elde edin. Diamond ve Blue Diamond stake havuzlarından kâr payı alın.
+                                </p>
+                                <div className="flex items-center gap-2 text-sm text-green-400">
+                                    <TrendingUp className="h-4 w-4" />
+                                    <span>%25 Pasif Gelir</span>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* MES Üretim Sistemi */}
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur transition-all duration-500 hover:border-cyan-400/50 hover:shadow-cyan-500/30 hover:scale-105"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.5 }}
+                        >
+                            <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-cyan-400/60 to-blue-400/40 blur-sm"></div>
+                            <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-gradient-to-tl from-blue-400/60 to-cyan-400/40 blur-sm"></div>
+                            
+                            <div className="relative z-10">
+                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/30">
+                                    <Database className="h-8 w-8 text-white" />
+                                </div>
+                                <h3 className="mb-4 text-xl font-semibold text-white">MES Üretim Sistemi</h3>
+                                <p className="mb-4 text-white/70">
+                                    Kalite kontrol, ürün takibi, RFID sayımı ve personel izleme. Blokzincir ile şeffaf üretim süreçleri.
+                                </p>
+                                <div className="flex items-center gap-2 text-sm text-cyan-400">
+                                    <Target className="h-4 w-4" />
+                                    <span>Endüstriyel Verimlilik</span>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* AI Görsel Üretimi */}
+                        <motion.div 
+                            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur transition-all duration-500 hover:border-rose-400/50 hover:shadow-rose-500/30 hover:scale-105"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
+                        >
+                            <div className="absolute -top-2 -left-2 h-8 w-8 rounded-full bg-gradient-to-br from-rose-400/60 to-pink-400/40 blur-sm"></div>
+                            <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-gradient-to-tl from-pink-400/60 to-rose-400/40 blur-sm"></div>
+                            
+                            <div className="relative z-10">
+                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-rose-500 to-pink-500 shadow-lg shadow-rose-500/30">
+                                    <Cpu className="h-8 w-8 text-white" />
+                                </div>
+                                <h3 className="mb-4 text-xl font-semibold text-white">AI Görsel Üretimi</h3>
+                                <p className="mb-4 text-white/70">
+                                    Google Gemini API ile profesyonel ürün fotoğrafları. 5 kategori, saniyeler içinde stüdyo kalitesi sonuçlar.
+                                </p>
+                                <div className="flex items-center gap-2 text-sm text-rose-400">
+                                    <Sparkles className="h-4 w-4" />
+                                    <span>Yapay Zeka Teknolojisi</span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* MES Token Ekonomisi */}
+            <motion.section 
+                className="relative py-20"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ amount: 0.3 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black" />
+                <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="mb-16 text-center">
+                        <motion.h2 
+                            className="mb-4 text-3xl font-bold text-white md:text-4xl"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            MES Token Ekonomisi
+                        </motion.h2>
+                        <motion.p 
+                            className="mx-auto max-w-2xl text-lg text-white/80"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            Ethereum ağı üzerinde çalışan MES token'in çoklu kullanım alanları ve yatırım fırsatları
+                        </motion.p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+                        {/* Token Kullanım Alanları */}
+                        <motion.div 
+                            className="rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur"
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.1 }}
+                        >
+                            <h3 className="mb-6 text-2xl font-bold text-white">Kullanım Alanları</h3>
+                            <div className="space-y-4">
+                                <div className="flex items-start gap-4">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
+                                        <ShoppingCart className="h-5 w-5 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-white">E-Ticaret Ödemeleri</h4>
+                                        <p className="text-sm text-white/70">Güvenli ve hızlı ödeme aracı olarak kullanım</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-red-500">
+                                        <Gift className="h-5 w-5 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-white">NFT & Hizmet Ödemeleri</h4>
+                                        <p className="text-sm text-white/70">NFT pazaryeri ve freelancer platformunda ödeme</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-emerald-500">
+                                        <TrendingUp className="h-5 w-5 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-white">Stake & Getiri Paylaşımı</h4>
+                                        <p className="text-sm text-white/70">Pasif gelir ve kâr paylaşımı imkânı</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
+                                        <Users className="h-5 w-5 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-white">Yönetişim & Topluluk</h4>
+                                        <p className="text-sm text-white/70">Ekosistem kararlarında oy hakkı</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Yatırım Fırsatları */}
+                        <motion.div 
+                            className="rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur"
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            <h3 className="mb-6 text-2xl font-bold text-white">Yatırım Fırsatları</h3>
+                            <div className="space-y-6">
+                                <div className="rounded-xl border border-white/20 bg-white/5 p-4">
+                                    <div className="mb-2 flex items-center gap-2">
+                                        <BarChart3 className="h-5 w-5 text-green-400" />
+                                        <span className="font-semibold text-white">Piyasa Değeri</span>
+                                    </div>
+                                    <p className="text-sm text-white/70">Arz-talep dinamiklerine bağlı serbest piyasa değerlemesi</p>
+                                </div>
+                                <div className="rounded-xl border border-white/20 bg-white/5 p-4">
+                                    <div className="mb-2 flex items-center gap-2">
+                                        <Wallet className="h-5 w-5 text-purple-400" />
+                                        <span className="font-semibold text-white">Stake Havuzları</span>
+                                    </div>
+                                    <p className="text-sm text-white/70">Diamond ve Blue Diamond havuzlarından %25 pasif gelir</p>
+                                </div>
+                                <div className="rounded-xl border border-white/20 bg-white/5 p-4">
+                                    <div className="mb-2 flex items-center gap-2">
+                                        <Globe className="h-5 w-5 text-blue-400" />
+                                        <span className="font-semibold text-white">Küresel Entegrasyon</span>
+                                    </div>
+                                    <p className="text-sm text-white/70">Dünya genelinde kabul ve diğer projelerle entegrasyon</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.section>
+
             {/* CTA Section */}
             <motion.section 
                 className="relative py-20"
@@ -777,6 +1282,252 @@ export default function HomePage() {
                     )}
                     </motion.div>
                 </motion.div>
+            </motion.section>
+
+            {/* Ortaklıklar ve Borsa Listeleme */}
+            <motion.section 
+                className="relative py-20"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ amount: 0.3 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black" />
+                <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="mb-16 text-center">
+                        <motion.h2 
+                            className="mb-4 text-3xl font-bold text-white md:text-4xl"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            Güçlü Ortaklıklar ve Küresel Erişim
+                        </motion.h2>
+                        <motion.p 
+                            className="mx-auto max-w-2xl text-lg text-white/80"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            MesChain'in stratejik iş birlikleri ve küresel borsa listeleme başarıları
+                        </motion.p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+                        {/* Stratejik Ortaklıklar */}
+                        <motion.div 
+                            className="rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur"
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.1 }}
+                        >
+                            <h3 className="mb-6 text-2xl font-bold text-white">Stratejik Ortaklıklar</h3>
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
+                                        <Users className="h-6 w-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-white">SWFT Blockchain</h4>
+                                        <p className="text-sm text-white/70">200+ kripto para ile swap ve ödeme imkânı</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-cyan-500">
+                                        <ShoppingCart className="h-6 w-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-white">E-Ticaret Entegrasyonları</h4>
+                                        <p className="text-sm text-white/70">Amazon, Ozon, Aliexpress ile altyapı çalışmaları</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-emerald-500">
+                                        <Globe className="h-6 w-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-white">Küresel Pazaryerler</h4>
+                                        <p className="text-sm text-white/70">Trendyol, Hepsiburada, eBay, Etsy entegrasyonu</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Borsa Listeleme */}
+                        <motion.div 
+                            className="rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur"
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            <h3 className="mb-6 text-2xl font-bold text-white">Borsa Listeleme</h3>
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-yellow-500 to-orange-500">
+                                        <TrendingUp className="h-6 w-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-white">PancakeSwap (BSC)</h4>
+                                        <p className="text-sm text-white/70">Merkeziyetsiz borsa listeleme</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-red-500 to-pink-500">
+                                        <BarChart3 className="h-6 w-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-white">MEXC & CoinTiger</h4>
+                                        <p className="text-sm text-white/70">Küresel kripto borsalarında işlem</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-purple-500">
+                                        <Award className="h-6 w-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-white">CoinMarketCap & CoinGecko</h4>
+                                        <p className="text-sm text-white/70">Kripto veritabanlarında görünürlük</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* Gelecek Vizyonu ve Roadmap */}
+            <motion.section 
+                className="relative py-20"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ amount: 0.3 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black" />
+                <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="mb-16 text-center">
+                        <motion.h2 
+                            className="mb-4 text-3xl font-bold text-white md:text-4xl"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            Gelecek Vizyonu
+                        </motion.h2>
+                        <motion.p 
+                            className="mx-auto max-w-2xl text-lg text-white/80"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            MesChain'in sürekli AR-GE ve inovasyon vizyonu ile gelecek hedefleri
+                        </motion.p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                        {/* Kısa Vadeli Hedefler */}
+                        <motion.div 
+                            className="rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                        >
+                            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-emerald-500 shadow-lg">
+                                <Calendar className="h-8 w-8 text-white" />
+                            </div>
+                            <h3 className="mb-4 text-xl font-semibold text-white">Kısa Vadeli (3-6 ay)</h3>
+                            <ul className="space-y-3 text-white/70">
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-green-400" />
+                                    <span>Daha fazla kategori ekleme</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-green-400" />
+                                    <span>Batch işleme özelliği</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-green-400" />
+                                    <span>API entegrasyonları</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-green-400" />
+                                    <span>Mobil uygulama</span>
+                                </li>
+                            </ul>
+                        </motion.div>
+
+                        {/* Orta Vadeli Hedefler */}
+                        <motion.div 
+                            className="rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                        >
+                            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg">
+                                <Rocket className="h-8 w-8 text-white" />
+                            </div>
+                            <h3 className="mb-4 text-xl font-semibold text-white">Orta Vadeli (6-12 ay)</h3>
+                            <ul className="space-y-3 text-white/70">
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-blue-400" />
+                                    <span>Video içerik üretimi</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-blue-400" />
+                                    <span>3D model entegrasyonu</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-blue-400" />
+                                    <span>Çoklu dil desteği</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-blue-400" />
+                                    <span>Gelişmiş AI modelleri</span>
+                                </li>
+                            </ul>
+                        </motion.div>
+
+                        {/* Uzun Vadeli Vizyon */}
+                        <motion.div 
+                            className="rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                        >
+                            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg">
+                                <Star className="h-8 w-8 text-white" />
+                            </div>
+                            <h3 className="mb-4 text-xl font-semibold text-white">Uzun Vadeli (1-2 yıl)</h3>
+                            <ul className="space-y-3 text-white/70">
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-purple-400" />
+                                    <span>AR/VR entegrasyonu</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-purple-400" />
+                                    <span>Blockchain telif hakkı</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-purple-400" />
+                                    <span>Global pazar genişlemesi</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="h-4 w-4 text-purple-400" />
+                                    <span>Enterprise çözümler</span>
+                                </li>
+                            </ul>
+                        </motion.div>
+                    </div>
+                </div>
             </motion.section>
 
             {/* Chat Board */}
