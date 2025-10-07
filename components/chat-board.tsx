@@ -559,7 +559,7 @@ export default function ChatBoard({
 
                 {/* Footer - Sabit boyut */}
                 <div className="p-2 border-t border-gray-200 bg-gray-50 flex-shrink-0">
-                  <p className="text-xs text-gray-500 text-center">Powered by HidLight MedyaTech</p>
+                  <p className="text-xs text-gray-500 text-center">🚀 Powered by MesTech Sync - AI Revolution</p>
                 </div>
               </div>
             </motion.div>

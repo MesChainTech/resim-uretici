@@ -104,7 +104,7 @@ export default async function GeneratePage() {
                 <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                     <div className="mb-12 text-center">
                         <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 px-4 py-2 text-sm font-medium text-green-400 ring-1 ring-green-500/30 backdrop-blur">
-                            ✨ HidLight MedyaTech AI Üretimi
+                            ✨ MesTech Sync AI Üretimi
                         </span>
                         <h1 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl">
                             <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
@@ -127,7 +127,7 @@ export default async function GeneratePage() {
 }
 
 export const metadata = {
-    title: 'Oluştur - HidLight MedyaTech',
+    title: 'Oluştur - MesTech Sync',
     description: 'AI teknolojisi kullanarak çarpıcı ürün görselleri oluşturun',
     metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL?.replace(/['"]/g, '') || 'http://localhost:3000'),
 };

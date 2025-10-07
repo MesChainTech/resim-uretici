@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     // Create system prompt for Turkish AI assistant
     const systemPrompt = `Sen Türkçe konuşan bir AI asistanısın. Kullanıcılara yardımcı olmak için buradasın. 
     Cevaplarını Türkçe ver, samimi ve yardımsever ol. 
-    MesChain hakkında bilgi verebilir, genel soruları yanıtlayabilir ve kullanıcılara rehberlik edebilirsin.
+    MesTech Sync hakkında bilgi verebilir, genel soruları yanıtlayabilir ve kullanıcılara rehberlik edebilirsin.
     Kısa ve öz cevaplar ver, gereksiz uzunluktan kaçın.`;
 
     const fullPrompt = `${systemPrompt}\n\nKullanıcı: ${text}\n\nAsistan:`;
