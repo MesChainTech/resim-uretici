@@ -153,22 +153,6 @@ export async function POST(request: NextRequest) {
         generationId,
         `${process.env.NEXT_PUBLIC_APP_URL}/api/webhook/callback`
       )
-    } catch (error) {
-      logError(error as Error, { userId, generationId }, requestId)
-      
-      // Development mode'da webhook hatası durumunda mock response döndür
-      if (isDevelopment) {
-        console.log('Development mode: Webhook failed, returning mock response')
-        webhookResponse = {
-          generated_image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
-          processing_time: 1000,
-          metadata: { mock: true, development: true },
-          download_url: undefined,
-        }
-      } else {
-        throw error
-      }
-    }
 
       // 9. Update generation with webhook response
       try {
@@ -222,6 +206,33 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json(response, { status: 200 })
     } catch (webhookError) {
+      logError(webhookError as Error, { userId, generationId }, requestId)
+      
+      // Development mode'da webhook hatası durumunda mock response döndür
+      if (isDevelopment) {
+        console.log('Development mode: Webhook failed, returning mock response')
+        webhookResponse = {
+          generated_image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
+          processing_time: 1000,
+          metadata: { mock: true, development: true },
+          download_url: undefined,
+        }
+
+        // Return mock response in development
+        const response = {
+          success: true as const,
+          data: {
+            generationId,
+            generatedImage: webhookResponse.generated_image,
+            downloadUrl: webhookResponse.download_url,
+            isAsync: false,
+            workflowStarted: false,
+          },
+        }
+
+        return NextResponse.json(response, { status: 200 })
+      }
+
       // Update generation status to failed
       try {
         await prisma.generation.update({

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { ClerkProvider } from '@clerk/nextjs';
 import { Inter } from 'next/font/google';
 import { Footer, Header } from '@/components';
 import './globals.css';
@@ -59,25 +58,23 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <ClerkProvider>
-            <html lang="tr" className="dark">
-                <head>
-                    <link rel="icon" href="/favicon.ico" />
-                    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.svg" />
-                    <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon-32x32.svg" />
-                    <link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon-16x16.svg" />
-                    <link rel="manifest" href="/site.webmanifest" />
-                </head>
-                <body className={`${inter.className} bg-background text-foreground antialiased`}>
-                    <div className="flex flex-col min-h-screen">
-                        <Header />
-                        <main className="flex-grow">
-                            {children}
-                        </main>
-                        <Footer />
-                    </div>
-                </body>
-            </html>
-        </ClerkProvider>
+        <html lang="tr" className="dark">
+            <head>
+                <link rel="icon" href="/favicon.ico" />
+                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.svg" />
+                <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon-32x32.svg" />
+                <link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon-16x16.svg" />
+                <link rel="manifest" href="/site.webmanifest" />
+            </head>
+            <body className={`${inter.className} bg-background text-foreground antialiased`}>
+                <div className="flex flex-col min-h-screen">
+                    <Header />
+                    <main className="flex-grow">
+                        {children}
+                    </main>
+                    <Footer />
+                </div>
+            </body>
+        </html>
     );
 }

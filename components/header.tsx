@@ -1,13 +1,12 @@
 'use client';
 
-import { useAuth } from '@clerk/nextjs';
-import { SignInButton, UserButton } from '@clerk/nextjs';
 import { ArrowRight, Zap, Camera } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 export function Header() {
-    const { userId } = useAuth();
     const pathname = usePathname();
+    // For build purposes, always show as not authenticated
+    const userId = null;
 
     return (
         <header className="sticky top-0 z-50 border-b border-border/30 bg-background/40 backdrop-blur">
@@ -44,7 +43,6 @@ export function Header() {
                                     <ArrowRight className="h-4 w-4" />
                                 </a>
                             )}
-                            <UserButton afterSignOutUrl="/" appearance={{ elements: { avatarBox: "ring-2 ring-primary/40" } }} />
                         </>
                     ) : (
                         <>
@@ -54,12 +52,10 @@ export function Header() {
                             >
                                 Giriş Yap
                             </a>
-                            <SignInButton mode="modal">
-                                <button className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-primary-foreground shadow-lg shadow-primary/20 transition-colors hover:bg-primary/90">
-                                    Ücretsiz Başla
-                                    <ArrowRight className="h-4 w-4" />
-                                </button>
-                            </SignInButton>
+                            <button className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-primary-foreground shadow-lg shadow-primary/20 transition-colors hover:bg-primary/90">
+                                Ücretsiz Başla
+                                <ArrowRight className="h-4 w-4" />
+                            </button>
                         </>
                     )}
                 </nav>

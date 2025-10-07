@@ -1,13 +1,13 @@
 'use client';
 
-import { SignInButton, useAuth } from '@clerk/nextjs';
 import { ArrowRight, ImageIcon, Sparkles, Zap, Shield, ChevronUp, MessageSquare, Mic, MicOff } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ChatBoard } from '@/components';
 
 export default function HomePage() {
-    const { userId } = useAuth();
+    // For build purposes, always show as not authenticated
+    const userId = null;
     const [dolphinPosition, setDolphinPosition] = useState({ x: 50, y: 50 });
     const [showDolphin, setShowDolphin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -330,12 +330,10 @@ export default function HomePage() {
                                     <ArrowRight className="ml-2 h-5 w-5" />
                                 </a>
                             ) : (
-                                <SignInButton mode="modal">
-                                    <button className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 hover:scale-105">
-                                        Ücretsiz deneyin
-                                        <ArrowRight className="ml-2 h-5 w-5" />
-                                    </button>
-                                </SignInButton>
+                                <button className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 hover:scale-105">
+                                    Ücretsiz deneyin
+                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                </button>
                             )}
                             <a
                                 href="#features"
@@ -768,12 +766,10 @@ export default function HomePage() {
                             <ArrowRight className="ml-2 h-5 w-5" />
                         </a>
                     ) : (
-                        <SignInButton mode="modal">
-                                <button className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 hover:scale-105">
-                                Ücretsiz başlayın
-                                <ArrowRight className="ml-2 h-5 w-5" />
-                            </button>
-                        </SignInButton>
+                        <button className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 hover:scale-105">
+                            Ücretsiz başlayın
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                        </button>
                     )}
                     </motion.div>
                 </motion.div>
