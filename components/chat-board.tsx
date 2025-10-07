@@ -48,6 +48,9 @@ export default function ChatBoard({
   const [isLoading, setIsLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [speechRecognition, setSpeechRecognition] = useState<SpeechRecognition | null>(null);
+  const [isSpeechMode, setIsSpeechMode] = useState(false);
+  const [websocket, setWebsocket] = useState<WebSocket | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -71,6 +74,108 @@ export default function ChatBoard({
     }
     setMounted(true);
   }, []);
+
+  // Speech Recognition initialization
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'webkitSpeechRecognition' in window) {
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = 'tr-TR';
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      
+      recognition.onstart = () => {
+        setIsRecording(true);
+        console.log('Speech recognition started');
+      };
+      
+      recognition.onresult = (event) => {
+        let finalTranscript = '';
+        let interimTranscript = '';
+        
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          if (event.results[i].isFinal) {
+            finalTranscript += transcript;
+          } else {
+            interimTranscript += transcript;
+          }
+        }
+        
+        if (finalTranscript) {
+          setInputMessage(finalTranscript);
+          // Otomatik olarak mesajı gönder
+          sendMessage(finalTranscript);
+        } else {
+          setInputMessage(interimTranscript);
+        }
+      };
+      
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        setIsRecording(false);
+      };
+      
+      recognition.onend = () => {
+        setIsRecording(false);
+        console.log('Speech recognition ended');
+      };
+      
+      setSpeechRecognition(recognition);
+    }
+  }, []);
+
+  // WebSocket connection for real-time audio
+  useEffect(() => {
+    if (typeof window !== 'undefined' && currentSession) {
+      const ws = new WebSocket('ws://localhost:3000/api/websocket');
+      
+      ws.onopen = () => {
+        console.log('WebSocket connected');
+        setWebsocket(ws);
+      };
+      
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.response) {
+            // WebSocket'ten gelen response'u işle
+            const assistantMessage: Message = {
+              id: (Date.now() + 1).toString(),
+              content: data.response,
+              role: 'assistant',
+              timestamp: new Date(),
+              audioUrl: data.audioUrl
+            };
+            
+            const updatedSession = {
+              ...currentSession,
+              messages: [...currentSession.messages, assistantMessage]
+            };
+            
+            setCurrentSession(updatedSession);
+            setSessions(prev => 
+              prev.map(s => s.id === currentSession.id ? updatedSession : s)
+            );
+          }
+        } catch (error) {
+          console.error('WebSocket message error:', error);
+        }
+      };
+      
+      ws.onerror = (error) => {
+        console.error('WebSocket error:', error);
+      };
+      
+      ws.onclose = () => {
+        console.log('WebSocket disconnected');
+        setWebsocket(null);
+      };
+      
+      return () => {
+        ws.close();
+      };
+    }
+  }, [currentSession]);
 
   // Scroll to bottom when new messages arrive
   useEffect(() => {
@@ -151,6 +256,26 @@ export default function ChatBoard({
         audioUrl: data.audioUrl
       };
 
+      // Eğer audioUrl yoksa, TTS ile ses oluştur
+      if (!data.audioUrl && data.response) {
+        try {
+          const ttsResponse = await fetch('/api/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: data.response })
+          });
+          
+          if (ttsResponse.ok) {
+            const ttsData = await ttsResponse.json();
+            // TTS response'u audioUrl olarak kullan
+            assistantMessage.audioUrl = ttsData.audioUrl;
+          }
+        } catch (ttsError) {
+          console.error('TTS error:', ttsError);
+          // TTS hatası durumunda sessiz devam et
+        }
+      }
+
       const finalSession = {
         ...updatedSession,
         messages: [...updatedSession.messages, assistantMessage]
@@ -209,6 +334,46 @@ export default function ChatBoard({
     const newIsOpen = !isOpen;
     setIsOpen(newIsOpen);
     onToggle?.();
+  };
+
+  const toggleSpeechMode = () => {
+    if (!speechRecognition) {
+      console.log('Speech recognition not available');
+      return;
+    }
+
+    if (isRecording) {
+      speechRecognition.stop();
+      setIsSpeechMode(false);
+    } else {
+      speechRecognition.start();
+      setIsSpeechMode(true);
+    }
+  };
+
+  const sendAudioToWebSocket = async (audioBlob: Blob) => {
+    if (!websocket || websocket.readyState !== WebSocket.OPEN) {
+      console.log('WebSocket not connected');
+      return;
+    }
+
+    try {
+      // Audio blob'u base64'e çevir
+      const reader = new FileReader();
+      reader.onload = () => {
+        const audioData = reader.result as string;
+        const sessionId = currentSession?.id || 'default';
+        
+        // WebSocket ile audio data gönder
+        websocket.send(JSON.stringify({
+          audioData: audioData,
+          sessionId: sessionId
+        }));
+      };
+      reader.readAsDataURL(audioBlob);
+    } catch (error) {
+      console.error('Audio send error:', error);
+    }
   };
 
   // Mount kontrolü - tüm hook'lar çağrıldıktan sonra
@@ -343,11 +508,29 @@ export default function ChatBoard({
                               type="text"
                               value={inputMessage}
                               onChange={(e) => setInputMessage(e.target.value)}
-                              placeholder="Sesli veya yazılı görüşme başlatın..."
+                              placeholder={isRecording ? "Dinliyorum..." : "Sesli veya yazılı görüşme başlatın..."}
                               className="w-full bg-gray-100 text-gray-900 px-3 py-2 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-500 text-xs"
                               disabled={isLoading}
                             />
+                            {isRecording && (
+                              <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+                                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                              </div>
+                            )}
                           </div>
+                          
+                          <button
+                            type="button"
+                            onClick={toggleSpeechMode}
+                            className={`p-2 rounded-xl transition-all duration-300 ${
+                              isRecording 
+                                ? 'bg-red-500 text-white hover:bg-red-600' 
+                                : 'bg-blue-500 text-white hover:bg-blue-600'
+                            }`}
+                            title={isRecording ? 'Sesli konuşmayı durdur' : 'Sesli konuşma başlat'}
+                          >
+                            {isRecording ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                          </button>
                           
                           <button
                             type="submit"
