@@ -29,7 +29,8 @@ const nextConfig = {
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
     DATABASE_URL: process.env.DATABASE_URL,
     DIRECT_URL: process.env.DIRECT_URL,
-    GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY || 'AIzaSyDRy8xDLPtEMQe9TBroZOFQtsFYKPTeNLY',
+    GOOGLE_CLOUD_PROJECT_ID: process.env.GOOGLE_CLOUD_PROJECT_ID || 'ecstatic-cosmos-467205-m1',
     N8N_WEBHOOK_TIMEOUT: process.env.N8N_WEBHOOK_TIMEOUT,
     N8N_WEBHOOK_URL: process.env.N8N_WEBHOOK_URL,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
@@ -41,10 +42,6 @@ const nextConfig = {
       config.externals.push('sharp');
     }
     return config;
-  },
-  // Environment variables
-  env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
   // Headers for security
   async headers() {
