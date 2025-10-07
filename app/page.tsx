@@ -1399,6 +1399,128 @@ export default function HomePage() {
                 </div>
             </motion.section>
 
+            {/* Dental AI Platform */}
+            <motion.section 
+                className="relative py-20"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ amount: 0.3 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-emerald-900/20 to-black" />
+                <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="mb-16 text-center">
+                        <motion.h2 
+                            className="text-4xl font-bold text-white mb-6"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            🦷 Dental AI Platform
+                        </motion.h2>
+                        <motion.p 
+                            className="mx-auto max-w-2xl text-lg text-white/80"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            Diş hekimleri için özel olarak geliştirilmiş yapay zeka destekli platform
+                        </motion.p>
+                    </div>
+
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Sol Taraf - İçerik */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <div className="space-y-6">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center">
+                                        <span className="text-2xl">🦷</span>
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-white">Dental AI</h3>
+                                </div>
+                                
+                                <p className="text-white/80 text-lg leading-relaxed">
+                                    Diş hekimleri için özel olarak tasarlanmış yapay zeka platformu. 
+                                    Hastalarınızın tedavi süreçlerini optimize edin, tanıları hızlandırın 
+                                    ve hasta deneyimini geliştirin.
+                                </p>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl backdrop-blur-sm">
+                                        <CheckCircle className="w-6 h-6 text-emerald-400" />
+                                        <span className="text-white/90">AI Destekli Tanı</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl backdrop-blur-sm">
+                                        <CheckCircle className="w-6 h-6 text-emerald-400" />
+                                        <span className="text-white/90">Hasta Yönetimi</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl backdrop-blur-sm">
+                                        <CheckCircle className="w-6 h-6 text-emerald-400" />
+                                        <span className="text-white/90">Tedavi Planlaması</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl backdrop-blur-sm">
+                                        <CheckCircle className="w-6 h-6 text-emerald-400" />
+                                        <span className="text-white/90">Raporlama</span>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                                    <a 
+                                        href="https://dentalai.meschain.io/" 
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 bg-emerald-500 text-white px-6 py-3 rounded-xl hover:bg-emerald-600 transition-all duration-300 font-medium"
+                                    >
+                                        <ExternalLink className="w-5 h-5" />
+                                        Platformu İncele
+                                    </a>
+                                    <a 
+                                        href="/dental-ai" 
+                                        className="inline-flex items-center gap-2 bg-white/10 text-white px-6 py-3 rounded-xl hover:bg-white/20 transition-all duration-300 font-medium backdrop-blur-sm"
+                                    >
+                                        <Eye className="w-5 h-5" />
+                                        Detayları Gör
+                                    </a>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Sağ Taraf - Resim */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ amount: 0.3 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="relative"
+                        >
+                            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                                <img 
+                                    src="/image/Dentalai/dental_06.png" 
+                                    alt="Dental AI Platform" 
+                                    className="w-full h-96 object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                                <div className="absolute bottom-4 left-4 right-4">
+                                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                        <h4 className="text-white font-semibold mb-2">AI Destekli Diş Hekimliği</h4>
+                                        <p className="text-white/80 text-sm">
+                                            Yapay zeka teknolojisi ile diş hekimliğinde yeni bir dönem
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.section>
+
             {/* Gelecek Vizyonu ve Roadmap */}
             <motion.section 
                 className="relative py-20"
