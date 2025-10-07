@@ -81,7 +81,7 @@ export default function ChatBoard({
       try {
         const recognition = new webkitSpeechRecognition();
         recognition.lang = 'tr-TR';
-        recognition.continuous = false; // Tek seferlik tanıma
+        recognition.continuous = true; // Sürekli dinleme
         recognition.interimResults = true;
         recognition.maxAlternatives = 1;
         
@@ -104,10 +104,13 @@ export default function ChatBoard({
           }
           
           if (finalTranscript) {
+            console.log('Final transcript:', finalTranscript);
             setInputMessage(finalTranscript);
-            // Otomatik olarak mesajı gönder
-            sendMessage(finalTranscript);
-          } else {
+            // Konuşma bitti, otomatik olarak mesajı gönder
+            setTimeout(() => {
+              sendMessage(finalTranscript);
+            }, 500); // Kısa bir gecikme ile gönder
+          } else if (interimTranscript) {
             setInputMessage(interimTranscript);
           }
         };
@@ -131,6 +134,14 @@ export default function ChatBoard({
           setIsRecording(false);
           setIsSpeechMode(false);
           console.log('Speech recognition ended');
+          
+          // Eğer hala input'ta metin varsa ve gönderilmemişse, gönder
+          if (inputMessage.trim() && !isLoading) {
+            console.log('Auto-sending remaining message:', inputMessage);
+            setTimeout(() => {
+              sendMessage(inputMessage);
+            }, 1000);
+          }
         };
         
         setSpeechRecognition(recognition);
@@ -335,10 +346,21 @@ export default function ChatBoard({
 
     try {
       if (isRecording) {
+        // Konuşmayı durdur
         speechRecognition.stop();
         setIsSpeechMode(false);
-        console.log('Speech recognition stopped');
+        console.log('Speech recognition stopped by user');
+        
+        // Eğer input'ta metin varsa, gönder
+        if (inputMessage.trim() && !isLoading) {
+          console.log('Sending message after manual stop:', inputMessage);
+          setTimeout(() => {
+            sendMessage(inputMessage);
+          }, 500);
+        }
       } else {
+        // Konuşmayı başlat
+        setInputMessage(''); // Önceki metni temizle
         speechRecognition.start();
         setIsSpeechMode(true);
         console.log('Speech recognition started');
@@ -508,7 +530,7 @@ export default function ChatBoard({
                               type="text"
                               value={inputMessage}
                               onChange={(e) => setInputMessage(e.target.value)}
-                              placeholder={isRecording ? "Dinliyorum..." : "Sesli veya yazılı görüşme başlatın..."}
+                              placeholder={isRecording ? "Konuşun... (Kırmızı butona basarak durdurun)" : "Mavi butona basarak sesli konuşma başlatın veya yazın..."}
                               className="w-full bg-gray-100 text-gray-900 px-3 py-2 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-green-500 text-xs"
                               disabled={isLoading}
                             />
