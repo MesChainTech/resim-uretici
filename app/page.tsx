@@ -294,7 +294,7 @@ export default function HomePage() {
                             transition={{ duration: 0.6, delay: 0.6 }}
                         >
                             <Sparkles className="h-4 w-4" />
-                            <span>Stüdyo kalitesi saniyeler içinde</span>
+                            <span>MesChain AI ile stüdyo kalitesi saniyeler içinde</span>
                         </motion.div>
                         <motion.h1 
                             className="mt-8 text-4xl font-bold leading-tight text-white/60 md:text-6xl"
@@ -303,7 +303,7 @@ export default function HomePage() {
                             transition={{ duration: 0.8, delay: 0.8 }}
                         >
                             <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                                HidLight MedyaTech ile ürün fotoğraflarınızı saniyeler içinde yapay zeka ile dönüştürün
+                                MesChain ile ürün fotoğraflarınızı saniyeler içinde yapay zeka ile dönüştürün
                             </span>
                         </motion.h1>
                         <motion.p 
@@ -312,7 +312,7 @@ export default function HomePage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 1.0 }}
                         >
-                            Model ve ürün görsellerinizi yükleyin; markanıza uygun stüdyo kalitesinde kareleri tek tıkla elde edin.
+                            Model ve ürün görsellerinizi yükleyin; markanıza uygun stüdyo kalitesinde kareleri tek tıkla elde edin. E-ticaret, moda, takı, teknoloji ve güzellik kategorilerinde profesyonel sonuçlar.
                         </motion.p>
 
                         <motion.div 
@@ -354,8 +354,8 @@ export default function HomePage() {
                                     <ImageIcon className="h-7 w-7" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-white/70">Öne çıkan koleksiyon</p>
-                                    <p className="text-xl font-semibold text-white">Premium ürün çekimleri</p>
+                                    <p className="text-sm font-medium text-white/70">MesChain AI Koleksiyonu</p>
+                                    <p className="text-xl font-semibold text-white">Profesyonel ürün çekimleri</p>
                                 </div>
                             </div>
 
@@ -363,25 +363,25 @@ export default function HomePage() {
                                 <div className="rounded-2xl border border-white/20 bg-white/10 p-5 shadow-lg backdrop-blur">
                                     <div className="flex items-center gap-3">
                                         <Zap className="h-5 w-5 text-purple-400" />
-                                        <span className="text-sm font-semibold text-white">Akıllı ışık</span>
+                                        <span className="text-sm font-semibold text-white">MesChain Akıllı Işık</span>
                                     </div>
                                     <p className="mt-2 text-sm text-white/70">
-                                        AI, ürüne göre ışık ve gölgeyi otomatik ayarlar.
+                                        MesChain AI, ürüne göre ışık ve gölgeyi otomatik ayarlar.
                                     </p>
                                 </div>
                                 <div className="rounded-2xl border border-white/20 bg-white/10 p-5 shadow-lg backdrop-blur">
                                     <div className="flex items-center gap-3">
                                         <Shield className="h-5 w-5 text-pink-400" />
-                                        <span className="text-sm font-semibold text-white">Marka tutarlılığı</span>
+                                        <span className="text-sm font-semibold text-white">MesChain Marka Tutarlılığı</span>
                                     </div>
                                     <p className="mt-2 text-sm text-white/70">
-                                        Renk ve arka planı stil rehberinize uygun şekilde korur.
+                                        MesChain AI, renk ve arka planı stil rehberinize uygun şekilde korur.
                                     </p>
                                 </div>
                             </div>
 
                             <div className="mt-6 rounded-2xl border border-dashed border-white/30 bg-white/5 p-5 text-sm text-white/80">
-                                %92 müşteri, ilk projede beklediğinden daha iyi sonuç aldığını söylüyor.
+                                %92 MesChain kullanıcısı, ilk projede beklediğinden daha iyi sonuç aldığını söylüyor. AI teknolojisinin gücünü deneyimleyin!
                             </div>
                         </div>
                     </div>
@@ -401,10 +401,10 @@ export default function HomePage() {
                 <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mb-16 text-center">
                         <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
-                            Neden HidLight MedyaTech'i Seçmelisiniz?
+                            Neden MesChain'i Seçmelisiniz?
                         </h2>
                         <p className="mx-auto max-w-2xl text-lg text-white/80">
-                            Zaman kazandıran ve profesyonel sonuçlar sunan AI destekli ürün fotoğrafçılığının gücünü deneyimleyin.
+                            Yapay zeka teknolojisinin gücüyle görsel yaratıcılığı demokratikleştiren MesChain, profesyonel kalitede ürün fotoğraflarına herkesin erişebilmesini sağlar.
                         </p>
                     </div>
 
@@ -444,7 +444,7 @@ export default function HomePage() {
                             </div>
                                 <h3 className="mb-4 text-xl font-semibold text-white">Şimşek Hızında</h3>
                                 <p className="text-white/70">
-                                Saatler değil saniyeler içinde profesyonel ürün fotoğrafları oluşturun. Görsellerinizi yükleyin ve anında sonuç alın.
+                                Saatler değil saniyeler içinde profesyonel ürün fotoğrafları oluşturun. MesChain'in güçlü AI teknolojisi ile görsellerinizi yükleyin ve anında sonuç alın.
                             </p>
                         </div>
                         </motion.div>
@@ -478,7 +478,7 @@ export default function HomePage() {
                             </div>
                                 <h3 className="mb-4 text-xl font-semibold text-white">AI Destekli Kalite</h3>
                                 <p className="text-white/70">
-                                Gelişmiş AI algoritmalarımız, profesyonel stüdyolarla yarışan yüksek kaliteli ve gerçekçi ürün fotoğrafları sağlar.
+                                MesChain'in gelişmiş AI algoritmaları, profesyonel stüdyolarla yarışan yüksek kaliteli ve gerçekçi ürün fotoğrafları sağlar. Google Gemini API ve N8N entegrasyonu ile en son teknoloji.
                             </p>
                         </div>
                         </motion.div>
@@ -512,7 +512,7 @@ export default function HomePage() {
                             </div>
                                 <h3 className="mb-4 text-xl font-semibold text-white">Güvenli ve Özel</h3>
                                 <p className="text-white/70">
-                                Görselleriniz güvenli bir şekilde işlenir ve gereğinden uzun süre saklanmaz. Gizlilik ve güvenlik en büyük önceliğimizdir.
+                                MesChain'de görselleriniz güvenli bir şekilde işlenir ve gereğinden uzun süre saklanmaz. Clerk authentication, HTTPS şifreleme ve GDPR uyumluluğu ile gizlilik ve güvenlik en büyük önceliğimizdir.
                             </p>
                         </div>
                         </motion.div>
@@ -535,7 +535,7 @@ export default function HomePage() {
                             Her ürün kategorisi için mükemmel
                         </h2>
                         <p className="mx-auto max-w-2xl text-lg text-white/80">
-                            Yapay zekamız çeşitli ürün kategorilerinde eğitildi ve özel ihtiyaçlarınıza uygun sonuçlar sunar.
+                            MesChain'in yapay zekası 5 farklı kategoride özel olarak eğitildi. E-ticaret, moda, takı, teknoloji ve güzellik ürünleriniz için özel ihtiyaçlarınıza uygun sonuçlar sunar.
                         </p>
                     </div>
 
@@ -574,7 +574,7 @@ export default function HomePage() {
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-white">E-ticaret</h3>
                                 <p className="text-xs text-white/80 leading-relaxed">
-                                    Genel ürünler için profesyonel fotoğraf çekimi. Her türlü e-ticaret ürününüzü stüdyo kalitesinde görselleştirin ve satışlarınızı artırın.
+                                    Genel ürünler için profesyonel fotoğraf çekimi. MesChain ile her türlü e-ticaret ürününüzü stüdyo kalitesinde görselleştirin ve satışlarınızı artırın.
                                 </p>
                             </div>
                         </motion.div>
@@ -607,7 +607,7 @@ export default function HomePage() {
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-white">Giyim</h3>
                                 <p className="text-xs text-white/80 leading-relaxed">
-                                    Kıyafet ve aksesuarlar için özel ışıklandırma teknikleri. Moda ürünlerinizi en çekici şekilde sergileyin ve müşteri ilgisini artırın.
+                                    Kıyafet ve aksesuarlar için özel ışıklandırma teknikleri. MesChain'in AI teknolojisi ile moda ürünlerinizi en çekici şekilde sergileyin ve müşteri ilgisini artırın.
                                 </p>
                             </div>
                         </motion.div>
@@ -640,7 +640,7 @@ export default function HomePage() {
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-white">Takı</h3>
                                 <p className="text-xs text-white/80 leading-relaxed">
-                                    Yüzük ve kolyeler için özel makro çekim teknikleri. Değerli takılarınızı parlaklığıyla öne çıkarın ve lüks hissiyat yaratın.
+                                    Yüzük ve kolyeler için özel makro çekim teknikleri. MesChain'in gelişmiş AI algoritmaları ile değerli takılarınızı parlaklığıyla öne çıkarın ve lüks hissiyat yaratın.
                                 </p>
                             </div>
                         </motion.div>
@@ -673,7 +673,7 @@ export default function HomePage() {
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-white">Teknoloji</h3>
                                 <p className="text-xs text-white/80 leading-relaxed">
-                                    Elektronik ve cihazlar için teknik detayları öne çıkaran çekimler. Modern teknoloji ürünlerinizi profesyonelce sunun ve güven verin.
+                                    Elektronik ve cihazlar için teknik detayları öne çıkaran çekimler. MesChain ile modern teknoloji ürünlerinizi profesyonelce sunun ve güven verin.
                                 </p>
                             </div>
                         </motion.div>
@@ -706,7 +706,7 @@ export default function HomePage() {
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-white">Güzellik</h3>
                                 <p className="text-xs text-white/80 leading-relaxed">
-                                    Kozmetik ve cilt bakımı ürünleri için özel renk doğruluğu. Güzellik ürünlerinizi en çekici şekilde gösterin ve satışları artırın.
+                                    Kozmetik ve cilt bakımı ürünleri için özel renk doğruluğu. MesChain'in AI teknolojisi ile güzellik ürünlerinizi en çekici şekilde gösterin ve satışları artırın.
                                 </p>
                     </div>
                         </motion.div>
@@ -746,7 +746,7 @@ export default function HomePage() {
                         viewport={{ amount: 0.3 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
                     >
-                        Çarpıcı ürün fotoğrafları oluşturmak için AI kullanan binlerce işletmeye katılın.
+                        MesChain ile çarpıcı ürün fotoğrafları oluşturmak için AI kullanan binlerce işletmeye katılın. Profesyonel kalitede görselleri saniyeler içinde elde edin.
                     </motion.p>
 
                     <motion.div

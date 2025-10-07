@@ -11,12 +11,12 @@ export function Footer() {
                             <Zap className="absolute -top-1 -right-1 h-4 w-4 text-accent" />
                         </span>
                         <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                            HidLight MedyaTech
+                            MesChain
                         </h3>
                     </div>
 
                     <p className="mx-auto max-w-2xl text-sm text-muted-foreground">
-                        Modern işletmeler için profesyonel, AI destekli ürün fotoğrafçılığı deneyimi.
+                        Yapay zeka teknolojisi ile görsel yaratıcılığı demokratikleştiren MesChain, profesyonel kalitede ürün fotoğraflarına herkesin erişebilmesini sağlar.
                     </p>
 
                     <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
@@ -29,10 +29,13 @@ export function Footer() {
                         <a href="#" className="transition-colors hover:text-foreground">
                             İletişim
                         </a>
+                        <a href="/docs/meschain-proje-analizi.md" className="transition-colors hover:text-foreground">
+                            Proje Hakkında
+                        </a>
                     </div>
 
                     <div className="mt-10 border-t border-border/40 pt-6 text-xs text-muted-foreground/80">
-                        <p>&copy; 2025 HidLight MedyaTech. Tüm hakları saklıdır.</p>
+                        <p>&copy; 2025 MesChain. Tüm hakları saklıdır. | Yapay zeka ile görsel yaratıcılığı demokratikleştiriyoruz.</p>
                     </div>
                 </div>
             </div>
