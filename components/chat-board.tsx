@@ -78,103 +78,75 @@ export default function ChatBoard({
   // Speech Recognition initialization
   useEffect(() => {
     if (typeof window !== 'undefined' && 'webkitSpeechRecognition' in window) {
-      const recognition = new webkitSpeechRecognition();
-      recognition.lang = 'tr-TR';
-      recognition.continuous = true;
-      recognition.interimResults = true;
-      
-      recognition.onstart = () => {
-        setIsRecording(true);
-        console.log('Speech recognition started');
-      };
-      
-      recognition.onresult = (event) => {
-        let finalTranscript = '';
-        let interimTranscript = '';
+      try {
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = 'tr-TR';
+        recognition.continuous = false; // Tek seferlik tanıma
+        recognition.interimResults = true;
+        recognition.maxAlternatives = 1;
         
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcript = event.results[i][0].transcript;
-          if (event.results[i].isFinal) {
-            finalTranscript += transcript;
-          } else {
-            interimTranscript += transcript;
+        recognition.onstart = () => {
+          setIsRecording(true);
+          console.log('Speech recognition started');
+        };
+        
+        recognition.onresult = (event) => {
+          let finalTranscript = '';
+          let interimTranscript = '';
+          
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript;
+            } else {
+              interimTranscript += transcript;
+            }
           }
-        }
+          
+          if (finalTranscript) {
+            setInputMessage(finalTranscript);
+            // Otomatik olarak mesajı gönder
+            sendMessage(finalTranscript);
+          } else {
+            setInputMessage(interimTranscript);
+          }
+        };
         
-        if (finalTranscript) {
-          setInputMessage(finalTranscript);
-          // Otomatik olarak mesajı gönder
-          sendMessage(finalTranscript);
-        } else {
-          setInputMessage(interimTranscript);
-        }
-      };
-      
-      recognition.onerror = (event) => {
-        console.error('Speech recognition error:', event.error);
-        setIsRecording(false);
-      };
-      
-      recognition.onend = () => {
-        setIsRecording(false);
-        console.log('Speech recognition ended');
-      };
-      
-      setSpeechRecognition(recognition);
+        recognition.onerror = (event) => {
+          console.error('Speech recognition error:', event.error);
+          setIsRecording(false);
+          setIsSpeechMode(false);
+          
+          // Kullanıcıya hata mesajı göster
+          if (event.error === 'not-allowed') {
+            alert('Mikrofon erişimi reddedildi. Lütfen tarayıcı ayarlarından mikrofon iznini verin.');
+          } else if (event.error === 'no-speech') {
+            console.log('Konuşma algılanamadı');
+          } else if (event.error === 'audio-capture') {
+            alert('Mikrofon bulunamadı. Lütfen mikrofonunuzun bağlı olduğundan emin olun.');
+          }
+        };
+        
+        recognition.onend = () => {
+          setIsRecording(false);
+          setIsSpeechMode(false);
+          console.log('Speech recognition ended');
+        };
+        
+        setSpeechRecognition(recognition);
+      } catch (error) {
+        console.error('Speech recognition initialization error:', error);
+      }
+    } else {
+      console.log('Speech recognition not supported in this browser');
     }
   }, []);
 
-  // WebSocket connection for real-time audio
+  // WebSocket connection for real-time audio - Disabled for now
   useEffect(() => {
-    if (typeof window !== 'undefined' && currentSession) {
-      const ws = new WebSocket('ws://localhost:3000/api/websocket');
-      
-      ws.onopen = () => {
-        console.log('WebSocket connected');
-        setWebsocket(ws);
-      };
-      
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          if (data.response) {
-            // WebSocket'ten gelen response'u işle
-            const assistantMessage: Message = {
-              id: (Date.now() + 1).toString(),
-              content: data.response,
-              role: 'assistant',
-              timestamp: new Date(),
-              audioUrl: data.audioUrl
-            };
-            
-            const updatedSession = {
-              ...currentSession,
-              messages: [...currentSession.messages, assistantMessage]
-            };
-            
-            setCurrentSession(updatedSession);
-            setSessions(prev => 
-              prev.map(s => s.id === currentSession.id ? updatedSession : s)
-            );
-          }
-        } catch (error) {
-          console.error('WebSocket message error:', error);
-        }
-      };
-      
-      ws.onerror = (error) => {
-        console.error('WebSocket error:', error);
-      };
-      
-      ws.onclose = () => {
-        console.log('WebSocket disconnected');
-        setWebsocket(null);
-      };
-      
-      return () => {
-        ws.close();
-      };
-    }
+    // WebSocket bağlantısı şimdilik devre dışı
+    // Production'da WebSocket server gerekli
+    console.log('WebSocket connection disabled for production compatibility');
   }, [currentSession]);
 
   // Scroll to bottom when new messages arrive
@@ -256,25 +228,23 @@ export default function ChatBoard({
         audioUrl: data.audioUrl
       };
 
-      // Eğer audioUrl yoksa, TTS ile ses oluştur
-      if (!data.audioUrl && data.response) {
-        try {
-          const ttsResponse = await fetch('/api/tts', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text: data.response })
-          });
-          
-          if (ttsResponse.ok) {
-            const ttsData = await ttsResponse.json();
-            // TTS response'u audioUrl olarak kullan
-            assistantMessage.audioUrl = ttsData.audioUrl;
-          }
-        } catch (ttsError) {
-          console.error('TTS error:', ttsError);
-          // TTS hatası durumunda sessiz devam et
-        }
-      }
+      // TTS özelliği şimdilik devre dışı - gerçek TTS implementasyonu gerekli
+      // if (!data.audioUrl && data.response) {
+      //   try {
+      //     const ttsResponse = await fetch('/api/tts', {
+      //       method: 'POST',
+      //       headers: { 'Content-Type': 'application/json' },
+      //       body: JSON.stringify({ text: data.response })
+      //     });
+      //     
+      //     if (ttsResponse.ok) {
+      //       const ttsData = await ttsResponse.json();
+      //       assistantMessage.audioUrl = ttsData.audioUrl;
+      //     }
+      //   } catch (ttsError) {
+      //     console.error('TTS error:', ttsError);
+      //   }
+      // }
 
       const finalSession = {
         ...updatedSession,
@@ -315,18 +285,38 @@ export default function ChatBoard({
   };
 
   const playAudio = (audioUrl: string) => {
-    if (audioRef.current) {
-      audioRef.current.src = audioUrl;
-      audioRef.current.play();
-      setIsPlaying(true);
+    if (audioRef.current && audioUrl) {
+      try {
+        audioRef.current.src = audioUrl;
+        audioRef.current.play()
+          .then(() => {
+            setIsPlaying(true);
+            console.log('Audio playback started');
+          })
+          .catch((error) => {
+            console.error('Audio playback error:', error);
+            alert('Ses çalarken bir hata oluştu.');
+          });
+      } catch (error) {
+        console.error('Audio setup error:', error);
+        alert('Ses dosyası yüklenirken bir hata oluştu.');
+      }
+    } else {
+      console.log('Audio URL not available or audio element not found');
+      alert('Ses dosyası bulunamadı.');
     }
   };
 
   const stopAudio = () => {
     if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-      setIsPlaying(false);
+      try {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        setIsPlaying(false);
+        console.log('Audio playback stopped');
+      } catch (error) {
+        console.error('Audio stop error:', error);
+      }
     }
   };
 
@@ -339,41 +329,51 @@ export default function ChatBoard({
   const toggleSpeechMode = () => {
     if (!speechRecognition) {
       console.log('Speech recognition not available');
-      return;
-    }
-
-    if (isRecording) {
-      speechRecognition.stop();
-      setIsSpeechMode(false);
-    } else {
-      speechRecognition.start();
-      setIsSpeechMode(true);
-    }
-  };
-
-  const sendAudioToWebSocket = async (audioBlob: Blob) => {
-    if (!websocket || websocket.readyState !== WebSocket.OPEN) {
-      console.log('WebSocket not connected');
+      alert('Bu tarayıcıda sesli konuşma özelliği desteklenmiyor.');
       return;
     }
 
     try {
-      // Audio blob'u base64'e çevir
-      const reader = new FileReader();
-      reader.onload = () => {
-        const audioData = reader.result as string;
-        const sessionId = currentSession?.id || 'default';
-        
-        // WebSocket ile audio data gönder
-        websocket.send(JSON.stringify({
-          audioData: audioData,
-          sessionId: sessionId
-        }));
-      };
-      reader.readAsDataURL(audioBlob);
+      if (isRecording) {
+        speechRecognition.stop();
+        setIsSpeechMode(false);
+        console.log('Speech recognition stopped');
+      } else {
+        speechRecognition.start();
+        setIsSpeechMode(true);
+        console.log('Speech recognition started');
+      }
     } catch (error) {
-      console.error('Audio send error:', error);
+      console.error('Speech recognition toggle error:', error);
+      alert('Sesli konuşma başlatılırken bir hata oluştu. Lütfen tekrar deneyin.');
     }
+  };
+
+  const sendAudioToWebSocket = async (audioBlob: Blob) => {
+    // WebSocket özelliği şimdilik devre dışı
+    console.log('WebSocket audio sending disabled for production compatibility');
+    
+    // Gelecekte gerçek WebSocket implementasyonu için:
+    // if (!websocket || websocket.readyState !== WebSocket.OPEN) {
+    //   console.log('WebSocket not connected');
+    //   return;
+    // }
+    // 
+    // try {
+    //   const reader = new FileReader();
+    //   reader.onload = () => {
+    //     const audioData = reader.result as string;
+    //     const sessionId = currentSession?.id || 'default';
+    //     
+    //     websocket.send(JSON.stringify({
+    //       audioData: audioData,
+    //       sessionId: sessionId
+    //     }));
+    //   };
+    //   reader.readAsDataURL(audioBlob);
+    // } catch (error) {
+    //   console.error('Audio send error:', error);
+    // }
   };
 
   // Mount kontrolü - tüm hook'lar çağrıldıktan sonra
@@ -571,7 +571,14 @@ export default function ChatBoard({
       <audio
         ref={audioRef}
         onEnded={() => setIsPlaying(false)}
+        onError={(e) => {
+          console.error('Audio element error:', e);
+          setIsPlaying(false);
+        }}
+        onLoadStart={() => console.log('Audio loading started')}
+        onCanPlay={() => console.log('Audio can play')}
         className="hidden"
+        preload="none"
       />
     </div>
   );
